@@ -1,6 +1,6 @@
 <?php
-    include "top.php";
-    include "db.inc.php";
+    require_once "top.php";
+    require_once "db.inc.php";
 ?>
 
 
@@ -18,7 +18,7 @@
     <h1>Login</h1>
     <form method="post">
         <div>
-            <input type="email" name="email" placeholder="Email address">
+            <input type="text" name="email" placeholder="Email address">
         </div>
         <div>
             <input type="password" name="password" placeholder="password">
@@ -28,7 +28,7 @@
         </div>
     </form>
 
-    <div>Don't have an account? <a href="signup.php">Sign up</a></div>
+    <div>Not a member yet? <a href="signup.php">Sign up</a></div>
 
 
     <?php
@@ -41,14 +41,32 @@
 
             if(verify_password($email, $password)){
                 $_SESSION["email"] = $email;
-
-                # TODO: DA CONTINUARE
+                echo "perfetto";
+                header('Location: home.php');
+                exit();
+            }
+            else{
+                echo "Credenziali Errate.";
             }
         }
 
         # TODO: DA CONTINUARE
         function verify_password($email, $password){
+            $db = database_connection();
+            $rows = $db->query("SELECT codice FROM nomi WHERE nome = '$email'");
 
+            if($rows){
+                ## TROVA QUALCHE RIGA
+                foreach ($rows as $row){
+                    $real_password = $row["codice"];
+                    return $real_password === $password;
+                }
+
+            }
+            else{
+                ## NON HA TROVATO NESSUN UTENTE
+                return FALSE;
+            }
         }
 
     ?>
