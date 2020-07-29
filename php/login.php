@@ -18,13 +18,13 @@
     <h1>Login</h1>
     <form method="post">
         <div>
-            <input type="text" name="email" placeholder="Email address">
+            <input type="email" name="email" placeholder="Email address" required>
         </div>
         <div>
-            <input type="password" name="password" placeholder="password">
+            <input type="password" name="password" placeholder="password" required>
         </div>
         <div>
-            <input type="submit" value="Log in">
+            <input type="submit" name="submit" value="Log in">
         </div>
     </form>
 
@@ -32,40 +32,44 @@
 
 
     <?php
-        if(isset($_POST["email"]) && isset($_POST["password"])){
+        if(isset($_POST["submit"])){
             $email = filter_input(INPUT_POST,"email",
                 FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $password = filter_input(INPUT_POST,"password",
                 FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if(verify_password($email, $password)){
-                $_SESSION["email"] = $email;
-                echo "perfetto";
+
+            $hash = retreive_hash($email);
+
+            if(password_verify($password,$hash)){
+                $_SESSION['email'] = $email;
                 header('Location: home.php');
                 exit();
             }
             else{
-                echo "Credenziali Errate.";
+                echo "credentials not valid";
             }
         }
 
-        # TODO: DA CONTINUARE
-        function verify_password($email, $password){
+
+
+        function retreive_hash($email){
             $db = database_connection();
-            $rows = $db->query("SELECT codice FROM nomi WHERE nome = '$email'");
+            $rows = $db->query("SELECT pwd FROM users WHERE email = '$email'");
 
-            if($rows){
-                ## TROVA QUALCHE RIGA
-                foreach ($rows as $row){
-                    $real_password = $row["codice"];
-                    return $real_password === $password;
+            try{
+                if($rows){
+                    foreach ($rows as $row){
+                        return $row["pwd"];
+                    }
+                    throw new Exception("user is not registered");
                 }
-
-            }
-            else{
-                ## NON HA TROVATO NESSUN UTENTE
-                return FALSE;
+                else throw new Exception("query error");
+            } catch(Exception $e){
+                ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+            } finally {
+                $db->close();
             }
         }
 

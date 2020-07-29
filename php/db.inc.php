@@ -5,7 +5,7 @@
         $server = "127.0.0.1";
         $username = "root";
         $password = "root";
-        $database = "prova";
+        $database = "bookstore";
         $port = '8889';
 
         $conn = new mysqli($server, $username, $password, $database, $port);
