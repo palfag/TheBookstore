@@ -10,24 +10,27 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../javascript/signup.js"  type="text/javascript"></script>
+    <link rel="stylesheet" href="../style/check_input.css">
     <title>Signup</title>
 </head>
 <body>
     <h1>Sign up</h1>
-    <form method="post">
+
+    <form method="POST">
         <div>
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="text" name="surname" placeholder="Surname" required>
+            <input id="name" type="text" name="name" placeholder="Name" required>
+            <input id="surname" type="text" name="surname" placeholder="Surname" required>
         </div>
         <div>
-            <input type="email" name="email" placeholder="Email address" required>
+            <input id="email" type="text" name="email" placeholder="Email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" required >
         </div>
         <div>
-            <input type="password" name="password" placeholder="New password" required>
+            <input id="password" type="password" name="password" placeholder="New password" required>
         </div>
         <div>
-            <input type="submit" name="submit" value="Sign up">
+            <input id="signup_btn" type="submit" name="submit" value="Sign up">
         </div>
     </form>
 
@@ -35,7 +38,7 @@
 
     <?php
 
-        if(isset($_POST["submit"])){
+        if(isset($_POST['submit'])){
             $email = filter_input(INPUT_POST,"email",
                 FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -49,7 +52,7 @@
                 FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             try{
-                if(!is_contained($email)){ // se la email non è contenuta nel DB possiamo procedere alla registrazione
+                if(!is_contained($email)){ // se l'email non è contenuta nel DB possiamo procedere alla registrazione
 
                     $hash = password_hash($password, PASSWORD_DEFAULT); //  BCRYPT algorithm
 
