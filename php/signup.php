@@ -1,6 +1,6 @@
 <?php
-require_once "top.php";
-require_once "db.inc.php";
+    require_once "top.php";
+    require_once "db.inc.php";
 ?>
 
 <!doctype html>
@@ -31,7 +31,7 @@ require_once "db.inc.php";
         </div>
     </form>
 
-    <div>Already have an account? <a href="login.php">Login</a></div>
+    <div>Already have an account? <a href="index.php">Login</a></div>
 
     <?php
 
@@ -61,11 +61,11 @@ require_once "db.inc.php";
                         header("Location: home.php");
                     }
 
-            }
-
-
-
+            } else throw new Exception("you may be already registered as $email");
             } catch(Exception $e){
+                ?>
+                <p> <?= $e->getMessage() . "<br>" . "try to log in" ?></p>
+                <?php
                 ####### # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
             }
 
@@ -91,6 +91,7 @@ require_once "db.inc.php";
                 }
                 else throw new Exception("query error");
             } catch(Exception $e){
+                $e->getMessage();
                 ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
             } finally {
                 $db->close();

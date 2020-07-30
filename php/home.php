@@ -1,3 +1,14 @@
+<?php
+    require_once "top.php";
+    require_once "db.inc.php";
+
+    if(!isset($_SESSION['email'])){
+        header("Location: index.php");
+    }
+
+    $name = retreive_name($_SESSION['email']);
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +19,31 @@
     <title>Document</title>
 </head>
 <body>
-<h1>BENVENUTO</h1>
+    <h1>BENVENUTO <?= $name ?></h1>
+
+    <a href="logout.php">logout</a>
+
+<?php
+
+    function retreive_name($email){
+        $db = database_connection();
+        $rows = $db->query("SELECT name FROM users WHERE email = '$email'");
+
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                        return $row['name'];
+                    } throw new Exception("user not found");
+                }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+        }
+    }
+
+?>
 
 </body>
 </html>
