@@ -1,0 +1,7 @@
+input:valid {
+    border-bottom-color: forestgreen;
+}
+
+input:invalid {
+    border-bottom-color: firebrick;
+}
