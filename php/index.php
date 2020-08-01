@@ -21,69 +21,25 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../javascript/signup.js"  type="text/javascript"></script>
+    <script src="../javascript/login.js"  type="text/javascript"></script>
+    <link rel="stylesheet" href="../css/check-inputs.css">
     <title>Login</title>
 </head>
 <body>
     <h1>Login</h1>
-    <form method="post">
+    <form method="POST">
         <div>
-            <input type="email" name="text"  placeholder="Email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" required>
+            <input id="email" type="email" name="text"  placeholder="Email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" required>
         </div>
         <div>
-            <input type="password" name="password" placeholder="password" required>
+            <input id="password" type="password" name="password" placeholder="password" required>
         </div>
         <div>
-            <input type="submit" name="submit" value="Log in">
+            <input id="submit" type="submit" name="submit" value="Log in">
         </div>
     </form>
 
     <div>Not a member yet? <a href="signup.php">Sign up</a></div>
-
-
-    <?php
-        if(isset($_POST["submit"])){
-            $email = filter_input(INPUT_POST,"email",
-                FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-            $password = filter_input(INPUT_POST,"password",
-                FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-
-            $hash = retreive_hash($email);
-
-            if(password_verify($password,$hash)){
-                $_SESSION['email'] = $email;
-                header('Location: home.php');
-                exit();
-            }
-            else{
-                echo "credentials not valid";
-            }
-        }
-
-
-
-        function retreive_hash($email){
-            $db = database_connection();
-            $rows = $db->query("SELECT pwd FROM users WHERE email = '$email'");
-
-            try{
-                if($rows){
-                    foreach ($rows as $row){
-                        return $row["pwd"];
-                    }
-                    throw new Exception("user is not registered");
-                }
-                else throw new Exception("query error");
-            } catch(Exception $e){
-                ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-            } finally {
-                $db->close();
-            }
-        }
-
-    ?>
-
+    <p id="ajax-response"></p>
 </body>
 </html>

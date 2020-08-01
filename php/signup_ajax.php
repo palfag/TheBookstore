@@ -24,8 +24,8 @@
                     $done = register_user($email, $name, $surname, $hash);
 
                     if($done){
-                        $_SESSION["email"] = $email;
-                        $_SESSION["flash"] = "Hello, ".$name."!";
+                        $_SESSION['email'] = $email;
+                        //$_SESSION['flash'] = "Hello, ".$name."!";
 
                         // AJAX RESPONSE
                         $response = array("success" => 1);
@@ -39,14 +39,13 @@
             $response = array("success" => 0, "flash_message" => $e->getMessage());
             echo json_encode($response);
         }
-
     }
 
 
     /**
-     * Checks if the given email is contained in the database.
+     * Checks if the given email is contained into the database.
      * @param string $email The email which the user would like to register with.
-     * @return bool Returns TRUE if the email is contained in the database, or FALSE otherwise.
+     * @return bool Returns TRUE if the email is contained into the database, or FALSE otherwise.
      */
     function is_contained($email){
         $db = database_connection();

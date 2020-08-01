@@ -21,7 +21,6 @@
 </head>
 <body>
     <h1>BENVENUTO <?= $name ?></h1>
-    <h1><?= $_SESSION['flash'] ?></h1>
 
     <a href="logout.php">logout</a>
 
