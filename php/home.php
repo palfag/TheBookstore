@@ -4,6 +4,7 @@
 
     if(!isset($_SESSION['email'])){
         header("Location: index.php");
+        die;
     }
 
     $name = retreive_name($_SESSION['email']);

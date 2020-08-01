@@ -8,6 +8,7 @@
     // if user already logged will redirect to home.php
     if(isset($_SESSION['email'])){
         header("Location: home.php");
+        die;
     }
 ?>
 
