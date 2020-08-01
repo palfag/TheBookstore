@@ -34,7 +34,7 @@
     </div>
 </form>
 
-<div>Already have an account? <a href="index.php">Login</a></div>
+<div>Already member? <a href="index.php">Login</a></div>
 <p id="ajax-response"></p>
 
 </body>
