@@ -5,3 +5,8 @@ input:valid {
 input:invalid {
     border-bottom-color: firebrick;
 }
+
+
+.invisible{
+    display: none;
+}
