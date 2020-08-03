@@ -17,9 +17,9 @@
         </div>
         <ul class="nav-options">
             <li><a href="#">Home</a> </li>
-            <li><a href="#">Home</a> </li>
-            <li><a href="#">Home</a> </li>
-            <li><a href="#">Home</a> </li>
+            <li><a href="#">Categories</a> </li>
+            <li><a href="#">Profile</a> </li>
+            <li><a href="#">Settings</a> </li>
         </ul>
 
         <div id="burger-menu" class="burger-menu">

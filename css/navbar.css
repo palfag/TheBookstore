@@ -10,11 +10,14 @@ nav{
     align-items: center;
     min-height: 8vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #353b4f;
+    /*background-color: #353b4f;*/
+    border-width: 0px 0px 0.5px 0px;
+    border-style: solid;
+    border-bottom-color: #BFBBBB;
 }
 
 .logo span{
-    color: #bfbbbb;
+    color: #BFBBBB;
 }
 
 .logo{
@@ -40,7 +43,7 @@ nav{
 }
 
 .nav-options a:hover {
-    color: #FFFFFF;
+    color: #BFBBBB;
 }
 
 .burger-menu{
@@ -48,7 +51,8 @@ nav{
 }
 
 .burger-menu div{
-    background-color: #FFFFFF;
+    background-color: #000000;
+    /*background-color: #FFFFFF;*/
     width: 20px;
     height: 3px;
     margin: 4px;
@@ -66,7 +70,7 @@ nav{
     }
 
    .nav-options{
-       background-color: #353b4f;
+       /*background-color: #353b4f;*/
        position: absolute;
        right: 0px;
        height: 90vh;
