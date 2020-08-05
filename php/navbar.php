@@ -27,9 +27,10 @@ $name = retreive_name($_SESSION['email']);
             <h4><span>The</span>Bookstore</h4>
         </div>
         <ul class="nav-options">
-            <li><a href="#">Home</a> </li>
             <li><a href="#">Categories</a> </li>
+            <li><a href="#">WishList</a> </li>
             <li><a href="#"><?= $name?></a> </li>
+            <li><a  href="#">Cart</a> </li>
             <li><a href="logout.php">Logout</a> </li>
         </ul>
 
@@ -60,12 +61,6 @@ $name = retreive_name($_SESSION['email']);
             $db->close();
         }
     }
-
-    function search_book($book){
-        $db = database_connection();
-        # TODO
-    }
-
     ?>
 </body>
 </html>

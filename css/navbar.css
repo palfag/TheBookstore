@@ -27,7 +27,6 @@ nav{
 
 .nav-options{
     display: flex;
-    /*background-color: forestgreen;*/
     justify-content: space-around;
     width: 30%;
 }
@@ -90,6 +89,6 @@ nav{
 
 @media screen and (max-width: 1000px){
     .nav-options{
-        width: 40%;
+        width: 50%;
     }
 }

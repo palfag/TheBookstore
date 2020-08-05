@@ -1,0 +1,72 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.book{
+    margin: 20px;
+    text-align: center;
+    display: inline-block;
+    width: 8cm;
+    height: 13cm;
+}
+
+img{
+    height: 8cm;
+    width: 5cm;
+}
+
+#search-box{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+#search-bar{
+    width: 75%;
+    border:2px solid black;
+    border-right: 0px;
+    font-size: 18px;
+    background: transparent;
+}
+
+#submit{
+    width: 25%;
+    height: 31px;
+    background: black;
+    color: white;
+    float: right;
+    border-left:0px;
+}
+
+.add-to-cart{
+    background: #44aeec;
+    color: white;
+    padding: 3px;
+    border: none;
+    width: 100px;
+    border-radius: 3px;
+}
+
+#products{
+    margin: 40px;
+    text-align: center;
+}
+
+@media screen and (max-width: 750px){
+
+    #search-bar{
+        width: 55%;
+        border:2px solid black;
+        border-left: 0px;
+        font-size: 14px;
+    }
+
+    #submit{
+        width: 25%;
+        height: 26px;
+        float: left;
+        border-right:0px;
+    }
+
+}
+

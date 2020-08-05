@@ -1,14 +1,5 @@
 <?php
-    require_once "top.php";
-    require_once "db.inc.php";
     require_once "navbar.php";
-
-    if(!isset($_SESSION['email'])){
-        header("Location: index.php");
-        die;
-    }
-
-    $name = retreive_name($_SESSION['email']);
 ?>
 
 <!doctype html>
@@ -17,13 +8,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
+    <script src="../javascript/home.js"></script>
+    <link rel="stylesheet" href="../css/home.css">
+    <script src="../javascript/navbar.js"></script>
 </head>
 <body>
-    <h1>Hello,  <?= $name ?> !</h1>
 
-    <form>
-        <input id="search-box" type="text" placeholder="Search a book...">
-    </form>
+    <div id="search-box">
+        <h1>Search a book</h1>
+        <form method="POST">
+            <input id="search-bar" type="text" placeholder="There is no friend as loyal as a book.">
+            <input id="submit" type="submit" value="Search">
+        </form>
+    </div>
+
+
+
+    <div id="products">
+        <div id="ajax-response">___________</div>
+    </div>
 
 </body>
 </html>
