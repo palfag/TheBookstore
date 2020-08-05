@@ -46,14 +46,14 @@ function showBooks(books){
     for (var i = 0; i < books.length; i++) {
         var obj = books[i];
 
-        // per far si che ogni 4 libri si vada a capo
+        // per far si che ogni 3 libri si vada a capo
         if(i % 3 == 0){
             $("#products").append("<br>");
         }
 
         products =  "<div class = " + "book id = " + obj.book_id + ">" +
                         "<div class = " + "cover>" + "<img src = "+ obj.cover +">" + "</div>" +
-                        "<h1 class = " + "title>" + obj.title + "</h1>" +
+                        "<h1 class = " + "title><a href='../php/book.php?id_book="+ obj.book_id +"'>" + obj.title + "</h1>" +
                         "<p class = " + "author>"+ obj.author + "</p>" +
                         "<h3 class = " + "price>" + obj.price + "€" + "</h3>" +
                         "<button class = " + "add-to-cart>" + "add to cart" + "</button>" +

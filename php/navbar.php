@@ -24,7 +24,7 @@ $name = retreive_name($_SESSION['email']);
     <nav>
 
         <div class="logo">
-            <h4><span>The</span>Bookstore</h4>
+            <h4><a href="home.php"><span>The</span>Bookstore</a></h4>
         </div>
         <ul class="nav-options">
             <li><a href="#">Categories</a> </li>

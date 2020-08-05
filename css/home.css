@@ -10,6 +10,10 @@
     height: 13cm;
 }
 
+*{
+    text-decoration: none;
+    color: black;
+}
 img{
     height: 8cm;
     width: 5cm;
