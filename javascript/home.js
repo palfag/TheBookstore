@@ -9,7 +9,6 @@ $(document).ready(function () {
         // TODO ricambiare con query.length >= 1 per evitare di vedere tutto il db
         if(query.length >= 0){
             $("#products").html("");
-            $("#ajax-response").html("");
 
             var request = $.ajax({
                 type: "POST",
@@ -23,9 +22,7 @@ $(document).ready(function () {
                     var books = response.data;
                     showBooks(books);
                 } else{
-                    // TODO PERCHE NON FUNZIONAAAAAA
-                    $("#ajax-response").html(response.error);
-                    alert(response.error);
+                    $("#products").html(response.error);
                 }
             });
 

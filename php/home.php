@@ -25,7 +25,7 @@
 
 
     <div id="products">
-        <div id="ajax-response">___________</div>
+
     </div>
 
 </body>
