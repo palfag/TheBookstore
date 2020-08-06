@@ -1,5 +1,7 @@
 *{
     font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    color: black;
 }
 
 .book{
@@ -10,10 +12,6 @@
     height: 13cm;
 }
 
-*{
-    text-decoration: none;
-    color: black;
-}
 img{
     height: 8cm;
     width: 5cm;
@@ -52,7 +50,7 @@ img{
 }
 
 #products{
-    margin: 40px;
+    margin: 40px; /* TODO VEDERE DI METTERE AUTO*/
     text-align: center;
 }
 

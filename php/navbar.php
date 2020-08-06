@@ -27,7 +27,12 @@ $name = retreive_name($_SESSION['email']);
             <h4><a href="home.php"><span>The</span>Bookstore</a></h4>
         </div>
         <ul class="nav-options">
-            <li><a href="#">Categories</a> </li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">Categories</button>
+                    <div class="dropdown-content"></div>
+                </div>
+            </li>
             <li><a href="#">WishList</a> </li>
             <li><a href="#"><?= $name?></a> </li>
             <li><a  href="#">Cart</a> </li>

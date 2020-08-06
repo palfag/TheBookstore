@@ -1,0 +1,39 @@
+.book{
+    margin: 20px;
+    text-align: center;
+    display: inline-block;
+    width: 8cm;
+    height: 13cm;
+}
+
+img{
+    height: 8cm;
+    width: 5cm;
+}
+
+.add-to-cart{
+    background: #44aeec;
+    color: white;
+    padding: 3px;
+    border: none;
+    width: 100px;
+    border-radius: 3px;
+}
+
+#products{
+    margin: auto;
+    text-align: center;
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+
+#category-title{
+    margin-top: 60px;
+    margin-left: 20px;
+
+}
