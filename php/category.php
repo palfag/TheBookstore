@@ -25,6 +25,7 @@ if(isset($_GET['category'])){
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/category.css">
+    <script src="../javascript/add_to_cart.js"></script>
     <title>category</title>
 </head>
 <body>
@@ -48,7 +49,7 @@ if(isset($_GET['category'])){
                         <h1 class="title"><a href='book.php?id_book=<?= $book["book_id"] ?>'> <?= $book["title"] ?></a></h1>
                         <p class="author"><?= $book["author"]?></p>
                         <h3 class = "price"><?= $book["price"] ?>€</h3>
-                        <button class="add-to-cart">add to cart</button>
+                        <button class="add-to-cart" id="<?=$book["book_id"]?>">add to cart</button>
                     </div>
                 <?php
             }

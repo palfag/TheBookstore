@@ -8,9 +8,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
-    <script src="../javascript/home.js"></script>
     <link rel="stylesheet" href="../css/home.css">
     <script src="../javascript/navbar.js"></script>
+    <script src="../javascript/home.js"></script>
+    <script src="../javascript/add_to_cart.js"></script>
 </head>
 <body>
 

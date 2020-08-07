@@ -30,6 +30,7 @@ if(isset($_GET['id_book'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/book.css">
     <script src="../javascript/book.js"></script>
+    <script src="../javascript/add_to_cart.js"></script>
 </head>
 <body>
 
@@ -41,7 +42,7 @@ if(isset($_GET['id_book'])){
                 <h1 id="title"><?= $title ?></h1>
                 <h3 id="author"> <?= $author ?></h3>
                 <h2 id="price">Price: <?= $price ?> € </h2>
-                <button class = add-to-cart>add to cart</button>
+                <button class ="add-to-cart" id="<?=$id_book?>">add to cart</button>
                 <h2>Trama</h2>
                 <p><?= $trama ?></p>
                 <h2>Product Details</h2>

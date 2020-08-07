@@ -1,13 +1,19 @@
 <?php
-require_once "top.php";
-require_once "db.inc.php";
+    require_once "top.php";
+    require_once "db.inc.php";
+    require_once "badge.php";
 
-if(!isset($_SESSION['email'])){
-    header("Location: index.php");
-    die;
-}
+    if(!isset($_SESSION['email'])){
+        header("Location: index.php");
+        die;
+    }
 
-$name = retreive_name($_SESSION['email']);
+    if(!isset($_SESSION['badge'])){
+        $_SESSION['badge'] = retreive_number_cart_items($_SESSION['email']);
+    }
+    $badge_num = $_SESSION['badge'];
+
+    $name = retreive_name($_SESSION['email']);
 ?>
 
 <!doctype html>
@@ -34,9 +40,9 @@ $name = retreive_name($_SESSION['email']);
                 </div>
             </li>
             <li><a href="#">WishList</a> </li>
-            <li><a href="#"><?= $name?></a> </li>
+            <li><a href="#"><?= $name ?></a> </li>
             <li>
-                <a class="notification" href="#">Cart</a> <span class="badge">3</span>
+                <a class="notification" href="#">Cart</a> <span class="badge"><?= $badge_num ?></span>
             </li>
             <li><a href="logout.php">Logout</a> </li>
         </ul>
