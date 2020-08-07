@@ -16,7 +16,6 @@
 
 $(document).on('click','.add-to-cart',function () {
 
-    $(".add-to-cart").click(function () {
         var book_id = this.id;
 
         var request = $.ajax({
@@ -39,8 +38,6 @@ $(document).on('click','.add-to-cart',function () {
         request.fail(function (response, textStatus, error) {
             alert(response + textStatus + error);
         });
-
-    });
 
 });
 

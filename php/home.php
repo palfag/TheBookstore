@@ -29,7 +29,6 @@
 
 
     <div id="products">
-        <button class="add-to-cart">ciao</button>
     </div>
 
 </body>
