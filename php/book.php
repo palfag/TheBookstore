@@ -30,7 +30,7 @@ if(isset($_GET['id_book'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/book.css">
     <script src="../javascript/book.js"></script>
-    <script src="../javascript/add_to_cart.js"></script>
+    <script src="../javascript/addToCart.js"></script>
 </head>
 <body>
 

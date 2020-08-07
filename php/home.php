@@ -1,4 +1,6 @@
 <?php
+    require_once "top.php";
+    require_once "db.inc.php";
     require_once "navbar.php";
 ?>
 
@@ -9,9 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
     <link rel="stylesheet" href="../css/home.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../javascript/navbar.js"></script>
     <script src="../javascript/home.js"></script>
-    <script src="../javascript/add_to_cart.js"></script>
+    <script src="../javascript/addToCart.js"></script>
 </head>
 <body>
 
@@ -26,7 +29,7 @@
 
 
     <div id="products">
-
+        <button class="add-to-cart">ciao</button>
     </div>
 
 </body>

@@ -24,7 +24,7 @@ if (isset($_POST['search'])) {
 /**
  * Retreives books that conform to the standard defined by the query (from the database).
  * @param string $query
- * @return bool Returns conform books contained into the database.
+ * Returns conform books contained into the database.
  */
 function search_book($query){
     $db = database_connection();

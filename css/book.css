@@ -80,3 +80,19 @@ span{
     }
 
 }
+
+@media screen and (max-height: 550px) {
+
+    .column {
+        margin-bottom: 3cm;
+    }
+
+}
+
+@media screen and (max-height: 400px) {
+
+    .column {
+        margin-bottom: 5cm;
+    }
+
+}
