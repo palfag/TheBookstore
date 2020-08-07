@@ -35,7 +35,9 @@ $name = retreive_name($_SESSION['email']);
             </li>
             <li><a href="#">WishList</a> </li>
             <li><a href="#"><?= $name?></a> </li>
-            <li><a  href="#">Cart</a> </li>
+            <li>
+                <a class="notification" href="#">Cart</a> <span class="badge">3</span>
+            </li>
             <li><a href="logout.php">Logout</a> </li>
         </ul>
 

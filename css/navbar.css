@@ -47,6 +47,14 @@ nav{
     color: #BFBBBB;
 }
 
+.badge{
+    padding: 1px 7px;
+    border-radius: 50%;
+    background-color: #b8b8b8;
+    color: white;
+}
+
+
 .burger-menu{
     display: none;
 }

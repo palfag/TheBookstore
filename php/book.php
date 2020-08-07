@@ -35,7 +35,7 @@ if(isset($_GET['id_book'])){
 
     <div class="row">
         <div class="column left">
-            <img id="cover" src="<?= $cover?>">
+            <img id="cover" src="<?= $cover ?>">
         </div>
         <div class="column right">
                 <h1 id="title"><?= $title ?></h1>

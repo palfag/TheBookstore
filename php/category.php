@@ -36,12 +36,18 @@ if(isset($_GET['category'])){
             for($i = 0; $i < count($books); $i++){
                 $book = $books[$i];
 
+                if($i % 3 == 0){
+                    ?>
+                    <br>
+                    <?php
+                }
+
                 ?>
                     <div class="book">
                         <div class="cover"><img src="<?= $book["cover"] ?>"></div>
                         <h1 class="title"><a href='book.php?id_book=<?= $book["book_id"] ?>'> <?= $book["title"] ?></a></h1>
                         <p class="author"><?= $book["author"]?></p>
-                        <h3 class = "price"> <?= $book["price"] ?></h3>
+                        <h3 class = "price"><?= $book["price"] ?>€</h3>
                         <button class="add-to-cart">add to cart</button>
                     </div>
                 <?php
@@ -55,11 +61,6 @@ if(isset($_GET['category'])){
 
 
 <?php
-
-    // TODO DA CONTINUARE PER FAR USCIRE L'HTML
-    var_dump($books);
-
-
 
     function retreive_books_by_category($category){
         $db = database_connection();
