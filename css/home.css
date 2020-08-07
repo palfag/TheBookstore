@@ -21,6 +21,7 @@ img{
     width: 50%;
     margin: auto;
     margin-top: 10%;
+    text-align: center;
 }
 
 #search-bar{
@@ -56,16 +57,18 @@ img{
 
 @media screen and (max-width: 750px){
 
+    #search-box{
+        margin-top: 25%;
+    }
     #search-bar{
-        width: 55%;
         border:2px solid black;
         border-left: 0px;
         font-size: 14px;
+        height: 31px;
     }
 
     #submit{
         width: 25%;
-        height: 26px;
         float: left;
         border-right:0px;
     }
