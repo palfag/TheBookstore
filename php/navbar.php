@@ -39,11 +39,10 @@
                     <div class="dropdown-content"></div>
                 </div>
             </li>
-            <li><a href="#">WishList</a> </li>
-            <li><a href="#"><?= $name ?></a> </li>
             <li>
-                <a class="notification" href="#">Cart</a> <span class="badge"><?= $badge_num ?></span>
+                <a class="notification" href="cart.php">Cart</a> <span class="badge"><?= $badge_num ?></span>
             </li>
+            <li><a href="#"><?= $name ?></a> </li>
             <li><a href="logout.php">Logout</a> </li>
         </ul>
 
