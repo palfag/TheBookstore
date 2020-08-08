@@ -24,9 +24,9 @@ CREATE TABLE BookGenres(
 );
 
 CREATE TABLE Cart(
+    insertion_id int(32) primary key AUTO_INCREMENT
     user varchar(32),
     item int(32),
-    primary key(user, item),
     foreign key(user) references Users(email) on update cascade on delete cascade,
     foreign key(item) references Books(book_id) on update cascade on delete cascade
 );
