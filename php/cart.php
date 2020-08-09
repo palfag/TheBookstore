@@ -2,6 +2,7 @@
     require_once "top.php";
     require_once "db.inc.php";
     require_once "navbar.php";
+    require_once "update_cart.php";
 
     if(!isset($_SESSION['email'])){
         header("Location: index.php");
@@ -17,6 +18,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../javascript/cart.js"></script>
     <link rel="stylesheet" href="../css/cart.css">
     <title>Cart</title>
 </head>
@@ -45,7 +48,7 @@
                         $item = $items[$i];
                         $total += (double)$item['subtotal'];
                 ?>
-                        <tr>
+                        <tr id="<?= $item['book_id'] ?>">
                             <td>
                                 <div>
                                     <h1>
@@ -87,7 +90,7 @@
                             </td>
                             <td></td>
                             <td>
-                                <p id="total"><?=$total?>€</p>
+                                <p id="total"><?=$total?></p>
                             </td>
                             <td>
                                 <p>
@@ -107,32 +110,3 @@
     </div>
 </body>
 </html>
-
-<?php
-
-    function update_cart($email){
-        $db = database_connection();
-        $sql = "SELECT book_id, cover, title, author, price, COUNT(insertion_id) as quantity, SUM(price) as subtotal
-                FROM Cart JOIN Books on item = book_id
-                WHERE user = '$email'
-                GROUP BY user, book_id, cover, title, author, price";
-
-        $rows = $db->query($sql);
-        $data = array();
-
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    $data[] = $row;
-                }
-            }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-            return $data;
-        }
-    }
-?>
