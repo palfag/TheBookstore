@@ -37,7 +37,7 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Subtotal</th>
-                        <th>Empty cart</th>
+                        <th><button class="remove-all-button">Empty cart</button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,7 @@
                         $item = $items[$i];
                         $total += (double)$item['subtotal'];
                 ?>
-                        <tr id="<?= $item['book_id'] ?>">
+                        <tr id="<?= $item['book_id'] ?>" class="item"">
                             <td>
                                 <div>
                                     <h1>
@@ -86,8 +86,7 @@
                 ?>
                         <tr>
                             <td></td>
-                            <td>
-                            </td>
+                            <td></td>
                             <td></td>
                             <td>
                                 <p id="total"><?=$total?></p>

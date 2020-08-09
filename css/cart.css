@@ -80,6 +80,14 @@ p{
     border-radius: 3px;
 }
 
+.remove-all-button{
+    background: none!important;
+    border: none;
+    color: #006699;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 #checkout-button{
     background: #57ba61;
     color: white;
