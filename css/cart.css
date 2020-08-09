@@ -19,6 +19,9 @@
     margin: auto;
 }
 
+price-column, .quantity-column, .subtotal-column{
+    width: 100px;
+}
 
 table{
     width: 90%;

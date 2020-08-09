@@ -67,13 +67,13 @@
 
                                 <p>
                                     <button class="minus-button"> - </button>
-                                    <?= $item['quantity']?>
+                                    <span class="quantity"><?= $item['quantity']?></span>
                                     <button class="plus-button"> + </button>
                                 </p>
 
                             </td>
                             <td class="subtotal-column">
-                                <p><?= $item['subtotal']?>€</p>
+                                <p><?= $item['subtotal']?></p>
                             </td>
                             <td class="remove-column">
                                 <p>

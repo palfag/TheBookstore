@@ -73,6 +73,118 @@ $(document).on('click','.remove-all-button',function () {
 
 });
 
+$(document).on('click','.minus-button',function () {
+
+    var parent = this.parentNode;
+    var children = parent.children;
+    var quantityDOMElem = children[1]//.innerText = "duck"; // puntatore al DOM elem della quantity
+    var quantity = quantityDOMElem.textContent;
+    var row = parent.parentNode.parentNode;
+    var book_id = document.getElementById(row.id);
+
+    if(parseInt(quantity) === 1){
+
+        row.parentNode.removeChild(row);
+
+        var request = $.ajax({
+            type: "POST",
+            url: "../php/remove_to_cart.php",
+            data: {remove_to_cart: row.id},
+            dataType: 'json'
+        });
+
+        request.done(function (response) {
+            if(response.success === 1){
+                var badgeNum = response.badge_num;
+                var total = response.total;
+                updateBadge(badgeNum);
+                updateTotal(total);
+            }
+
+            else
+                alert(response.error);
+        });
+
+        request.fail(function (response, textStatus, error) {
+            alert(response + textStatus + error);
+        });
+    }
+    else{
+        var subtotalDOMElem = row.children[3].children[0]//.innerText = "ciao"; per inserire roba dentro
+        //var subtotal = subtotalDOMElem.textContent;
+
+
+        var request = $.ajax({
+            type: "POST",
+            url: "../php/reduce_cart_quantity.php",
+            data: {reduce_cart_quantity: row.id},
+            dataType: 'json'
+        });
+
+        request.done(function (response) {
+            if(response.success === 1){
+                var badgeNum = response.badge_num;
+                var total = response.total;
+                subtotalDOMElem.innerText = response.subtotal;
+                quantityDOMElem.innerText = parseInt(quantity) - 1;
+                updateBadge(badgeNum);
+                updateTotal(total);
+            }
+
+            else
+                alert(response.error);
+        });
+
+        request.fail(function (response, textStatus, error) {
+            alert(response + textStatus + error);
+        });
+    }
+});
+
+$(document).on('click','.plus-button',function () {
+
+    var parent = this.parentNode;
+    var children = parent.children;
+
+
+    var quantityDOMElem = children[1] // puntatore al DOM elem della quantity
+    var quantity = quantityDOMElem.textContent;
+    var row = parent.parentNode.parentNode;
+    var book_id = document.getElementById(row.id);
+
+
+
+    var subtotalDOMElem = row.children[3].children[0]//.innerText = "ciao"; per inserire roba dentro
+
+
+    var request = $.ajax({
+        type: "POST",
+        url: "../php/add_cart_quantity.php",
+        data: {add_cart_quantity: row.id},
+        dataType: 'json'
+    });
+
+
+    request.done(function (response) {
+        if(response.success === 1){
+            var badgeNum = response.badge_num;
+            var total = response.total;
+            subtotalDOMElem.innerText = response.subtotal;
+            quantityDOMElem.innerText = parseInt(quantity) + 1;
+            updateBadge(badgeNum);
+            updateTotal(total);
+        }
+
+        else
+            alert(response.error);
+    });
+
+    request.fail(function (response, textStatus, error) {
+        alert(response + textStatus + error);
+    });
+
+});
+
 function updateBadge(num) {
     $(".badge").html(num);
 }
