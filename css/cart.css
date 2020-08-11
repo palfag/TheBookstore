@@ -84,7 +84,7 @@ p{
 }
 
 .remove-all-button{
-    background: none!important;
+    background: none;
     border: none;
     color: #006699;
     text-decoration: underline;

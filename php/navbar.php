@@ -42,7 +42,7 @@
             <li>
                 <a class="notification" href="cart.php">Cart</a> <span class="badge"><?= $badge_num ?></span>
             </li>
-            <li><a href="#"><?= $name ?></a> </li>
+            <li><a href="profile.php"><?= $name ?></a> </li>
             <li><a href="logout.php">Logout</a> </li>
         </ul>
 
