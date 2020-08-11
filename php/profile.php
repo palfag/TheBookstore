@@ -62,10 +62,10 @@ if(!isset($_SESSION['email'])){
                         $book = $wishlist[$i];
                             ?>
                         <div class="book">
-                            <a href='book.php?id_book=<?= $book["book_id"] ?>'>
-                                <div class="cover"><img src="<?= $book["cover"] ?>"></div>
-                                <h1 class="title"> <?= $book["title"] ?></h1>
-                            </a>
+                                <div class="cover">
+                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                            <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
+
                             <p class="author"><?= $book["author"]?></p>
                         </div>
                     <?php
@@ -101,8 +101,10 @@ if(!isset($_SESSION['email'])){
 
     function retreive_wishlist($user){
         $db = database_connection();
-        $rows = $db->query("SELECT * FROM wishlist JOIN books ON book_id = item
-                                    WHERE  user = '$user'");
+        $rows = $db->query("SELECT * 
+                                  FROM wishlist JOIN books ON book_id = item
+                                  WHERE  user = '$user'
+                                  ORDER BY title");
         $data = array();
         try{
             if($rows){
