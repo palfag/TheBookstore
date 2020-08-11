@@ -41,7 +41,7 @@ if(!isset($_SESSION['email'])){
                     <h1 id="title"><?= $usr_data['name'] ?> <?= $usr_data['surname'] ?></h1>
 
                     <div id="settings">
-                            <button class="settings-button">Settings</button>
+                            <button class="settings-button"><a href="settings.php">Settings</a></button>
                     </div>
 
 
@@ -55,23 +55,23 @@ if(!isset($_SESSION['email'])){
 
             <div>
                 <h2>Wishlist</h2>
-                <!--
                 <div class="wishlist">
                     <?php
-                    /*
 
                     for($i = 0; $i < count($wishlist); $i++){
                         $book = $wishlist[$i];
                             ?>
+                        <div class="book">
+                            <a href='book.php?id_book=<?= $book["book_id"] ?>'>
                                 <div class="cover"><img src="<?= $book["cover"] ?>"></div>
-                                <h1 class="title"><a href='book.php?id_book=<?= $book["book_id"] ?>'> <?= $book["title"] ?></a></h1>
-                                <p class="author"><?= $book["author"]?></p>
-                                <h3 class = "price"><?= $book["price"] ?>€</h3>
-                                <button class="add-to-cart" id="<?=$book["book_id"]?>">add to cart</button>
+                                <h1 class="title"> <?= $book["title"] ?></h1>
+                            </a>
+                            <p class="author"><?= $book["author"]?></p>
+                        </div>
                     <?php
                         }
-                    */?>
-                </div>-->
+                    ?>
+                </div>
             </div>
 
             <h2>Orders</h2>

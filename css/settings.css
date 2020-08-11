@@ -1,0 +1,12 @@
+*{
+    font-family: Poppins, sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+
+#settings-title{
+    margin-top: 60px;
+    margin-left: 50px;
+    font-size: 35px;
+}

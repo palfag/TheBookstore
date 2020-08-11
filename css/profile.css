@@ -53,9 +53,25 @@ h2{
 }
 
 .wishlist{
-    margin:auto;
-    display: inline;
+    margin: auto;
+    text-align: left;
 }
+
+.book{
+    margin-top: 20px;
+    text-align: center;
+    display: inline-block;
+    width: 6cm;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.author{
+    color: #b8b8b8;
+}
+
 
 
 .add-to-cart{
