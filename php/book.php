@@ -6,12 +6,20 @@ require_once "top.php";
 require_once "db.inc.php";
 require_once "navbar.php";
 
+if(!isset($_SESSION['email'])){
+    header("Location: index.php");
+    die;
+}
+
+$email = $_SESSION['email'];
+
 // prende le informazioni del libro
 if(isset($_GET['id_book'])){
     $id_book = filter_input(INPUT_GET, "id_book",
         FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     $book = retreive_book_by_id($id_book);
+    $in_wishlist = is_in_wishlist($id_book, $email);
     $cover = $book['cover'];
     $title = $book['title'];
     $genre = $book['genre'];
@@ -29,7 +37,7 @@ if(isset($_GET['id_book'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/book.css">
-    <script src="../javascript/book.js"></script>
+    <script src="../javascript/wishlist.js"></script>
     <script src="../javascript/addToCart.js"></script>
 </head>
 <body>
@@ -43,6 +51,18 @@ if(isset($_GET['id_book'])){
                 <h3 id="author"> <?= $author ?></h3>
                 <h2 id="price">Price: <?= $price ?> € </h2>
                 <button class ="add-to-cart" id="<?=$id_book?>">add to cart</button>
+            <?php
+                if($in_wishlist){
+                    ?>
+                    <button class="like-button liked"><img class="like-img" src="../images/icons/like.png"></button>
+            <?php
+                }
+                else{
+                    ?>
+                    <button class="like-button not-liked"><img class="like-img" src="../images/icons/no_like.png"></button>
+            <?php
+                }
+            ?>
                 <h2>Trama</h2>
                 <p><?= $trama ?></p>
                 <h2>Product Details</h2>
@@ -72,6 +92,26 @@ if(isset($_GET['id_book'])){
                 $db->close();
             }
         }
+
+    function is_in_wishlist($id_book, $email){
+        $db = database_connection();
+        $rows = $db->query("SELECT * FROM Wishlist WHERE  user = '$email' AND item = '$id_book'");
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                    return true;
+                }
+                return false;
+            }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            $e->getMessage();
+            return false;
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+        }
+    }
     ?>
 </body>
 </html>

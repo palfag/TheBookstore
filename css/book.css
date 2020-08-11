@@ -68,6 +68,19 @@ span{
     border-radius: 3px;
 }
 
+.like-button{
+    background: none;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    margin-left: 0.25cm;
+}
+
+.like-img{
+    height: 25px;
+    width: 25px;
+}
+
 @media screen and (max-width: 850px) {
 
     body{

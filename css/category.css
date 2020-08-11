@@ -20,6 +20,21 @@ img{
     border-radius: 3px;
 }
 
+/*
+.like-button{
+    background: none;
+    border: none;
+    outline: none;
+    vertical-align: bottom;
+    margin-left: 0.2cm;
+}
+
+.like-img{
+    height: 18px;
+    width: 18px;
+}*/
+
+
 #products{
     margin: auto;
     text-align: center;

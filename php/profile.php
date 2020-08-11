@@ -40,15 +40,7 @@ if(!isset($_SESSION['email'])){
                     <h1 id="title"><?= $usr_data['name'] ?> <?= $usr_data['surname'] ?></h1>
 
                     <div id="settings">
-                        <div >
-                            <button class="settings-button">Edit photo</button>
-                        </div>
-                        <div>
-                            <button class="settings-button">Edit password</button>
-                        </div>
-                        <div>
-                            <button class="settings-button">Unsubscribe</button>
-                        </div>
+                            <button class="settings-button">Settings</button>
                     </div>
 
 
@@ -61,7 +53,7 @@ if(!isset($_SESSION['email'])){
 
 
             <h2>Wishlist</h2>
-            <h2>Orders (10)</h2>
+            <h2>Orders</h2>
         </div>
     </div>
 
