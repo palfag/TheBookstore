@@ -27,7 +27,7 @@ h2{
     margin-top: 60px;
 }
 
-#cover{
+#profile-img{
     margin-top: 60px;
     width: 160px;
     height: 160px;
@@ -45,6 +45,26 @@ h2{
     color: #006699;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.cover img{
+    width: 120px;
+    height: 160px;
+}
+
+.wishlist{
+    margin:auto;
+    display: inline;
+}
+
+
+.add-to-cart{
+    background: #44aeec;
+    color: white;
+    padding: 3px;
+    border: none;
+    width: 100px;
+    border-radius: 3px;
 }
 
 @media screen and (max-width: 850px) {

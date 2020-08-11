@@ -10,6 +10,7 @@ if(!isset($_SESSION['email'])){
 
     $email = $_SESSION['email'];
     $usr_data = retreive_usr_info($email);
+    $wishlist = retreive_wishlist($email);
 
 ?>
 
@@ -31,11 +32,11 @@ if(!isset($_SESSION['email'])){
                     <?php
                     if($usr_data['image'] == null){
                         ?>
-                        <img id="cover" src="../images/users/default_profile.png">
+                        <img id="profile-img" src="../images/users/default_profile.png">
                         <?php
                     }
                     else {?>
-                        <img id="cover" src="<?= $usr_data['image'] ?>">
+                        <img id="profile-img" src="<?= $usr_data['image'] ?>">
                     <?php }?>
                     <h1 id="title"><?= $usr_data['name'] ?> <?= $usr_data['surname'] ?></h1>
 
@@ -52,7 +53,27 @@ if(!isset($_SESSION['email'])){
         <div class="column right">
 
 
-            <h2>Wishlist</h2>
+            <div>
+                <h2>Wishlist</h2>
+                <!--
+                <div class="wishlist">
+                    <?php
+                    /*
+
+                    for($i = 0; $i < count($wishlist); $i++){
+                        $book = $wishlist[$i];
+                            ?>
+                                <div class="cover"><img src="<?= $book["cover"] ?>"></div>
+                                <h1 class="title"><a href='book.php?id_book=<?= $book["book_id"] ?>'> <?= $book["title"] ?></a></h1>
+                                <p class="author"><?= $book["author"]?></p>
+                                <h3 class = "price"><?= $book["price"] ?>€</h3>
+                                <button class="add-to-cart" id="<?=$book["book_id"]?>">add to cart</button>
+                    <?php
+                        }
+                    */?>
+                </div>-->
+            </div>
+
             <h2>Orders</h2>
         </div>
     </div>
@@ -76,6 +97,29 @@ if(!isset($_SESSION['email'])){
             $db->close();
         }
     }
+
+
+    function retreive_wishlist($user){
+        $db = database_connection();
+        $rows = $db->query("SELECT * FROM wishlist JOIN books ON book_id = item
+                                    WHERE  user = '$user'");
+        $data = array();
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                    $data[] = $row;
+                }
+                return $data;
+            }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            $e->getMessage();
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+        }
+    }
+
     ?>
 </body>
 </html>
