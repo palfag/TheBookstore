@@ -1,3 +1,4 @@
+
 $(document).on('click','.remove-button',function () {
 
     var parent = this.parentNode.parentNode.parentNode;
@@ -17,6 +18,10 @@ $(document).on('click','.remove-button',function () {
             var total = response.total;
             updateBadge(badgeNum);
             updateTotal(total);
+            if(parseInt(badgeNum) === 0){
+                $("#cart").addClass("hidden");
+                warningCartEmpty();
+            }
         }
 
         else
@@ -30,13 +35,7 @@ $(document).on('click','.remove-button',function () {
 
 });
 
-function updateBadge(num) {
-    $(".badge").html(num);
-}
 
-function updateTotal(val){
-    $("#total").html(val);
-}
 
 
 $(document).on('click','.remove-all-button',function () {
@@ -61,6 +60,10 @@ $(document).on('click','.remove-all-button',function () {
             var total = response.total;
             updateBadge(badgeNum);
             updateTotal(total);
+            if(parseInt(badgeNum) === 0){
+                $("#cart").addClass("hidden");
+                warningCartEmpty();
+            }
         }
 
         else
@@ -72,6 +75,8 @@ $(document).on('click','.remove-all-button',function () {
     });
 
 });
+
+
 
 $(document).on('click','.minus-button',function () {
 
@@ -99,6 +104,10 @@ $(document).on('click','.minus-button',function () {
                 var total = response.total;
                 updateBadge(badgeNum);
                 updateTotal(total);
+                if(parseInt(badgeNum) === 0){
+                    $("#cart").addClass("hidden");
+                    warningCartEmpty();
+                }
             }
 
             else
@@ -140,6 +149,7 @@ $(document).on('click','.minus-button',function () {
         });
     }
 });
+
 
 $(document).on('click','.plus-button',function () {
 
@@ -185,10 +195,19 @@ $(document).on('click','.plus-button',function () {
 
 });
 
+
+
 function updateBadge(num) {
     $(".badge").html(num);
 }
 
 function updateTotal(val){
     $("#total").html(val);
+}
+
+function warningCartEmpty(){
+    var html =  "<h1>Cart is empty</h1>" +
+                "<h2>Looks like you have no items in your shopping cart</h2>" +
+                "<button><a href=\"home.php\">Continue Shopping</a></button>";
+    $("#warning").append(html);
 }

@@ -25,11 +25,24 @@
 </head>
 <body>
 
-    <h1 class="cart-name">Cart</h1>
-
     <div class="row">
 
-        <div class="column left">
+        <?php
+            if(count($items) == 0){
+                ?>
+            <div class="warning-empty-cart">
+                <h1>Cart is empty</h1>
+                <h2>Looks like you have no items in your shopping cart</h2>
+                <button><a href="home.php">Continue Shopping</a></button>
+            </div>
+
+            <?php
+            }
+            else{
+                ?>
+        <div id="warning"></div>
+        <div id="cart">
+            <h1 class="cart-name">Cart</h1>
             <table class="table">
                 <thead>
                     <tr>
@@ -41,71 +54,68 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        $total = 0;
+                        for($i = 0; $i < count($items); $i++){
+                            $item = $items[$i];
+                            $total += (double)$item['subtotal'];
+                    ?>
+                            <tr id="<?= $item['book_id'] ?>" class="item">
 
+                                <td>
+                                    <div>
+                                        <h1>
+                                            <a href='book.php?id_book=<?= $item["book_id"] ?>'>
+                                                <img class="cover" src="<?= $item['cover']?>"><?= $item['title']?>
+                                            </a>
+                                            <h2 class="author"><span><?= $item['author']?></span></h2>
+                                        </h1>
+                                    </div>
+                                </td>
+
+                                <td class="price-column">
+                                    <p class="price"><?= $item['price']?>€</p>
+                                </td>
+
+                                <td class="quantity-column">
+                                    <p>
+                                        <button class="minus-button"> - </button>
+                                        <span class="quantity"><?= $item['quantity']?></span>
+                                        <button class="plus-button"> + </button>
+                                    </p>
+                                </td>
+
+                                <td class="subtotal-column">
+                                    <p><?= $item['subtotal']?></p>
+                                </td>
+
+                                <td class="remove-column">
+                                    <p>
+                                        <button class="remove-button">remove</button>
+                                    </p>
+                                </td>
+                            </tr>
                 <?php
-                    $total = 0;
-                    for($i = 0; $i < count($items); $i++){
-                        $item = $items[$i];
-                        $total += (double)$item['subtotal'];
+                        }
                 ?>
-                        <tr id="<?= $item['book_id'] ?>" class="item"">
-                            <td>
-                                <div>
-                                    <h1>
-                                        <a href='book.php?id_book=<?= $item["book_id"] ?>'>
-                                            <img class="cover" src="<?= $item['cover']?>"><?= $item['title']?>
-                                        </a>
-                                        <h2 class="author"><span><?= $item['author']?></span></h2>
-                                    </h1>
-                                </div>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <p id="total"><?=$total?></p>
+                        </td>
+                        <td>
+                            <p>
+                                <button id="checkout-button">Checkout</button>
+                            </p>
+                        </td>
+                    </tr>
 
-                            </td>
-                            <td class="price-column">
-                                <p class="price"><?= $item['price']?>€</p>
-                            </td>
-                            <td class="quantity-column">
-
-                                <p>
-                                    <button class="minus-button"> - </button>
-                                    <span class="quantity"><?= $item['quantity']?></span>
-                                    <button class="plus-button"> + </button>
-                                </p>
-
-                            </td>
-                            <td class="subtotal-column">
-                                <p><?= $item['subtotal']?></p>
-                            </td>
-                            <td class="remove-column">
-                                <p>
-                                    <button class="remove-button">remove</button>
-                                </p>
-                            </td>
-                        </tr>
-                <?php
-                    }
-                ?>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <p id="total"><?=$total?></p>
-                            </td>
-                            <td>
-                                <p>
-                                    <button id="checkout-button">Checkout</button>
-                                </p>
-                            </td>
-                        </tr>
                 </tbody>
             </table>
-
-            <div>
-
-            </div>
-
-
         </div>
     </div>
+        <?php } ?>
 </body>
 </html>
