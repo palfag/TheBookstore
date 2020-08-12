@@ -6,7 +6,10 @@ require_once "top.php";
 require_once "db.inc.php";
 require_once "navbar.php";
 
-
+if(!isset($_GET['category'])){
+    header("Location: index.php");
+    die;
+}
 
 // prende le informazioni del libro
 if(isset($_GET['category'])){
@@ -27,6 +30,7 @@ if(isset($_GET['category'])){
     <link rel="stylesheet" href="../css/category.css">
     <script src="../javascript/wishlist.js"></script>
     <script src="../javascript/addToCart.js"></script>
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <title>category</title>
 </head>
 <body>

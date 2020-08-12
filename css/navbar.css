@@ -29,6 +29,10 @@ nav{
     letter-spacing: 2px;
     font-size: 22px;
 }
+#logo-img{
+    height: 22px;
+    width: 22px;
+}
 
 .nav-options{
     display: flex;

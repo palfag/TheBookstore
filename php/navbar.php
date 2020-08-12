@@ -30,7 +30,7 @@
     <nav>
 
         <div class="logo">
-            <h4><a href="home.php"><span>The</span>Bookstore</a></h4>
+            <h4><a href="home.php"><img id="logo-img" src="../images/icons/favicon.png"><span>The</span>Bookstore</a></h4>
         </div>
         <ul class="nav-options">
             <li>

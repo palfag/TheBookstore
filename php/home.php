@@ -15,6 +15,7 @@
     <script src="../javascript/navbar.js"></script>
     <script src="../javascript/home.js"></script>
     <script src="../javascript/addToCart.js"></script>
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
 </head>
 <body>
 

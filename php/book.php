@@ -39,6 +39,7 @@ if(isset($_GET['id_book'])){
     <link rel="stylesheet" href="../css/book.css">
     <script src="../javascript/wishlist.js"></script>
     <script src="../javascript/addToCart.js"></script>
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
 </head>
 <body>
 

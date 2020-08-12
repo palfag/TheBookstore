@@ -21,6 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../javascript/cart.js"></script>
     <link rel="stylesheet" href="../css/cart.css">
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <title>Cart</title>
 </head>
 <body>

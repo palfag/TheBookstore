@@ -26,6 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../javascript/loginSignup.js" type="text/javascript"></script>
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <title>Bookstore</title>
 </head>
 <body>

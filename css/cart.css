@@ -66,12 +66,6 @@ td{
     border-top: 0.5px solid #BFBBBB;
 }
 
-img{
-    width: 120px;
-    height: 160px;
-    float: left;
-    padding: 8px;
-}
 
 span{
     color: #BFBBBB;
@@ -97,6 +91,10 @@ p{
 
 .cover{
     margin-right: 20px;
+    width: 120px;
+    height: 160px;
+    float: left;
+    padding: 8px;
 }
 
 .plus-button, .minus-button{

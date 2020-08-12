@@ -23,6 +23,7 @@ if(!isset($_SESSION['email'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/profile.css">
     <script src="../javascript/profile.js"></script>
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <title>Profile</title>
 </head>
 <body>
@@ -52,29 +53,40 @@ if(!isset($_SESSION['email'])){
         </div>
         <div class="column right">
 
-
             <div>
+                <h2>Wallet: 30$</h2>
+                <h2>Total Orders: 10</h2>
                 <h2>Wishlist</h2>
-                <div class="wishlist">
-                    <?php
+                <?php
+                if(count($wishlist) == 0){
+                ?>
+                    <div>There is no items in your wishlist</div>
+                <?php
+                }
+                else{
+                ?>
+                    <div class="wishlist">
+                        <?php
+                            for($i = 0; $i < count($wishlist); $i++){
+                                $book = $wishlist[$i];
+                        ?>
 
-                    for($i = 0; $i < count($wishlist); $i++){
-                        $book = $wishlist[$i];
-                            ?>
                         <div class="book">
-                                <div class="cover">
-                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                            <div class="cover">
+                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
                             <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
 
                             <p class="author"><?= $book["author"]?></p>
                         </div>
-                    <?php
-                        }
-                    ?>
-                </div>
+
+                        <?php
+                        }}
+                        ?>
+                    </div>
             </div>
 
-            <h2>Orders</h2>
+
+
         </div>
     </div>
 
@@ -121,7 +133,6 @@ if(!isset($_SESSION['email'])){
             $db->close();
         }
     }
-
     ?>
 </body>
 </html>
