@@ -27,7 +27,6 @@
 <body>
 
     <div class="row">
-
         <?php
             if(count($items) == 0){
                 ?>
@@ -61,16 +60,16 @@
                             $item = $items[$i];
                             $total += (double)$item['subtotal'];
                     ?>
-                            <tr id="<?= $item['book_id'] ?>" class="item">
+                            <tr id="<?= $item['book_id'] ?>" class="book">
 
                                 <td>
                                     <div>
-                                        <h1>
+                                        <h1 class="title">
                                             <a href='book.php?id_book=<?= $item["book_id"] ?>'>
-                                                <img class="cover" src="<?= $item['cover']?>"><?= $item['title']?>
+                                                <img class="cover" src="<?= $item['cover']?>" alt="book cover"><?= $item['title']?>
                                             </a>
-                                            <h2 class="author"><span><?= $item['author']?></span></h2>
                                         </h1>
+                                        <h2 class="author"><span><?= $item['author']?></span></h2>
                                     </div>
                                 </td>
 
@@ -99,21 +98,22 @@
                 <?php
                         }
                 ?>
+                </tbody>
+                <tfoot>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="3">
+                            <p>Tot: €</p>
+                        </td>
                         <td>
                             <p id="total"><?=$total?></p>
                         </td>
                         <td>
-                            <p>
+                            <div>
                                 <button id="checkout-button">Checkout</button>
-                            </p>
+                            </div>
                         </td>
                     </tr>
-
-                </tbody>
+                </tfoot>
             </table>
         </div>
     </div>

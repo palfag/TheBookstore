@@ -9,8 +9,8 @@ if(!isset($_SESSION['email'])){
 }
 
     $email = $_SESSION['email'];
-    $usr_data = retreive_usr_info($email);
-    $wishlist = retreive_wishlist($email);
+    $usr_data = retrieve_usr_info($email);
+    $wishlist = retrieve_wishlist($email);
 
 ?>
 
@@ -47,7 +47,6 @@ if(!isset($_SESSION['email'])){
 
 
                 </div>
-                   <!-- <input type="file" id="file" accept="image/*" required> -->
 
 
         </div>
@@ -92,7 +91,7 @@ if(!isset($_SESSION['email'])){
 
     <?php
 
-    function retreive_usr_info($email){
+    function retrieve_usr_info($email){
         $db = database_connection();
         $rows = $db->query("SELECT name, surname, image FROM users WHERE email = '$email'");
 
@@ -111,7 +110,7 @@ if(!isset($_SESSION['email'])){
     }
 
 
-    function retreive_wishlist($user){
+    function retrieve_wishlist($user){
         $db = database_connection();
         $rows = $db->query("SELECT * 
                                   FROM wishlist JOIN books ON book_id = item

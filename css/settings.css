@@ -10,3 +10,26 @@
     margin-left: 50px;
     font-size: 35px;
 }
+
+.container{
+   text-align: center;
+    display: table;
+    width:100%;
+}
+
+.form-container{
+    margin-bottom: 60px;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+#profile-img{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+.invisible{
+
+}

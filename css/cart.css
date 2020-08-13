@@ -37,10 +37,15 @@
     color: white;
 }
 
+.title{
+    text-align: left;
+}
+
 .cart-name{
     margin-top: 60px;
     margin-left: 50px;
     font-size: 35px;
+    text-align: left;
 }
 
 
@@ -52,7 +57,7 @@
     margin: auto;
 }
 
-price-column, .quantity-column, .subtotal-column{
+.price-column, .quantity-column, .subtotal-column{
     width: 100px;
 }
 
@@ -73,6 +78,7 @@ span{
 
 h1{
     font-size: 20px;
+    text-align: center;
 }
 
 h2{
@@ -143,6 +149,21 @@ p{
     display: none;
 }
 
+.book div{
+    text-align: left;
+}
+
+div{
+    text-align: center;
+}
+
+tfoot tr td:first-child p{
+    text-align: right;
+    margin: 20px;
+}
+
+
+
 @media screen and (max-width: 850px) {
     .column {
         width: 100%;
@@ -158,3 +179,5 @@ p{
         margin-right: 15px;
     }
 }
+
+
