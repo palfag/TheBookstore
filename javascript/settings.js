@@ -22,7 +22,7 @@ $(document).ready(function () {
             if (response.success === 1) {
                 $("#profile-img").attr('src', response.path);
             }
-            $("#ajax-response").html(response.flash_message);
+            $("#ajax-photo-response").html(response.flash_message);
         });
 
         request.fail(function (response, textStatus, error) {
@@ -47,11 +47,42 @@ $(document).on('click','#remove-photo',function () {
                 $("#profile-img").attr('src', response.path);
 
             }
-            $("#ajax-response").html(response.flash_message);
+            $("#ajax-photo-response").html(response.flash_message);
         });
 
         request.fail(function (response, textStatus, error) {
             alert(response + textStatus + error);
         });
 
+});
+
+
+$(document).ready(function () {
+
+    // Listener for search form
+    $("#password-form").submit(function (event) {
+        event.preventDefault();
+
+
+        var old_password = $("#old-password").val();
+        var new_password = $("#new-password").val();
+
+
+        var request = $.ajax({
+            type: "POST",
+            url: "../php/update_password.php",
+            data: {old_password: old_password, new_password: new_password},
+            dataType: 'json'
+        });
+
+
+        request.done(function (response) {
+                $("#ajax-password-response").html(response.flash_message); // inserisce nel paragrafo html di signup la risposta del server
+        });
+
+        request.fail(function (response, textStatus, error) {
+            alert(response + textStatus + error);
+        });
+
+    });
 });

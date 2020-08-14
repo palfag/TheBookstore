@@ -52,7 +52,7 @@ $usr_data = retreive_usr_info($email);
                 </div>
             </form>
             <button id="remove-photo">remove</button>
-            <div id="ajax-response"></div>
+            <div id="ajax-photo-response"></div>
         </div>
 
 
@@ -60,7 +60,7 @@ $usr_data = retreive_usr_info($email);
         <div class="form-container invisible">
             <form id="password-form" method="POST">
                 <div>
-                    <input id="old-password" type="password" name="old_password" placeholder="Old address" required >
+                    <input id="old-password" type="password" name="old_password" placeholder="Old password" required >
                 </div>
                 <div>
                     <input id="new-password" type="password" name="new_password" placeholder="New password" required>
@@ -69,6 +69,7 @@ $usr_data = retreive_usr_info($email);
                     <input class="submit" id="submit-2" type="submit" name="submit" value="Update">
                 </div>
             </form>
+            <div id="ajax-password-response"></div>
         </div>
 
 
