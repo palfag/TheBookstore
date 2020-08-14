@@ -84,6 +84,7 @@ $usr_data = retreive_usr_info($email);
                     <input class="submit" id="submit-3" type="submit" name="submit" value="Unsubscribe">
                 </div>
             </form>
+            <div id="ajax-unsubscribe-response"></div>
         </div>
     </div>
 

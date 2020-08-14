@@ -86,3 +86,35 @@ $(document).ready(function () {
 
     });
 });
+
+
+$(document).ready(function () {
+
+    // Listener for search form
+    $("#unsubscribe-form").submit(function (event) {
+        event.preventDefault();
+
+        var unsubscribe = true;
+
+
+        var request = $.ajax({
+            type: "POST",
+            url: "../php/unsubscribe.php",
+            data: {unsubscribe: unsubscribe},
+            dataType: 'json'
+        });
+
+
+        request.done(function (response) {
+            if(response.success === 1)
+                window.location.replace("../php/index.php");
+            else
+                $("#ajax-unsubscribe-response").html(response.flash_message);
+        });
+
+        request.fail(function (response, textStatus, error) {
+            alert(response + textStatus + error);
+        });
+
+    });
+});
