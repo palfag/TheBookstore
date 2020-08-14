@@ -25,7 +25,20 @@
                 } else throw new Exception("error database");
             } else throw new Exception("img is not uploaded correctly");
         } catch (Exception $e){
+            $response = array("success" => 0, "flash_message" => $e->getMessage());
+            echo json_encode($response);
+        }
+    }
 
+    if(isset($_POST['remove_photo'])){
+        $path_default_photo = "../images/users/default_profile.png";
+        try{
+            if(remove_profile_picture($email)){
+                $response = array("success" => 1, "flash_message" => "image correctly removed", "path" => $path_default_photo);
+                echo json_encode($response);
+            }
+            else throw new Exception("database error");
+        } catch (Exception $e){
             $response = array("success" => 0, "flash_message" => $e->getMessage());
             echo json_encode($response);
         }

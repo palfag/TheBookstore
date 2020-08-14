@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/process_settings.php",
+            url: "../php/profile_picture.php",
             data: fd,
             dataType: "json",
             contentType: false,
@@ -29,4 +29,29 @@ $(document).ready(function () {
             alert(response + textStatus + error);
         });
     });
+
+});
+
+$(document).on('click','#remove-photo',function () {
+
+        var request = $.ajax({
+            type: "POST",
+            url: "../php/profile_picture.php",
+            data: {remove_photo: 1},
+            dataType: 'json'
+        });
+
+
+        request.done(function (response) {
+            if(response.success === 1){
+                $("#profile-img").attr('src', response.path);
+
+            }
+            $("#ajax-response").html(response.flash_message);
+        });
+
+        request.fail(function (response, textStatus, error) {
+            alert(response + textStatus + error);
+        });
+
 });

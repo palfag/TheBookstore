@@ -51,6 +51,7 @@ $usr_data = retreive_usr_info($email);
                     <input class="submit" id="submit-1" type="submit" name="upload_photo" value="Update">
                 </div>
             </form>
+            <button id="remove-photo">remove</button>
             <div id="ajax-response"></div>
         </div>
 
