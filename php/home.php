@@ -24,6 +24,15 @@
         <form method="POST">
             <input id="search-bar" type="text" placeholder="There is no friend as loyal as a book.">
             <input id="submit" type="submit" value="Search">
+
+            <label> Sort By:
+                <select id="sort-by" name="order">
+                    <option value="title" selected>title</option>
+                    <option value="author">author</option>
+                    <option value="price">Price: Low to High</option>
+                    <option value="price DESC">Price: High to Low</option>
+                </select>
+            </label>
         </form>
     </div>
 

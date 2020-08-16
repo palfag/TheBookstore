@@ -26,13 +26,17 @@ $usr_data = retreive_usr_info($email);
     <title>Document</title>
 </head>
 <body>
-    <h1 id="settings-title">Settings</h1>
+
 
     <div class="container">
 
-        <h2>Edit profile photo</h2>
-        <div class="form-container invisible">
-            <div>
+        <div class="column left">
+            <h1 id="settings-title">Settings</h1>
+
+        </div>
+
+        <div class="column right">
+            <div id="user">
                 <?php
                 if($usr_data['image'] == null){
                     ?>
@@ -42,51 +46,57 @@ $usr_data = retreive_usr_info($email);
                 else {?>
                     <img id="profile-img" src="<?= $usr_data['image'] ?>">
                 <?php }?>
+                <h2><?=$usr_data['name'] ?> <?= $usr_data['surname']?></h2>
             </div>
-            <form id="photo-form" method="POST" enctype='multipart/form-data'>
-                <div>
-                    <input type="file" id="file" name="file" accept="image/*" required>
-                </div>
-                <div>
-                    <input class="submit" id="submit-1" type="submit" name="upload_photo" value="Update">
-                </div>
-            </form>
-            <button id="remove-photo">remove</button>
-            <div id="ajax-photo-response"></div>
-        </div>
+
+            <h2>Edit profile photo</h2>
+            <div class="form-container">
+                <form id="photo-form" method="POST" enctype='multipart/form-data'>
+                    <div>
+                        <input type="file" id="file" name="file" accept="image/*" required>
+                    </div>
+                    <div>
+                        <input class="submit" id="submit-1" type="submit" name="upload_photo" value="Update">
+                    </div>
+                </form>
+                <button id="remove-photo">remove</button>
+                <div id="ajax-photo-response"></div>
+            </div>
 
 
-        <h2>Edit password</h2>
-        <div class="form-container invisible">
-            <form id="password-form" method="POST">
-                <div>
-                    <input id="old-password" type="password" name="old_password" placeholder="Old password" required >
-                </div>
-                <div>
-                    <input id="new-password" type="password" name="new_password" placeholder="New password" required>
-                </div>
-                <div>
-                    <input class="submit" id="submit-2" type="submit" name="submit" value="Update">
-                </div>
-            </form>
-            <div id="ajax-password-response"></div>
-        </div>
+            <h2>Edit password</h2>
+            <div class="form-container">
+                <form id="password-form" method="POST">
+                    <div>
+                        <input class="password" id="old-password" type="password" name="old_password" placeholder="Type your current password..." required >
+                    </div>
+                    <div>
+                        <input class="password" id="new-password" type="password" name="new_password" placeholder="Type the new password..." required>
+                    </div>
+                    <div>
+                        <input class="submit" id="submit-2" type="submit" name="submit" value="Update">
+                    </div>
+                </form>
+                <div id="ajax-password-response"></div>
+            </div>
 
 
-        <button>Unsubscribe</button>
-        <h2></h2>
-        <div class="form-container invisible">
-            <form id="unsubscribe-form" method="POST">
-                <div>
-                    <h3>Are you sure you want unsubscribe?</h3>
-                </div>
-                <div>
-                    <input class="submit" id="submit-3" type="submit" name="submit" value="Unsubscribe">
-                </div>
-            </form>
-            <div id="ajax-unsubscribe-response"></div>
+            <h2>Unsubscribe</h2>
+            <div class="form-container">
+                <form id="unsubscribe-form" method="POST">
+                    <div>
+                        <h3>Are you sure you want unsubscribe?</h3>
+                    </div>
+
+                    <div>
+                        <input class="submit" id="unsubscribe-button" type="submit" name="submit" value="Unsubscribe">
+                    </div>
+                </form>
+                <div id="ajax-unsubscribe-response"></div>
+            </div>
         </div>
     </div>
+
 
     <?php
 

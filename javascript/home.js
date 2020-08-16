@@ -5,15 +5,16 @@ $(document).ready(function () {
         event.preventDefault();
 
         var query = $.trim($("#search-bar").val());
+        var sortCriteria = $("#sort-by").val();
 
-        // TODO ricambiare con query.length >= 1 per evitare di vedere tutto il db
+        // TODO METTERE >= 1 ALLA FINE DEI GIOCHI
         if(query.length >= 0){
             $("#products").html("");
 
             var request = $.ajax({
                 type: "POST",
                 url: "../php/search_book.php",
-                data: {search: 1, query: query},
+                data: {search: 1, query: query, sort: sortCriteria},
                 dataType: 'json'
             });
 

@@ -53,7 +53,6 @@ if(!isset($_SESSION['email'])){
         <div class="column right">
 
             <div>
-                <h2>Wallet: 30$</h2>
                 <h2>Total Orders: 10</h2>
                 <h2>Wishlist</h2>
                 <?php

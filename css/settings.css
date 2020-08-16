@@ -11,25 +11,107 @@
     font-size: 35px;
 }
 
-.container{
-   text-align: center;
-    display: table;
-    width:100%;
+h2{
+    text-align: left;
+
+    margin-bottom: 7px;
+}
+
+#user{
+    margin-bottom: 200px;
+}
+
+
+
+.column {
+    float: left;
+    padding: 10px;
+    height: 50vh;
+    width: 100%;
+    margin: auto;
+}
+
+.left {
+    width: 35%;
+    text-align: center;
+    margin: auto;
+}
+
+.right {
+    margin-top: 100px;
+    width: 60%;
 }
 
 .form-container{
-    margin-bottom: 60px;
-}
-
-h2{
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 #profile-img{
     width: 160px;
     height: 160px;
     border-radius: 50%;
+    float: left;
 }
-.invisible{
+
+.password{
+    width: 60%;
+    border:2px solid black;
+    font-size: 18px;
+    padding: 3px;
+    background: transparent;
+    margin-bottom: 10px;
+}
+
+.submit{
+    background: #44aeec;
+    color: white;
+    padding: 3px;
+    border: none;
+    width: 100px;
+    border-radius: 3px;
+}
+
+#remove-photo{
+    background: #ee6565;
+    color: white;
+    padding: 3px;
+    border: none;
+    width: 100px;
+    border-radius: 3px;
+}
+
+#unsubscribe-button{
+    background: #ee6565;
+    color: white;
+    padding: 3px;
+    border: none;
+    width: 100px;
+    border-radius: 3px;
+}
+
+
+
+@media screen and (max-width: 850px) {
+
+    #settings-title,h2{
+        text-align: left;
+    }
+
+    body{
+        text-align: center;
+    }
+
+    .column {
+        width: 100%;
+        margin: auto;
+    }
+    .left{
+        height: auto;
+    }
+
+    #user{
+        margin-left: 80px;
+    }
+
 
 }
