@@ -7,8 +7,8 @@
 /* Create two unequal columns that floats next to each other */
 .column {
     float: left;
-    padding: 10px;
-    height: 50vh;
+    padding-top: 50px;
+    height: 100%;
     width: 100%;
     margin: auto;
 }
@@ -21,6 +21,7 @@
 
 .right {
     width: 60%;
+    margin-bottom: 50px;
 }
 
 h2{
@@ -89,9 +90,13 @@ h2{
         text-align: center;
     }
 
+    .left{
+        height: 50vh;
+    }
+
     .column {
         width: 100%;
-        height: 60vh;
+        height: 100%;
     }
 
 }

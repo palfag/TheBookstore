@@ -22,6 +22,7 @@ if(!isset($_SESSION['email'])){
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="../javascript/profile.js"></script>
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <title>Profile</title>
@@ -82,11 +83,10 @@ if(!isset($_SESSION['email'])){
                         ?>
                     </div>
             </div>
-
-
-
         </div>
     </div>
+    <?php require_once "footer.php"; ?>
+
 
     <?php
 

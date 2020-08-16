@@ -40,6 +40,7 @@ if(isset($_GET['id_book'])){
     <script src="../javascript/wishlist.js"></script>
     <script src="../javascript/addToCart.js"></script>
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
 
@@ -72,6 +73,7 @@ if(isset($_GET['id_book'])){
                 <h2>Comments</h2>
         </div>
     </div>
+    <?php require_once "footer.php"; ?>
 
 
     <?php

@@ -15,6 +15,7 @@
     <script src="../javascript/navbar.js"></script>
     <script src="../javascript/home.js"></script>
     <script src="../javascript/addToCart.js"></script>
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
 </head>
 <body>
@@ -40,6 +41,8 @@
 
     <div id="products">
     </div>
+
+    <?php require_once "footer.php"; ?>
 
 </body>
 </html>

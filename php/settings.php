@@ -22,6 +22,7 @@ $usr_data = retreive_usr_info($email);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/settings.css">
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="../javascript/settings.js"></script>
     <title>Document</title>
 </head>
@@ -96,6 +97,8 @@ $usr_data = retreive_usr_info($email);
             </div>
         </div>
     </div>
+
+    <?php require_once "footer.php"; ?>
 
 
     <?php

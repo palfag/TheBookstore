@@ -22,6 +22,7 @@
     <script src="../javascript/cart.js"></script>
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <link rel="stylesheet" href="../css/footer.css">
     <title>Cart</title>
 </head>
 <body>
@@ -118,5 +119,6 @@
         </div>
     </div>
         <?php } ?>
+         <?php require_once "footer.php"; ?>
 </body>
 </html>

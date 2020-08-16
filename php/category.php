@@ -30,6 +30,7 @@ if(isset($_GET['category'])){
     <link rel="stylesheet" href="../css/category.css">
     <script src="../javascript/wishlist.js"></script>
     <script src="../javascript/addToCart.js"></script>
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <title>category</title>
 </head>
@@ -60,6 +61,8 @@ if(isset($_GET['category'])){
             }
         ?>
     </div>
+
+    <?php require_once "footer.php"; ?>
 
 </body>
 </html>
