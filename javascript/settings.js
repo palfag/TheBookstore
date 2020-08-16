@@ -118,3 +118,9 @@ $(document).ready(function () {
 
     });
 });
+
+$(document).on('click','#picture',function (){
+    $("#photo-form").removeClass("hidden");
+    $("#password-form").addClass("hidden");
+    $("#unsubscribe-form").addClass("hidden");
+});

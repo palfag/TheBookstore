@@ -34,6 +34,11 @@ $usr_data = retreive_usr_info($email);
         <div class="column left">
             <h1 id="settings-title">Settings</h1>
 
+            <div class="vertical-menu">
+                <div id="picture"><a href="#">change profile picture</a></div>
+                <a id="password" href="#">change password</a>
+                <a id="unsubscribe" href="#">unsubscribe</a>
+            </div>
         </div>
 
         <div class="column right">
@@ -50,10 +55,15 @@ $usr_data = retreive_usr_info($email);
                 <h2><?=$usr_data['name'] ?> <?= $usr_data['surname']?></h2>
             </div>
 
-            <h2>Edit profile photo</h2>
-            <div class="form-container">
-                <form id="photo-form" method="POST" enctype='multipart/form-data'>
+
+
+            <div class="form-container ">
+
+                <form id="photo-form" class="hidden" method="POST" enctype='multipart/form-data'>
+                    <h2>Change profile picture</h2>
+                    <hr>
                     <div>
+                        <label for="file">Choose a Photo</label>
                         <input type="file" id="file" name="file" accept="image/*" required>
                     </div>
                     <div>
@@ -61,13 +71,16 @@ $usr_data = retreive_usr_info($email);
                     </div>
                 </form>
                 <button id="remove-photo">remove</button>
+
                 <div id="ajax-photo-response"></div>
             </div>
 
 
-            <h2>Edit password</h2>
             <div class="form-container">
-                <form id="password-form" method="POST">
+
+                <form id="password-form" class="hidden" method="POST">
+                    <h2>Change password</h2>
+                    <hr>
                     <div>
                         <input class="password" id="old-password" type="password" name="old_password" placeholder="Type your current password..." required >
                     </div>
@@ -82,9 +95,10 @@ $usr_data = retreive_usr_info($email);
             </div>
 
 
-            <h2>Unsubscribe</h2>
-            <div class="form-container">
-                <form id="unsubscribe-form" method="POST">
+            <div class="form-container hidden">
+                <form id="unsubscribe-form" class="hidden" method="POST">
+                    <h2>Unsubscribe</h2>
+                    <hr>
                     <div>
                         <h3>Are you sure you want unsubscribe?</h3>
                     </div>

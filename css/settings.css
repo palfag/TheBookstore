@@ -13,7 +13,6 @@
 
 h2{
     text-align: left;
-
     margin-bottom: 7px;
 }
 
@@ -21,7 +20,26 @@ h2{
     margin-bottom: 200px;
 }
 
+#photo-form div:first-child{
+    margin: 10px;
+}
+input[type="file"]{
+    display: none;
+}
 
+label{
+    /*
+    color: #ffffff;
+    background-color: #44aeec;
+    padding: 4px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    justify-content: center;
+    font-size: 20px;*/
+}
 
 .column {
     float: left;
@@ -38,6 +56,7 @@ h2{
 }
 
 .right {
+    text-align: center;
     margin-top: 100px;
     width: 60%;
 }
@@ -54,8 +73,9 @@ h2{
 }
 
 .password{
-    width: 60%;
-    border:2px solid black;
+    width: 300px;
+    border:0.5px solid #BFBBBB;
+    border-radius: 3px;
     font-size: 18px;
     padding: 3px;
     background: transparent;
@@ -63,30 +83,51 @@ h2{
 }
 
 .submit{
-    background: #44aeec;
+    /*
+    background: #353A43;
     color: white;
     padding: 3px;
     border: none;
     width: 100px;
-    border-radius: 3px;
+    border-radius: 3px;*/
+}
+
+.vertical-menu {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    width: 200px;
+    text-align: left;
+
+}
+
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
 }
 
 #remove-photo{
+    /*
     background: #ee6565;
     color: white;
     padding: 3px;
     border: none;
     width: 100px;
-    border-radius: 3px;
+    border-radius: 3px;*/
 }
 
 #unsubscribe-button{
+    /*
     background: #ee6565;
     color: white;
     padding: 3px;
     border: none;
     width: 100px;
-    border-radius: 3px;
+    border-radius: 3px;*/
 }
 
 
@@ -113,5 +154,8 @@ h2{
         margin-left: 80px;
     }
 
+}
 
+.hidden{
+    display: none;
 }
