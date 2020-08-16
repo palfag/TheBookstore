@@ -28,17 +28,12 @@ input[type="file"]{
 }
 
 label{
-    /*
-    color: #ffffff;
-    background-color: #44aeec;
-    padding: 4px;
-    padding-left: 30px;
-    padding-right: 30px;
+
+    background: none;
     border: none;
-    border-radius: 3px;
-    margin-bottom: 5px;
-    justify-content: center;
-    font-size: 20px;*/
+    color: #006699;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .column {
@@ -56,7 +51,6 @@ label{
 }
 
 .right {
-    text-align: center;
     margin-top: 100px;
     width: 60%;
 }
@@ -73,6 +67,7 @@ label{
 }
 
 .password{
+    margin-top: 5px;
     width: 300px;
     border:0.5px solid #BFBBBB;
     border-radius: 3px;
@@ -83,13 +78,12 @@ label{
 }
 
 .submit{
-    /*
-    background: #353A43;
+    background: #57ba61;
     color: white;
     padding: 3px;
     border: none;
     width: 100px;
-    border-radius: 3px;*/
+    border-radius: 3px;
 }
 
 .vertical-menu {
@@ -110,26 +104,14 @@ label{
     text-decoration: none;
 }
 
-#remove-photo{
-    /*
+#remove-photo, #unsubscribe-button{
     background: #ee6565;
     color: white;
     padding: 3px;
     border: none;
     width: 100px;
-    border-radius: 3px;*/
+    border-radius: 3px;
 }
-
-#unsubscribe-button{
-    /*
-    background: #ee6565;
-    color: white;
-    padding: 3px;
-    border: none;
-    width: 100px;
-    border-radius: 3px;*/
-}
-
 
 
 @media screen and (max-width: 850px) {

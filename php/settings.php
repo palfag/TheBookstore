@@ -57,11 +57,10 @@ $usr_data = retreive_usr_info($email);
 
 
 
-            <div class="form-container ">
-
-                <form id="photo-form" class="hidden" method="POST" enctype='multipart/form-data'>
-                    <h2>Change profile picture</h2>
-                    <hr>
+            <div class="form-container hidden" id="photo-form">
+                <h2>Change profile picture</h2>
+                <hr>
+                <form   method="POST" enctype='multipart/form-data'>
                     <div>
                         <label for="file">Choose a Photo</label>
                         <input type="file" id="file" name="file" accept="image/*" required>
@@ -76,11 +75,10 @@ $usr_data = retreive_usr_info($email);
             </div>
 
 
-            <div class="form-container">
-
-                <form id="password-form" class="hidden" method="POST">
-                    <h2>Change password</h2>
-                    <hr>
+            <div class="form-container hidden" id="password-form">
+                <h2>Change password</h2>
+                <hr>
+                <form  method="POST">
                     <div>
                         <input class="password" id="old-password" type="password" name="old_password" placeholder="Type your current password..." required >
                     </div>
@@ -95,8 +93,8 @@ $usr_data = retreive_usr_info($email);
             </div>
 
 
-            <div class="form-container hidden">
-                <form id="unsubscribe-form" class="hidden" method="POST">
+            <div class="form-container hidden" id="unsubscribe-form">
+                <form  method="POST">
                     <h2>Unsubscribe</h2>
                     <hr>
                     <div>
@@ -109,6 +107,7 @@ $usr_data = retreive_usr_info($email);
                 </form>
                 <div id="ajax-unsubscribe-response"></div>
             </div>
+
         </div>
     </div>
 

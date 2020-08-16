@@ -121,6 +121,24 @@ $(document).ready(function () {
 
 $(document).on('click','#picture',function (){
     $("#photo-form").removeClass("hidden");
-    $("#password-form").addClass("hidden");
+    if(!$("#password-form").hasClass("hidden"))
+        $("#password-form").addClass("hidden");
+    if(!$("#unsubscribe-form").hasClass("hidden"))
     $("#unsubscribe-form").addClass("hidden");
+});
+
+$(document).on('click','#password',function (){
+    $("#password-form").removeClass("hidden");
+    if(!$("#photo-form").hasClass("hidden"))
+        $("#photo-form").addClass("hidden");
+    if(!$("#unsubscribe-form").hasClass("hidden"))
+        $("#unsubscribe-form").addClass("hidden");
+});
+
+$(document).on('click','#unsubscribe',function (){
+    $("#unsubscribe-form").removeClass("hidden");
+    if(!$("#photo-form").hasClass("hidden"))
+        $("#photo-form").addClass("hidden");
+    if(!$("#password-form").hasClass("hidden"))
+        $("#password-form").addClass("hidden");
 });
