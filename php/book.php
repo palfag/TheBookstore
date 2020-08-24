@@ -20,6 +20,8 @@ if(isset($_GET['id_book'])){
 
     $book = retreive_book_by_id($id_book);
     $in_wishlist = is_in_wishlist($id_book, $email);
+    $comments = retrieve_comments($id_book);
+
     $cover = $book['cover'];
     $title = $book['title'];
     $genre = $book['genre'];
@@ -39,6 +41,7 @@ if(isset($_GET['id_book'])){
     <link rel="stylesheet" href="../css/book.css">
     <script src="../javascript/wishlist.js"></script>
     <script src="../javascript/addToCart.js"></script>
+    <script src="../javascript/comment.js"></script>
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <link rel="stylesheet" href="../css/footer.css">
 </head>
@@ -70,7 +73,32 @@ if(isset($_GET['id_book'])){
                 <h2>Product Details</h2>
                 <p id="genre"><span>Genre:</span> <?= $genre ?></p>
                 <p id="year"><span>Year:</span> <?= $year ?></p>
-                <h2>Comments</h2>
+                <h2>Comment here</h2>
+                <form id="comment-form" method="POST">
+                    <textarea id="comment-text" name="comment"></textarea><br>
+                    <input type="submit" value="submit">
+                </form>
+
+                <div id="comment-list">
+                    <h2>Comments</h2>
+                    <hr>
+                    <div class="my-comment">
+
+                    </div>
+                    <?php
+                        for($i = 0; $i < count($comments); $i++){
+                            $comment = $comments[$i];
+                            ?>
+                            <div class="comment">
+                                    <h3 class="user"><a><?=$comment['name']?> <?=$comment['surname']?></a></h3>
+                                    <p><?= $comment['comment']?></p>
+                            </div>
+                    <?php
+                        }
+
+                    ?>
+                </div>
+
         </div>
     </div>
     <?php require_once "footer.php"; ?>
@@ -113,6 +141,31 @@ if(isset($_GET['id_book'])){
             ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
         } finally {
             $db->close();
+        }
+    }
+
+
+    // funzione per prendere tutti i commenti riguardo quel libro
+    function retrieve_comments($id_book){
+        $db = database_connection();
+        $rows = $db->query("SELECT * 
+                                  FROM Comments JOIN Users on email = user 
+                                  WHERE item = '$id_book'
+                                  ORDER BY date DESC");
+        $data = array();
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                    $data[] = $row;
+                }
+            }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            $e->getMessage();
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+            return $data;
         }
     }
     ?>

@@ -81,6 +81,30 @@ span{
     width: 25px;
 }
 
+textarea{
+    width: 80%;
+    height: 4cm;
+}
+
+.comment{
+    margin-top: 0.5cm;
+    margin-bottom: 0.45cm;
+    text-align: left;
+    padding: 4px;
+    border: #BFBBBB solid 1px;
+    border-radius: 3px;
+}
+
+#comment-form input{
+    background: #44aeec;
+    color: white;
+    padding: 3px;
+    border: none;
+    width: 100px;
+    border-radius: 3px;
+
+}
+
 @media screen and (max-width: 850px) {
 
     body{

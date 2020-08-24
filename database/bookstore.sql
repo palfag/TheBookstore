@@ -39,6 +39,19 @@ CREATE TABLE Wishlist(
     foreign key(item) references Books(book_id) on update cascade on delete cascade
 );
 
+CREATE TABLE Comments(
+    id int(32) primary key AUTO_INCREMENT,
+    user varchar(32),
+    item int(32),
+    comment text,
+    date datetime,
+    foreign key(user) references Users(email) on update cascade on delete cascade,
+    foreign key(item) references Books(book_id) on update cascade on delete cascade
+);
+
+INSERT INTO Comments(user, item, comment, date)
+    values('palfag@icloud.com', 4, 'awesome book !', now())
+
 
 INSERT INTO Books(title, genre, trama, author, published_year, cover, price)
     values ('The Little Prince', 'Novel', ' A book to discover during childhood and re-read throughout your life. A must-read that highlights deep life topics like love, friendship, solitude, and the meaning of life. A young aviator crashes his plane in the middle of the Sahara Desert. In the isolation of the blistering sand dunes, he meets a strange little boy - the little prince. Over the next ten days, as the aviator tries to fix his plane on a fast depleting store of food and water, he also gradually learns the little prince''s extraordinary story. The little prince talks of his own tiny planet, his beloved rose, the serious threat of baobabs, and of his travels to different planets. As the sad experiences of the little prince''s life are unfurled, so grows the affection for him in the aviator''s heart. Antoine de Saint-Exupery''s classic text has enthralled its readers, adults and children alike, over decades. The story is reflective of notions of loyalty, friendship, love and hope, easy but intense. The little prince s simplicity throws the futility of endless human desires into a sharp relief, making it as profound as it is poetic.',
