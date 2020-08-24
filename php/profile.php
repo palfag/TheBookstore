@@ -9,9 +9,85 @@ if(!isset($_SESSION['email'])){
 }
 
     $email = $_SESSION['email'];
-    $usr_data = retrieve_usr_info($email);
-    $wishlist = retrieve_wishlist($email);
 
+    if(isset($_GET['user']) && strcmp($_GET['user'], $email) != 0){
+        // entriamo nel profilo di un altro utente
+        // dobbiamo nascondere gli ordini e il bottone impostazioni (poiché non possiamo cambiare le impostazioni di altri utenti)
+        $user = $_GET['user'];
+        $usr_data = retrieve_usr_info($user);
+        $wishlist = retrieve_wishlist($user);
+        ?>
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="../css/profile.css">
+        <link rel="stylesheet" href="../css/footer.css">
+        <script src="../javascript/profile.js"></script>
+        <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+        <title>Profile</title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="column left">
+                    <div>
+                        <?php
+                        if($usr_data['image'] == null){
+                            ?>
+                            <img id="profile-img" src="../images/users/default_profile.png">
+                            <?php
+                        }
+                        else {?>
+                            <img id="profile-img" src="<?= $usr_data['image'] ?>">
+                        <?php }?>
+                        <h1 id="title"><?= $usr_data['name'] ?> <?= $usr_data['surname'] ?></h1>
+                    </div>
+
+
+            </div>
+            <div class="column right">
+
+                <div>
+                    <h2>Wishlist</h2>
+                    <?php
+                    if(count($wishlist) == 0){
+                    ?>
+                        <div>There is no items in your wishlist</div>
+                    <?php
+                    }
+                    else{
+                    ?>
+                        <div class="wishlist">
+                            <?php
+                                for($i = 0; $i < count($wishlist); $i++){
+                                    $book = $wishlist[$i];
+                            ?>
+
+                            <div class="book">
+                                <div class="cover">
+                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
+
+                                <p class="author"><?= $book["author"]?></p>
+                            </div>
+
+                            <?php
+                            }}
+                            ?>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <?php require_once "footer.php";
+
+    } else{
+        // in questo caso non è settato  GET['user'] oppure coincide con $_SESSION['email'] (in questo caso la persona sta accedendo al proprio profilo)
+        $usr_data = retrieve_usr_info($email);
+        $wishlist = retrieve_wishlist($email);
 ?>
 
 <!doctype html>
@@ -85,7 +161,9 @@ if(!isset($_SESSION['email'])){
             </div>
         </div>
     </div>
-    <?php require_once "footer.php"; ?>
+    <?php require_once "footer.php";
+
+    }?>
 
 
     <?php

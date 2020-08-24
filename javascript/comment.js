@@ -23,7 +23,7 @@ $(document).ready(function () {
                                 "<p>"+ response.text + "</p>"+
                             "</div>";
                 $(".my-comment").prepend(html);
-                $("comment-text").attr("value", ""); // clear text area
+                $("#comment-text").val(''); // clear text area
             } else{
                 // IN CASO DI FALLIMENTO
                 var error =  "<h1>Error posting your comment</h1>";
@@ -34,8 +34,6 @@ $(document).ready(function () {
         request.fail(function (response, textStatus, error) {
             alert(response + textStatus + error);
         });
-
-
     });
 
 });

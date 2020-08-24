@@ -90,8 +90,15 @@ if(isset($_GET['id_book'])){
                             $comment = $comments[$i];
                             ?>
                             <div class="comment">
-                                    <h3 class="user"><a><?=$comment['name']?> <?=$comment['surname']?></a></h3>
-                                    <p><?= $comment['comment']?></p>
+                                <a href="profile.php?user=<?= $comment['user'] ?>">
+                                    <img src="<?= $comment['image'] ?>">
+                                </a>
+                                <p class="user">
+                                    <a href="profile.php?user=<?= $comment['user'] ?>">
+                                        <span id="user-link"><?=$comment['name']?> <?=$comment['surname']?></span>
+                                    </a>
+                                </p>
+                                <p><?= $comment['comment']?></p>
                             </div>
                     <?php
                         }
@@ -148,7 +155,7 @@ if(isset($_GET['id_book'])){
     // funzione per prendere tutti i commenti riguardo quel libro
     function retrieve_comments($id_book){
         $db = database_connection();
-        $rows = $db->query("SELECT * 
+        $rows = $db->query("SELECT user, comment, name, surname, image 
                                   FROM Comments JOIN Users on email = user 
                                   WHERE item = '$id_book'
                                   ORDER BY date DESC");

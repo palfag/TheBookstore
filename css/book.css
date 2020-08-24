@@ -84,6 +84,7 @@ span{
 textarea{
     width: 80%;
     height: 4cm;
+    padding: 5px;
 }
 
 .comment{
@@ -93,6 +94,22 @@ textarea{
     padding: 4px;
     border: #BFBBBB solid 1px;
     border-radius: 3px;
+}
+
+.comment img{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 15px;
+    padding: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#user-link{
+    color: #006699;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #comment-form input{
