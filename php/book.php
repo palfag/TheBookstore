@@ -99,6 +99,7 @@ if(isset($_GET['id_book'])){
                                     </a>
                                 </p>
                                 <p><?= $comment['comment']?></p>
+                                <p><span id="timestamp"><?= convert_date($comment['date'])?></span></p>
                             </div>
                     <?php
                         }
@@ -155,7 +156,7 @@ if(isset($_GET['id_book'])){
     // funzione per prendere tutti i commenti riguardo quel libro
     function retrieve_comments($id_book){
         $db = database_connection();
-        $rows = $db->query("SELECT user, comment, name, surname, image 
+        $rows = $db->query("SELECT user, comment, name, surname, image, date 
                                   FROM Comments JOIN Users on email = user 
                                   WHERE item = '$id_book'
                                   ORDER BY date DESC");
@@ -175,6 +176,13 @@ if(isset($_GET['id_book'])){
             return $data;
         }
     }
+
+    function convert_date($timestamp){
+            $date = date('d-m-y  H:i', strtotime($timestamp)); // H: 24h format - h: 12h format !
+            return $date;
+
+    }
+    
     ?>
 </body>
 </html>
