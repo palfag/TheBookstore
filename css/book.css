@@ -91,9 +91,11 @@ textarea{
     margin-top: 0.5cm;
     margin-bottom: 0.45cm;
     text-align: left;
-    padding: 4px;
-    border: #BFBBBB solid 1px;
-    border-radius: 3px;
+    padding: 20px;
+    /*border-right: #BFBBBB solid 0.5px;
+    border-bottom: #BFBBBB solid 0.5px;*/
+    background-color: #F2F3F5;
+    border-radius: 10px;
 }
 
 .comment img{
@@ -124,6 +126,7 @@ textarea{
 
 #timestamp{
     font-size: 10px;
+    float: right;
 }
 
 @media screen and (max-width: 850px) {
