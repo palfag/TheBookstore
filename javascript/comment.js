@@ -37,3 +37,34 @@ $(document).ready(function () {
     });
 
 });
+
+
+
+$(document).on('click','.delete-comment-btn',function () {
+
+    var parent = this.parentNode; // div class = "comment" && id = id del commento che si vuole eliminare
+    var row = document.getElementById(parent.id);
+
+
+    var request = $.ajax({
+        type: "POST",
+        url: "../php/delete_comment.php",
+        data: {delete_comment: parent.id},
+        dataType: 'json'
+    });
+
+    request.done(function (response) {
+        if(response.success === 1){
+                row.parentNode.removeChild(row); // elimina il commento dall'html
+            }
+
+        else{
+            $("#ajax-password-response").html(response.error);
+        }
+
+    });
+
+    request.fail(function (response, textStatus, error) {
+    });
+
+});

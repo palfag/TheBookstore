@@ -82,6 +82,7 @@ if(isset($_GET['id_book'])){
                 <div id="comment-list">
                     <h2>Comments</h2>
                     <hr>
+                    <div id="ajax-response"></div>
                     <div class="my-comment">
 
                     </div>
@@ -89,7 +90,7 @@ if(isset($_GET['id_book'])){
                         for($i = 0; $i < count($comments); $i++){
                             $comment = $comments[$i];
                             ?>
-                            <div class="comment <?= $comment['user'] ?>">
+                            <div class="comment <?= $comment['user'] ?>" id="<?= $comment['id'] ?>">
                                 <?php
                                 if(strcmp($comment['user'], $email) == 0){
                                     ?>
@@ -163,7 +164,7 @@ if(isset($_GET['id_book'])){
     // funzione per prendere tutti i commenti riguardo quel libro
     function retrieve_comments($id_book){
         $db = database_connection();
-        $rows = $db->query("SELECT user, comment, name, surname, image, date 
+        $rows = $db->query("SELECT id,user, comment, name, surname, image, date 
                                   FROM Comments JOIN Users on email = user 
                                   WHERE item = '$id_book'
                                   ORDER BY date DESC");
