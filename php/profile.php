@@ -16,6 +16,7 @@ if(!isset($_SESSION['email'])){
         $user = $_GET['user'];
         $usr_data = retrieve_usr_info($user);
         $wishlist = retrieve_wishlist($user);
+        $common = retrieve_common_books($user, $email);
         ?>
 
     <!doctype html>
@@ -52,7 +53,37 @@ if(!isset($_SESSION['email'])){
             <div class="column right">
 
                 <div>
-                    <h2>Wishlist</h2>
+                    <h2>Both you and <?= $usr_data['name']?></h2>
+                    <?php
+                    if(count($common) == 0){
+                        ?>
+                        <div>You and <?= $usr_data['name']?> don't have any book in common</div>
+                        <?php
+                    }
+                    else{
+                    ?>
+                    <div class="common-books">
+                        <?php
+                        for($i = 0; $i < count($common); $i++){
+                            $book = $common[$i];
+                            ?>
+
+                            <div class="book">
+                                <div class="cover">
+                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
+
+                                <p class="author"><?= $book["author"]?></p>
+                            </div>
+
+                            <?php
+                        }}
+                        ?>
+                    </div>
+                </div>
+
+                <div>
+                    <h2><?= $usr_data['name']?>'s Wishlist</h2>
                     <?php
                     if(count($wishlist) == 0){
                     ?>
@@ -192,6 +223,30 @@ if(!isset($_SESSION['email'])){
         $rows = $db->query("SELECT * 
                                   FROM wishlist JOIN books ON book_id = item
                                   WHERE  user = '$user'
+                                  ORDER BY title");
+        $data = array();
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                    $data[] = $row;
+                }
+                return $data;
+            }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            $e->getMessage();
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+        }
+    }
+
+    function retrieve_common_books($usr1, $usr2){
+        $db = database_connection();
+        $rows = $db->query("SELECT DISTINCT item, author, cover, title, book_id
+                                  FROM wishlist JOIN books ON book_id = item
+                                  WHERE item IN (SELECT item FROM Wishlist WHERE user ='$usr1') AND
+                                        item IN (SELECT item FROM Wishlist WHERE user ='$usr2')
                                   ORDER BY title");
         $data = array();
         try{
