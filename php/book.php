@@ -89,7 +89,14 @@ if(isset($_GET['id_book'])){
                         for($i = 0; $i < count($comments); $i++){
                             $comment = $comments[$i];
                             ?>
-                            <div class="comment">
+                            <div class="comment <?= $comment['user'] ?>">
+                                <?php
+                                if(strcmp($comment['user'], $email) == 0){
+                                    ?>
+                                    <button class="delete-comment-btn"><img src="../images/icons/bin.png"></button>
+                                    <?php
+                                }
+                                ?>
                                 <a href="profile.php?user=<?= $comment['user'] ?>">
                                     <img src="<?= $comment['image'] ?>">
                                 </a>
@@ -182,7 +189,6 @@ if(isset($_GET['id_book'])){
             return $date;
 
     }
-    
     ?>
 </body>
 </html>
