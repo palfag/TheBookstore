@@ -20,7 +20,7 @@ $(document).ready(function () {
     $('.star').on('click',function () {
         var index = parseInt($(this).data('index'));
         var rating = ++index; // star value
-        alert(rating);
+        //alert(rating);
 
         var urlParams = new URLSearchParams(window.location.search);
         var item = urlParams.get('id_book');
