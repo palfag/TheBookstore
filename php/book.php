@@ -42,6 +42,7 @@ if(isset($_GET['id_book'])){
     <script src="../javascript/wishlist.js"></script>
     <script src="../javascript/addToCart.js"></script>
     <script src="../javascript/comment.js"></script>
+    <script src="../javascript/rating.js"></script>
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <link rel="stylesheet" href="../css/footer.css">
 </head>
@@ -54,6 +55,16 @@ if(isset($_GET['id_book'])){
         <div class="column right">
                 <h1 id="title"><?= $title ?></h1>
                 <h3 id="author"> <?= $author ?></h3>
+                <div id="rating-system">
+                    <ul>
+                        <li class="star" data-index="0">★</li>
+                        <li class="star" data-index="1">★</li>
+                        <li class="star" data-index="2">★</li>
+                        <li class="star" data-index="3">★</li>
+                        <li class="star" data-index="4">★</li>
+                        <div id="add-rate-ajax-response"></div>
+                    </ul>
+                </div>
                 <h2 id="price">Price: <?= $price ?> € </h2>
                 <button class ="add-to-cart" id="<?=$id_book?>">add to cart</button>
             <?php

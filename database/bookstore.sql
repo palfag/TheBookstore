@@ -49,8 +49,28 @@ CREATE TABLE Comments(
     foreign key(item) references Books(book_id) on update cascade on delete cascade
 );
 
+/*CREATE DOMAIN SCORE_RATE AS REAL CHECK
+(value >= 1 && value <=5);*/
+
+CREATE TABLE Rating(
+    item int(32),
+    user varchar(32),
+    rate smallint(1) not null,
+    primary key(user,item),
+    foreign key(user) references Users(email) on update cascade on delete cascade,
+    foreign key(item) references Books(book_id) on update cascade on delete cascade
+);
+
+INSERT INTO Rating(item, user, rate)
+    values  (4, 'palfag@icloud.com', 5),
+            (4, 'cirtlavinia@yahoo.com', 1)
+
 INSERT INTO Comments(user, item, comment, date)
     values('palfag@icloud.com', 4, 'awesome book !', now())
+
+INSERT INTO Rating(item, user, rate)
+                            VALUES(4, 'palfag@icloud.com', 4)
+                            ON DUPLICATE KEY UPDATE rate = 4
 
 
 INSERT INTO Books(title, genre, trama, author, published_year, cover, price)
