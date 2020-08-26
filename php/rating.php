@@ -37,7 +37,7 @@ function retrieve_rate($item){
             foreach ($rows as $row) {
                 if($row["average"] == null)
                     return 0;
-                return (int)$row["average"];
+                return round($row["average"]);
             }
         } else throw new Exception("query error");
     } catch (Exception $e) {
