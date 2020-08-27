@@ -195,6 +195,40 @@ $(document).on('click','.plus-button',function () {
 
 });
 
+$(document).on('click','#checkout-button',function () {
+
+    alert("da completare");
+
+    var html;
+/*
+    var request = $.ajax({
+        type: "POST",
+        url: "../php/add_cart_quantity.php",
+        data: {add_cart_quantity: row.id},
+        dataType: 'json'
+    });
+
+
+    request.done(function (response) {
+        if(response.success === 1){
+            var badgeNum = response.badge_num;
+            var total = response.total;
+            subtotalDOMElem.innerText = response.subtotal;
+            quantityDOMElem.innerText = parseInt(quantity) + 1;
+            updateBadge(badgeNum);
+            updateTotal(total);
+        }
+
+        else
+            alert(response.error);
+    });
+
+    request.fail(function (response, textStatus, error) {
+        alert(response + textStatus + error);
+    });*/
+
+});
+
 
 
 function updateBadge(num) {
