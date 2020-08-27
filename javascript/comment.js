@@ -18,15 +18,27 @@ $(document).ready(function () {
         request.done(function (response) {
             if (response.success === 1) {
                 // IN CASO DI SUCCESSO
-                var html =  "<div class=comment>" +
-                                "<h3 class=user> You just posted: </h3>" +
-                                "<p>"+ response.text + "</p>"+
+                var comment = response.comment;
+
+                var html =  "<div class=comment "+comment.user+" id="+comment.id+">" +
+                                "<button class='delete-comment-btn'><img src='../images/icons/bin.png'></button>"+
+                                "<a href='profile.php?user="+comment.user+"'>"+
+                                    "<img src="+comment.image+">"+
+                                "</a>"+
+                                "<p class='user'>" +
+                                    "<a href='profile.php?user="+comment.user+"'>"+
+                                        "<span id='user-link'> "+comment.name+" "+comment.surname+"</span>"+
+                                    "</a>"+
+                                "</p>"+
+                                "<p>"+ comment.comment + "</p>"+
+                                "<p><span id=timestamp>just now</span></p>"+
                             "</div>";
+
                 $(".my-comment").prepend(html);
                 $("#comment-text").val(''); // clear text area
             } else{
                 // IN CASO DI FALLIMENTO
-                var error =  "<h1>Error posting your comment</h1>";
+                var error =  "<h1>"+ response.error +"</h1>";
                 $(".my-comment").prepend(error);
             }
         });

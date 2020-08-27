@@ -10,15 +10,20 @@
 
         $text = filter_input(INPUT_POST, "comment",
             FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        if(add_comment($email, $item, $text)){
-            $response = array("success" => 1, "text" => $text);
+        try{
+            if(add_comment($email, $item, $text)){
+                $row = retrieve_comment_just_published($email, $item, $text);
+                if($row != null)
+                    $response = array("success" => 1, "comment" => $row);
+                else throw new Exception("error retrieving comment just published");
+            }
+            else throw new Exception("error retrieving comment just published");
+        } catch(Exception $e){
+            $response = array("success" => 0, "error"=> $e->getMessage());
+        } finally {
+            echo json_encode($response);
         }
-        else $response = array("success" => 0, "error"=> "Problem adding the comment");
-
-        echo json_encode($response);
     }
-
 
 
     function add_comment($user, $item, $comment){
@@ -35,5 +40,28 @@
             return false;
         } finally {
             $db->close();
+        }
+    }
+
+    function retrieve_comment_just_published($user, $item, $comment){
+        $db = database_connection();
+        $rows = $db->query("SELECT id, user, comment, name, surname, image
+                                  FROM Comments JOIN Users on email = user 
+                                  WHERE item = '$item' AND user='$user' AND comment='$comment'
+                                  ORDER BY date DESC LIMIT 1");
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                    return $row;
+                }
+            }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            $e->getMessage();
+            return null;
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+
         }
     }
