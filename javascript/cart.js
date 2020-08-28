@@ -197,14 +197,26 @@ $(document).on('click','.plus-button',function () {
 
 $(document).on('click','#checkout-button',function () {
 
-    alert("da completare");
+    var tbody = document.getElementById("books");
+    var books = $(tbody).find("tr");
+    var hashmap = {};
 
-    var html;
-/*
+    for(var i = 0; i < books.length; i++){
+        var id = books[i].id;
+        // book[i]. quantity column - p - quantity - valore di quantity
+        var quantity = books[i].children[2].children[0].children[1].textContent;
+        hashmap[id] = quantity;
+    }
+
+    // ora dobbiamo fare qualcosa ??
+    // 1. aggiungere gli acquisti nel db
+    // far uscire la pagina thank you for your purchase!
+
+
     var request = $.ajax({
         type: "POST",
-        url: "../php/add_cart_quantity.php",
-        data: {add_cart_quantity: row.id},
+        url: "../php/add_purchase.php",
+        data: {add_purchase: hashmap},
         dataType: 'json'
     });
 
@@ -212,11 +224,9 @@ $(document).on('click','#checkout-button',function () {
     request.done(function (response) {
         if(response.success === 1){
             var badgeNum = response.badge_num;
-            var total = response.total;
-            subtotalDOMElem.innerText = response.subtotal;
-            quantityDOMElem.innerText = parseInt(quantity) + 1;
             updateBadge(badgeNum);
-            updateTotal(total);
+            $("#cart").addClass("hidden");
+            thanksForYourPurchase();
         }
 
         else
@@ -225,7 +235,7 @@ $(document).on('click','#checkout-button',function () {
 
     request.fail(function (response, textStatus, error) {
         alert(response + textStatus + error);
-    });*/
+    });
 
 });
 
@@ -243,5 +253,12 @@ function warningCartEmpty(){
     var html =  "<h1>Cart is empty</h1>" +
                 "<h2>Looks like you have no items in your shopping cart</h2>" +
                 "<button><a href=\"home.php\">Continue Shopping</a></button>";
+    $("#warning").append(html);
+}
+
+function thanksForYourPurchase(){
+    var html =  "<h1>Thanks for your shopping!</h1>" +
+        "<h2>We are looking forward to hear from you soon</h2>" +
+        "<button><a href=\"home.php\">Continue Shopping</a></button>";
     $("#warning").append(html);
 }

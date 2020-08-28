@@ -54,7 +54,7 @@
                         <th><button class="remove-all-button">Empty cart</button></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="books">
                     <?php
                         $total = 0;
                         for($i = 0; $i < count($items); $i++){
@@ -110,7 +110,7 @@
                         </td>
                         <td>
                             <div>
-                                <button id="checkout-button">Checkout</button>
+                                <button id="checkout-button"> Pay</button>
                             </div>
                         </td>
                     </tr>

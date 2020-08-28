@@ -61,6 +61,20 @@ CREATE TABLE Rating(
     foreign key(item) references Books(book_id) on update cascade on delete cascade
 );
 
+CREATE TABLE Purchases(
+    id int(32),
+    user varchar(32),
+    item int(32),
+    quantity int(10),
+    primary key(id, item),
+    foreign key(user) references Users(email) on update cascade on delete cascade,
+    foreign key(item) references Books(book_id) on update cascade on delete cascade
+);
+
+INSERT INTO Purchases(id, user, item, quantity)
+    values  (1, 'palfag@icloud.com', 4, 5),
+            (2, 'cirtlavinia@yahoo.com', 4, 5)
+
 INSERT INTO Rating(item, user, rate)
     values  (4, 'palfag@icloud.com', 5),
             (4, 'cirtlavinia@yahoo.com', 1)
