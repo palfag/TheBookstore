@@ -53,6 +53,33 @@ if(!isset($_SESSION['email'])){
             <div class="column right">
 
                 <div>
+                    <h2><?= $usr_data['name']?>'s Wishlist</h2>
+                    <?php
+                    if(count($wishlist) == 0){
+                    ?>
+                        <div>There is no items in <?= $usr_data['name']?>'s wishlist</div>
+                    <?php
+                    }
+                    else{
+                    ?>
+                        <div class="wishlist">
+                            <?php
+                                for($i = 0; $i < count($wishlist); $i++){
+                                    $book = $wishlist[$i];
+                            ?>
+
+                            <div class="book">
+                                <div class="cover">
+                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
+
+                                <p class="author"><?= $book["author"]?></p>
+                            </div>
+
+                            <?php
+                            }}
+                            ?>
+                        </div>
                     <h2>Both you and <?= $usr_data['name']?></h2>
                     <?php
                     if(count($common) == 0){
@@ -81,36 +108,6 @@ if(!isset($_SESSION['email'])){
                         ?>
                     </div>
                 </div>
-
-                <div>
-                    <h2><?= $usr_data['name']?>'s Wishlist</h2>
-                    <?php
-                    if(count($wishlist) == 0){
-                    ?>
-                        <div>There is no items in your wishlist</div>
-                    <?php
-                    }
-                    else{
-                    ?>
-                        <div class="wishlist">
-                            <?php
-                                for($i = 0; $i < count($wishlist); $i++){
-                                    $book = $wishlist[$i];
-                            ?>
-
-                            <div class="book">
-                                <div class="cover">
-                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
-                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
-
-                                <p class="author"><?= $book["author"]?></p>
-                            </div>
-
-                            <?php
-                            }}
-                            ?>
-                        </div>
-                </div>
             </div>
         </div>
         <?php require_once "footer.php";
@@ -119,6 +116,7 @@ if(!isset($_SESSION['email'])){
         // in questo caso non è settato  GET['user'] oppure coincide con $_SESSION['email'] (in questo caso la persona sta accedendo al proprio profilo)
         $usr_data = retrieve_usr_info($email);
         $wishlist = retrieve_wishlist($email);
+        $purchased_items = retrieve_purchased_items($email);
 ?>
 
 <!doctype html>
@@ -161,7 +159,6 @@ if(!isset($_SESSION['email'])){
         <div class="column right">
 
             <div>
-                <h2>Total Orders: 10</h2>
                 <h2>Wishlist</h2>
                 <?php
                 if(count($wishlist) == 0){
@@ -189,6 +186,34 @@ if(!isset($_SESSION['email'])){
                         }}
                         ?>
                     </div>
+                <h2>Books you own</h2>
+                <?php
+                if(count($purchased_items) == 0){
+                    ?>
+                    <p>you haven't bought any books yet</p>
+                    <button id="shop-now"><a href="home.php">Shop now</a></button>
+                    <?php
+                }
+                else{
+                ?>
+                <div class="common-books">
+                    <?php
+                    for($i = 0; $i < count($purchased_items); $i++){
+                        $book = $purchased_items[$i];
+                        ?>
+
+                        <div class="book">
+                            <div class="cover">
+                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                            <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
+
+                            <p class="author"><?= $book["author"]?></p>
+                        </div>
+
+                        <?php
+                    }}
+                    ?>
+                </div>
             </div>
         </div>
     </div>
@@ -248,6 +273,29 @@ if(!isset($_SESSION['email'])){
                                   WHERE item IN (SELECT item FROM Wishlist WHERE user ='$usr1') AND
                                         item IN (SELECT item FROM Wishlist WHERE user ='$usr2')
                                   ORDER BY title");
+        $data = array();
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                    $data[] = $row;
+                }
+                return $data;
+            }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            $e->getMessage();
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+        }
+    }
+
+
+    function retrieve_purchased_items($user){
+        $db = database_connection();
+        $rows = $db->query("SELECT DISTINCT item, author, cover, title, book_id
+                                    FROM Purchases JOIN books ON book_id = item
+                                    WHERE user = '$user' ORDER BY title");
         $data = array();
         try{
             if($rows){

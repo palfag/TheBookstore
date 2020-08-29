@@ -22,6 +22,7 @@
 .right {
     width: 60%;
     margin-bottom: 50px;
+    height: 100%;
 }
 
 h2{
@@ -75,13 +76,17 @@ h2{
 
 
 
-.add-to-cart{
+.add-to-cart, #shop-now{
     background: #44aeec;
     color: white;
     padding: 3px;
     border: none;
     width: 100px;
     border-radius: 3px;
+}
+
+#shop-now a{
+    color: white;
 }
 
 @media screen and (max-width: 850px) {
