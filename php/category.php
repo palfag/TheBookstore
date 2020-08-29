@@ -51,7 +51,7 @@ if(isset($_GET['category'])){
 
                 ?>
                     <div class="book">
-                        <div class="cover"><img src="<?= $book["cover"] ?>"></div>
+                        <div class="cover"><a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
                         <h1 class="title"><a href='book.php?id_book=<?= $book["book_id"] ?>'> <?= $book["title"] ?></a></h1>
                         <p class="author"><?= $book["author"]?></p>
                         <h3 class = "price"><?= $book["price"] ?>€</h3>

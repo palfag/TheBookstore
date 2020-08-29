@@ -50,7 +50,7 @@ function showBooks(books){
         }
 
         products =  "<div class = " + "book>" +
-                        "<div class = cover>" + "<img src = "+ obj.cover +">" + "</div>" +
+                        "<div class = cover><a href='../php/book.php?id_book="+ obj.book_id +"'>" + "<img src = "+ obj.cover +">" + "</a></div>" +
                         "<h1 class = title><a href='../php/book.php?id_book="+ obj.book_id +"'>" + obj.title + "</a></h1>" +
                         "<p class = author>"+ obj.author + "</p>" +
                         "<h3 class = price>" + obj.price + "€" + "</h3>" +
