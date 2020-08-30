@@ -36,12 +36,12 @@ h2{
     border-radius: 50%;
 }
 
-#settings{
+#settings, #payment{
     width: 70%;
     text-align: right;
 }
 
-.settings-button{
+.settings-button, .payment-button{
     background: none;
     border: none;
     color: #006699;

@@ -147,9 +147,13 @@ if(!isset($_SESSION['email'])){
                     <?php }?>
                     <h1 id="title"><?= $usr_data['name'] ?> <?= $usr_data['surname'] ?></h1>
 
+                    <div id="payment">
+                        <button class="payment-button"><a href="payment.php">Payments</a></button>
+                    </div>
                     <div id="settings">
                             <button class="settings-button"><a href="settings.php">Settings</a></button>
                     </div>
+
 
 
                 </div>

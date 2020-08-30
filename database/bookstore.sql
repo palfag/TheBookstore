@@ -71,6 +71,19 @@ CREATE TABLE Purchases(
     foreign key(item) references Books(book_id) on update cascade on delete cascade
 );
 
+CREATE TABLE Payments(
+        user varchar(32) primary key,
+        card_number varchar(16),
+        card_type varchar(32),
+        expiry_date varchar(32),
+        cvv int(3),
+        card_holder varchar(32),
+        foreign key(user) references Users(email) on update cascade on delete cascade
+);
+
+INSERT INTO Payments(user, card_number, card_type, expiry_date, cvv, card_holder)
+    values('palfag@icloud.com', '365728835962346', 'american-express', '12/22', 600, 'Paolo Fagioli')
+
 INSERT INTO Purchases(id, user, item, quantity)
     values  (1, 'palfag@icloud.com', 4, 5),
             (2, 'cirtlavinia@yahoo.com', 4, 5)
