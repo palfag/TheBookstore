@@ -110,7 +110,8 @@
                         </td>
                         <td>
                             <div>
-                                <button id="checkout-button"> Pay</button>
+                                <button id="checkout-button">Pay now</button>
+                                <div id="ajax-response"></div>
                             </div>
                         </td>
                     </tr>

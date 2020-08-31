@@ -6,10 +6,16 @@
 
 h2{
     font-size: 45px;
+    font-weight: 500;
     letter-spacing: 2px;
 }
 span{
     color: #BFBBBB;
+}
+
+img{
+    height: 1cm;
+    width: 1cm;
 }
 
 #container-div{

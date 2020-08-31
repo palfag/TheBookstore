@@ -44,9 +44,12 @@ h2{
 .settings-button, .payment-button{
     background: none;
     border: none;
-    color: #006699;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.settings-button a, .payment-button a{
+    color: #006699;
 }
 
 .cover img{

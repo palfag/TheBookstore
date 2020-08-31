@@ -197,6 +197,56 @@ $(document).on('click','.plus-button',function () {
 
 $(document).on('click','#checkout-button',function () {
 
+    var request = $.ajax({
+        type: "POST",
+        url: "../php/check_card.php",
+        data: {check_card: 1},
+        dataType: 'json'
+    });
+
+
+    request.done(function (response) {
+        if(response.success === 1){
+           pay();
+        }
+        else{
+            var html = "<button id='add-card-btn'><a href='../php/payment.php'>first add a card</a></button>"
+            $("#ajax-response").html(html);
+            $("#ajax-response").addClass("failure");
+        }
+    });
+
+    request.fail(function (response, textStatus, error) {
+        alert(response + textStatus + error);
+    });
+});
+
+
+
+function updateBadge(num) {
+    $(".badge").html(num);
+}
+
+function updateTotal(val){
+    $("#total").html(val);
+}
+
+function warningCartEmpty(){
+    var html =  "<h1>Cart is empty</h1>" +
+                "<h2>Looks like you have no items in your shopping cart</h2>" +
+                "<button><a href=\"home.php\">Continue Shopping</a></button>";
+    $("#warning").append(html);
+}
+
+function thanksForYourPurchase(){
+    var html =  "<h1>Thanks for your shopping!</h1>" +
+        "<h2>We are looking forward to hear from you soon</h2>" +
+        "<button><a href=\"home.php\">Continue Shopping</a></button>";
+    $("#warning").append(html);
+}
+
+function pay(){
+    // tutto questo lo facciamo se l'account possiede una carta collegata
     var tbody = document.getElementById("books");
     var books = $(tbody).find("tr");
     var hashmap = {};
@@ -236,29 +286,4 @@ $(document).on('click','#checkout-button',function () {
     request.fail(function (response, textStatus, error) {
         alert(response + textStatus + error);
     });
-
-});
-
-
-
-function updateBadge(num) {
-    $(".badge").html(num);
-}
-
-function updateTotal(val){
-    $("#total").html(val);
-}
-
-function warningCartEmpty(){
-    var html =  "<h1>Cart is empty</h1>" +
-                "<h2>Looks like you have no items in your shopping cart</h2>" +
-                "<button><a href=\"home.php\">Continue Shopping</a></button>";
-    $("#warning").append(html);
-}
-
-function thanksForYourPurchase(){
-    var html =  "<h1>Thanks for your shopping!</h1>" +
-        "<h2>We are looking forward to hear from you soon</h2>" +
-        "<button><a href=\"home.php\">Continue Shopping</a></button>";
-    $("#warning").append(html);
 }

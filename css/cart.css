@@ -162,6 +162,17 @@ tfoot tr td:first-child p{
     margin: 20px;
 }
 
+#add-card-btn{
+    background: none;
+    border: none;
+    color: #006699;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#add-card-btn a{
+    color: #d61111;
+}
 
 
 @media screen and (max-width: 850px) {

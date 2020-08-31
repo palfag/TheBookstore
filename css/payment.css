@@ -27,13 +27,10 @@
 
 .right {
     width: 50%;
-    /*margin-bottom: 50px;*/
+    margin-bottom: 50px;
     height: 100%;
 }
 
-div{
-    margin-left: auto;
-}
 
 h2{
     margin-bottom: 30px;
@@ -54,7 +51,7 @@ h2{
     font-size: 15px;
     border-top: 40px;
     margin-top: 10px;
-    margin-bottom: 30px;
+
 }
 
 input{
@@ -66,16 +63,33 @@ input{
     font-size: 18px;
     padding: 3px;
     background: transparent;
-    margin-bottom: 10px;
 }
 
-form {
-
-}
 
 #card-img{
     width: 6.9cm;
     height: 4.1cm;
+}
+
+#ajax-response{
+    margin-bottom: 10px;
+}
+
+.success{
+    color: green;
+}
+
+.failure{
+    color: red;
+}
+
+#remove-card-btn{
+    background: none;
+    border: none;
+    color: #006699;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 850px) {

@@ -18,6 +18,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../javascript/payments.js" type="text/javascript"></script>
     <link rel="stylesheet" href="../css/payment.css">
     <link rel="stylesheet" href="../css/footer.css">
     <title>Document</title>
@@ -36,36 +37,36 @@
             <div class="column right">
                 <h2>Add a card</h2>
                 <div id="card-detail-div" class="invisible">
-                    <form id="card-detail-form" method="POST">
+                    <form id="add-card-form" method="POST">
                         <div class="card">
                             <label for="card-holder">Card holder:</label>
-                            <input id="card-holder" type="text" name="card-holder" placeholder="Card holder" required>
+                            <input id="card-holder" type="text" name="card-holder" pattern="[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}" placeholder="Card holder" required>
                         </div>
                         <div class="card">
                             <label for="card-holder">Card number:</label>
-                            <input id="card-number" type="text" name="card-number" placeholder="Card number" required>
+                            <input id="card-number" type="text" name="card-number" pattern="[0-9]{13,16}" maxlength="16" placeholder="••••••••••••••••" required>
                         </div>
                         <div class="card-item">
                             <label for="expiry-date">Expiry date:</label>
-                            <input id="expiry-date" type="text" name="expiry-date" placeholder="00 / 00" required>
+                            <input id="expiry-date" type="text" name="expiry-date" pattern="(0[1-9]|10|11|12)/[2-9]{1}[0-9]{1}$" maxlength="5" placeholder="••/••" required>
                         </div>
                         <div class="card-item">
                             <label for="cvc">CVC:</label>
-                            <input id="cvc" type="text" name="cvc" placeholder="000" required>
+                            <input id="cvc" type="text" name="cvc" pattern="[0-9]{3}" maxlength="3" placeholder="•••" required>
                         </div>
                         <div>
-                            <label for="type">type</label>
                             <select name="type" id="type">
                                 <option value="american-express">American Express</option>
                                 <option value="master-card">Mastercard</option>
                                 <option value="visa">Visa</option>
-                                <option value="Default" selected="selected">Other</option>
+                                <option value="default" selected="selected">Other</option>
                             </select>
                         </div>
                         <div>
                             <input class="submit" id="submit" type="submit" name="submit" value="add card">
                         </div>
                     </form>
+                    <div id="ajax-response"></div>
                 </div>
             </div>
         </div>
@@ -79,23 +80,24 @@
             </div>
             <div class="column right">
                 <h2>Card details</h2>
+
                 <div id="card-detail-div" class="invisible">
-                    <form id="card-detail-form" method="POST">
+                    <form id="update-card-form" method="POST">
                         <div class="card">
                             <label for="card-holder">Card holder:</label>
-                            <input id="card-holder" type="text" name="card-holder" placeholder="Card holder" value="<?= $card['card_holder'] ?>" required>
+                            <input id="card-holder" type="text" name="card-holder" pattern="[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}" placeholder="Card holder" value="<?= $card['card_holder'] ?>" required>
                         </div>
                         <div class="card">
                             <label for="card-holder">Card number:</label>
-                            <input id="card-number" type="text" name="card-number" placeholder="Card number" value="<?= $card['card_number'] ?>" required>
+                            <input id="card-number" type="text" name="card-number" pattern="[0-9]{13,16}" maxlength="16" placeholder="••••••••••••••••" value="<?= $card['card_number'] ?>" required>
                         </div>
                         <div class="card-item">
                             <label for="expiry-date">Expiry date:</label>
-                            <input id="expiry-date" type="text" name="expiry-date" placeholder="00/00" value="<?= $card['expiry_date'] ?>" required>
+                            <input id="expiry-date" type="text" name="expiry-date" pattern="(0[1-9]|10|11|12)/[2-9]{1}[0-9]{1}$" maxlength="5" placeholder="••/••" value="<?= $card['expiry_date'] ?>" required>
                         </div>
                         <div class="card-item">
                             <label for="cvc">CVC:</label>
-                            <input id="cvc" type="text" name="cvc" placeholder="000" value="<?= $card['cvv'] ?>" required>
+                            <input id="cvc" type="text" name="cvc" pattern="[0-9]{3}" maxlength="3" placeholder="•••" value="<?= $card['cvv'] ?>" required>
                         </div>
                         <div>
                             <label for="type">type</label>
@@ -136,6 +138,8 @@
                             <input class="submit" id="submit" type="submit" name="submit" value="Update card">
                         </div>
                     </form>
+                    <button id="remove-card-btn">Remove card</button>
+                    <div id="ajax-response"></div>
                 </div>
             </div>
         </div>

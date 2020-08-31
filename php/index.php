@@ -32,7 +32,8 @@
 <body>
 
     <div id="container-div">
-        <h2><span>The</span> Bookstore</h2>
+
+        <h2><img src="../images/icons/favicon.png"><span>The</span>Bookstore</h2>
         <!--
             Registration form
         -->
