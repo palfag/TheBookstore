@@ -66,8 +66,17 @@ if(isset($_GET['id_book'])){
                     </ul>
                 </div>
                 <h2 id="price">Price: <?= $price ?> € </h2>
-                <button class ="add-to-cart" id="<?=$id_book?>">add to cart</button>
             <?php
+                if(is_owner($id_book,$email)){
+            ?>
+                <button id="download"><a href="<?=$cover?>">read</a></button>
+
+            <?php
+                } else{
+            ?>
+                    <button class ="add-to-cart" id="<?=$id_book?>">add to cart</button>
+            <?php
+                }
                 if($in_wishlist){
                     ?>
                     <button class="like-button liked"><img class="like-img" src="../images/icons/like.png"></button>
@@ -193,6 +202,26 @@ if(isset($_GET['id_book'])){
         } finally {
             $db->close();
             return $data;
+        }
+    }
+
+    function is_owner($id_book, $email){
+        $db = database_connection();
+
+        $sql = "SELECT * FROM Purchases where user='$email' AND item='$id_book'";
+        try {
+            $rows = $db->query($sql);
+            if ($rows) {
+                if($rows->num_rows == 0)
+                    return false;
+                return true;
+            }
+            else throw new Exception("query error");
+        } catch (Exception $e) {
+            $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+            return false;
+        } finally {
+            $db->close();
         }
     }
 
