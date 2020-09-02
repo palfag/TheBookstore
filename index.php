@@ -2,12 +2,12 @@
 /*
  *   LOGIN PAGE - REGISTRATION PAGE
  */
-    require_once "top.php";
-    require_once "db.inc.php";
+    require_once "php/top.php";
+    require_once "php/db.inc.php";
 
     // if user already logged will redirect to home.php
     if(isset($_SESSION['email'])){
-        header("Location: home.php");
+        header("Location: php/home.php");
         die;
     }
 ?>
@@ -24,16 +24,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../javascript/loginSignup.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <script src="javascript/loginSignup.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
     <title>Bookstore</title>
 </head>
 <body>
 
     <div id="container-div">
 
-        <h2><img src="../images/icons/favicon.png"><span>The</span>Bookstore</h2>
+        <h2><img src="images/icons/favicon.png"><span>The</span>Bookstore</h2>
         <!--
             Registration form
         -->

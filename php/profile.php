@@ -190,7 +190,7 @@ if(!isset($_SESSION['email'])){
                         }}
                         ?>
                     </div>
-                <h2>Books you own</h2>
+                <h2>Purchased</h2>
                 <?php
                 if(count($purchased_items) == 0){
                     ?>

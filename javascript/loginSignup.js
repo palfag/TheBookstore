@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/login_ajax.php",
+            url: "php/login_ajax.php",
             data: {email: email, password: password, submit: submit},
             dataType: 'json'
         });
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
         request.done(function (response) {
             if(response.success === 1)
-                window.location.replace("../php/home.php");
+                window.location.replace("php/home.php");
             else
                 $("#ajax-response").html(response.flash_message); // inserisce nel paragrafo html di signup la risposta del server
         });
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/signup_ajax.php",
+            url: "php/signup_ajax.php",
             data: {name: name, surname: surname, email: email, password: password, submit: submit},
             dataType: 'json'
         });
@@ -52,7 +52,7 @@ $(document).ready(function () {
 
         request.done(function (response) {
             if(response.success === 1)
-                window.location.replace("../php/home.php");
+                window.location.replace("php/home.php");
             else
                 $("#ajax-response").html(response.flash_message); // inserisce nel paragrafo html di signup la risposta del server
         });
@@ -74,11 +74,13 @@ function showForm() {
     $("#login").click(function () {
         $("#registration-div").addClass("invisible");
         $("#login-div").removeClass("invisible");
+        $("#ajax-response").html("");
     });
 
     $("#signup").click(function () {
         $("#login-div").addClass("invisible");
         $("#registration-div").removeClass("invisible");
+        $("#ajax-response").html("");
     });
 }
 
