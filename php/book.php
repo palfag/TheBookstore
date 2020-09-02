@@ -66,17 +66,8 @@ if(isset($_GET['id_book'])){
                     </ul>
                 </div>
                 <h2 id="price">Price: <?= $price ?> € </h2>
-            <?php
-                if(is_owner($id_book,$email)){
-            ?>
-                <button id="download"><a href="<?=$cover?>">read</a></button>
-
-            <?php
-                } else{
-            ?>
                     <button class ="add-to-cart" id="<?=$id_book?>">add to cart</button>
             <?php
-                }
                 if($in_wishlist){
                     ?>
                     <button class="like-button liked"><img class="like-img" src="../images/icons/like.png"></button>

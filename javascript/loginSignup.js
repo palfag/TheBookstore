@@ -25,6 +25,7 @@ $(document).ready(function () {
         });
 
         request.fail(function (response, textStatus, error) {
+            // TODO all'interno valutare di mettere "we've got a problem with our server, try later"
             alert(response + textStatus + error);
         });
 
