@@ -10,7 +10,10 @@ if (isset($_POST['search'])) {
     $sort_criteria = filter_input(INPUT_POST, "sort",
         FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $data = search_book($query, $sort_criteria);
+    $genre = filter_input(INPUT_POST, "genre",
+        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    $data = search_book($query, $sort_criteria, $genre);
     if(count($data) > 0){
 
         // AJAX RESPONSE
@@ -27,11 +30,15 @@ if (isset($_POST['search'])) {
  * Retreives books that conform to the standard defined by the query (from the database).
  * @param string $query
  * @param $sort
+ * @param $genre
  * @return array Returns conform books contained into the database.
  */
-function search_book($query, $sort){
+function search_book($query, $sort, $genre){
     $db = database_connection();
-    $rows = $db->query("SELECT * FROM books WHERE title LIKE '$query%' OR author LIKE '$query%' ORDER BY $sort");
+    if(strcmp($genre, "all") == 0){
+        $rows = $db->query("SELECT * FROM books WHERE title LIKE '$query%' OR author LIKE '$query%' ORDER BY $sort");
+    }
+    else  $rows = $db->query("SELECT * FROM books WHERE (title LIKE '$query%' OR author LIKE '$query%') and genre='$genre' ORDER BY $sort");
 
     $data = array();
     try{

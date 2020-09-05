@@ -34,6 +34,23 @@
                     <option value="price DESC">Price: High to Low</option>
                 </select>
             </label>
+            <br>
+            <label> Genres:
+                <select id="category" name="order">
+                    <option value="all" selected>all</option>
+                    <?php
+                        $categories = retrieve_categories();
+                        if($categories){
+                            for($i = 0; $i < count($categories); $i++){
+                                $category = $categories[$i];
+                                ?>
+                                <option value="<?=$category['genre']?>"><?=$category['genre']?></option>
+                                <?php
+                            }
+                        }
+                    ?>
+                </select>
+            </label>
         </form>
     </div>
 
@@ -46,3 +63,25 @@
 
 </body>
 </html>
+
+<?php
+    function retrieve_categories(){
+        $db = database_connection();
+        $rows = $db->query("SELECT genre FROM BookGenres ORDER BY genre");
+        $data = array();
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                    $data[] = $row;
+                }
+            }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            $e->getMessage();
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+            return $data;
+        }
+    }
+?>

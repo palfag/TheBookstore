@@ -6,6 +6,7 @@ $(document).ready(function () {
 
         var query = $.trim($("#search-bar").val());
         var sortCriteria = $("#sort-by").val();
+        var genre = $("#category").val();
 
         // TODO METTERE >= 1 ALLA FINE DEI GIOCHI
         if(query.length >= 0){
@@ -14,7 +15,7 @@ $(document).ready(function () {
             var request = $.ajax({
                 type: "POST",
                 url: "../php/search_book.php",
-                data: {search: 1, query: query, sort: sortCriteria},
+                data: {search: 1, query: query, sort: sortCriteria, genre: genre},
                 dataType: 'json'
             });
 
