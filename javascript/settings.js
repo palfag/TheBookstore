@@ -21,6 +21,10 @@ $(document).ready(function () {
         request.done(function (response) {
             if (response.success === 1) {
                 $("#profile-img").attr('src', response.path);
+                $("#ajax-photo-response").addClass("success");
+            }
+            else{
+                $("#ajax-photo-response").addClass("failure");
             }
             $("#ajax-photo-response").html(response.flash_message);
         });
@@ -45,8 +49,11 @@ $(document).on('click','#remove-photo',function () {
         request.done(function (response) {
             if(response.success === 1){
                 $("#profile-img").attr('src', response.path);
-
+                $("#ajax-photo-response").addClass("success");
             }
+            else
+                $("#ajax-photo-response").addClass("failure");
+
             $("#ajax-photo-response").html(response.flash_message);
         });
 
@@ -77,6 +84,12 @@ $(document).ready(function () {
 
 
         request.done(function (response) {
+            if(response.success === 1){
+                $("#ajax-password-response").addClass("success");
+            }
+            else
+                $("#ajax-password-response").addClass("failure");
+
                 $("#ajax-password-response").html(response.flash_message); // inserisce nel paragrafo html di signup la risposta del server
         });
 

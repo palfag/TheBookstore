@@ -19,7 +19,7 @@
 
             if($uploaded){
                 if(update_profile_picture($email, $target)){
-                    $response = array("success" => 1, "flash_message" => "image correctly updated", "path" => $target);
+                    $response = array("success" => 1, "flash_message" => "image updated correctly", "path" => $target);
                     echo json_encode($response);
 
                 } else throw new Exception("error database");
@@ -34,7 +34,7 @@
         $path_default_photo = "../images/users/default_profile.png";
         try{
             if(remove_profile_picture($email)){
-                $response = array("success" => 1, "flash_message" => "image correctly removed", "path" => $path_default_photo);
+                $response = array("success" => 1, "flash_message" => "image removed correctly", "path" => $path_default_photo);
                 echo json_encode($response);
             }
             else throw new Exception("database error");
