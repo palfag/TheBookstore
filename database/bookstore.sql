@@ -73,10 +73,10 @@ CREATE TABLE Purchases(
 
 CREATE TABLE Payments(
         user varchar(32) primary key,
-        card_number varchar(16),
+        card_number varchar(50),
         card_type varchar(32),
         expiry_date varchar(32),
-        cvv int(3),
+        cvv varchar(32),
         card_holder varchar(32),
         foreign key(user) references Users(email) on update cascade on delete cascade
 );

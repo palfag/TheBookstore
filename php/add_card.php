@@ -25,8 +25,11 @@ if (isset($_POST['add_card']) || isset($_POST['update_card'])) {
     $type = filter_input(INPUT_POST, "type",
         FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+    $card_encoded = base64_encode($card_number);
+    $cvc_encoded = base64_encode($cvc);
+
     try{
-        if(add_card($email, $card_holder, $card_number, $expiry_date, $cvc, $type)){
+        if(add_card($email, $card_holder, $card_encoded, $expiry_date, $cvc_encoded, $type)){
                 $response = array("success" => 1, "message"=>"payment method update correctly");
         }
         else throw new Exception("error updating card payments");
@@ -41,7 +44,7 @@ function add_card($user, $card_holder, $card_number, $expiry_date, $cvc, $type){
     $db = database_connection();
 
     $sql = "INSERT INTO Payments(user, card_number, card_type, expiry_date, cvv, card_holder)
-                values('$user', '$card_number', '$type', '$expiry_date', $cvc, '$card_holder')
+                values('$user', '$card_number', '$type', '$expiry_date', '$cvc', '$card_holder')
                 ON DUPLICATE KEY UPDATE card_number='$card_number', card_holder = '$card_holder', expiry_date='$expiry_date',
                                         cvv='$cvc', card_type='$type'";
     try {

@@ -72,7 +72,11 @@
         </div>
     <?php
     }
-    else{?>
+    else{
+        $card_number_decoded = base64_decode($card['card_number']);
+        $cvc_decoded = base64_decode($card['cvv']);
+
+        ?>
         <div class="row">
             <div class="column left">
                 <img id="card-img" src="../images/cards/<?= $card['card_type']?>.png">
@@ -89,7 +93,7 @@
                         </div>
                         <div class="card">
                             <label for="card-holder">Card number:</label>
-                            <input id="card-number" type="text" name="card-number" pattern="[0-9]{13,16}" maxlength="16" placeholder="••••••••••••••••" value="<?= $card['card_number'] ?>" required>
+                            <input id="card-number" type="text" name="card-number" pattern="[0-9]{13,16}" maxlength="16" placeholder="••••••••••••••••" value="<?= $card_number_decoded ?>" required>
                         </div>
                         <div class="card-item">
                             <label for="expiry-date">Expiry date:</label>
@@ -97,7 +101,7 @@
                         </div>
                         <div class="card-item">
                             <label for="cvc">CVC:</label>
-                            <input id="cvc" type="text" name="cvc" pattern="[0-9]{3}" maxlength="3" placeholder="•••" value="<?= $card['cvv'] ?>" required>
+                            <input id="cvc" type="text" name="cvc" pattern="[0-9]{3}" maxlength="3" placeholder="•••" value="<?= $cvc_decoded ?>" required>
                         </div>
                         <div>
                             <label for="type">type</label>
