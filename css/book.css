@@ -158,6 +158,27 @@ textarea{
     float: right;
 }
 
+.cover img{
+    width: 120px;
+    height: 160px;
+}
+
+.book{
+    margin-top: 20px;
+    text-align: center;
+    display: inline-block;
+    width: 6cm;
+}
+
+.author{
+    color: #b8b8b8;
+    text-align: center;
+}
+
+.title{
+    font-size: 20px;
+}
+
 @media screen and (max-width: 850px) {
 
     body{

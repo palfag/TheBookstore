@@ -83,6 +83,14 @@ input{
     color: red;
 }
 
+input:valid {
+    border-color: #17be17;
+}
+
+input:invalid {
+    border-color: #BFBBBB;
+}
+
 #remove-card-btn{
     background: none;
     border: none;

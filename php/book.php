@@ -29,6 +29,7 @@ if(isset($_GET['id_book'])){
     $year = $book['published_year'];
     $price = $book['price'];
     $trama = $book['trama'];
+    $similars = retrieve_similar_books($id_book, $genre);
 }
 ?>
 
@@ -125,7 +126,28 @@ if(isset($_GET['id_book'])){
 
                     ?>
                 </div>
+                <div id="similar">
+                    <h2>Similars</h2>
+                    <hr>
+                    <?php
+                        if($similars){
+                            for($i = 0; $i < count($similars); $i++){
+                                $sim = $similars[$i];
+                                ?>
 
+                                <div class="book">
+                                    <div class="cover">
+                                        <a href='book.php?id_book=<?= $sim["book_id"] ?>'><img src="<?= $sim["cover"] ?>"></a></div>
+                                    <a href='book.php?id_book=<?= $sim["book_id"] ?>'><h3 class="title"> <?= $sim["title"] ?></h3></a>
+
+                                    <p class="author"><?= $sim["author"]?></p>
+                                </div>
+
+                                <?php
+                            }
+                        }
+                    ?>
+                </div>
         </div>
     </div>
     <?php require_once "footer.php"; ?>
@@ -221,6 +243,30 @@ if(isset($_GET['id_book'])){
             return $date;
 
     }
+
+    function retrieve_similar_books($id, $genre){
+        $db = database_connection();
+        $rows = $db->query("SELECT DISTINCT author, cover, title, book_id
+                                    FROM Books
+                                    WHERE book_id <> '$id' AND genre = '$genre' ORDER BY RAND() LIMIT 3");
+        $data = array();
+        try{
+            if($rows){
+                foreach ($rows as $row){
+                    $data[] = $row;
+                }
+            }
+            else throw new Exception("query error");
+        } catch(Exception $e){
+            $e->getMessage();
+            $data = null;
+            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        } finally {
+            $db->close();
+            return $data;
+        }
+    }
+
     ?>
 </body>
 </html>

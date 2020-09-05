@@ -92,7 +92,6 @@ label{
     margin-bottom: 100px;
     width: 200px;
     text-align: left;
-
 }
 
 .vertical-menu a {
@@ -101,6 +100,10 @@ label{
     display: block;
     padding: 12px;
     text-decoration: none;
+}
+
+.vertical-menu a:hover{
+    color: #BFBBBB;
 }
 
 #remove-photo, #unsubscribe-button{
