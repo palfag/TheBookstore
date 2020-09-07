@@ -2,8 +2,8 @@
 /*
  *   Book page
  */
-require_once "top.php";
-require_once "db.inc.php";
+require_once "include/header.php";
+require_once "include/db.inc.php";
 require_once "navbar.php";
 
 if(!isset($_SESSION['email'])){
@@ -160,7 +160,7 @@ if(isset($_GET['id_book'])){
                 </div>
         </div>
     </div>
-    <?php require_once "footer.php"; ?>
+    <?php require_once "include/footer.php"; ?>
 
 
     <?php

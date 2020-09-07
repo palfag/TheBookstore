@@ -1,8 +1,8 @@
 <?php
-    require_once "top.php";
-    require_once "db.inc.php";
+    require_once "include/header.php";
+    require_once "include/db.inc.php";
     require_once "navbar.php";
-    require_once "update_cart.php";
+    require_once "functions/common_cart.php";
 
     if(!isset($_SESSION['email'])){
         header("Location: index.php");
@@ -121,6 +121,6 @@
         </div>
     </div>
         <?php } ?>
-         <?php require_once "footer.php"; ?>
+         <?php require_once "include/footer.php"; ?>
 </body>
 </html>

@@ -1,17 +1,17 @@
 <?php
 
-function retreive_number_cart_items($email){
+function retrieve_usr_info($email){
     $db = database_connection();
-    $rows = $db->query("SELECT COUNT(item) from cart where user = '$email'");
+    $rows = $db->query("SELECT name, surname, image FROM users WHERE email = '$email'");
+
     try{
         if($rows){
             foreach ($rows as $row){
-                return $row['COUNT(item)'];
-            }
+                return $row;
+            } throw new Exception("user not found");
         }
         else throw new Exception("query error");
     } catch(Exception $e){
-        $e->getMessage();
         ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
     } finally {
         $db->close();

@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
 
 
-    // Listener for updating card form
+    // Listener for updating & adding card form
     $("form").submit(function (event) {
         event.preventDefault();
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/add_card.php",
+            url: "../php/ajax/payment/add_card.php",
             data: {add_card: 1, card_holder: cardHolder, card_number: cardNumber, expiry_date: expiryDate, cvc: cvc, type: type},
             dataType: 'json'
         });
@@ -58,7 +58,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/remove_card.php",
+            url: "../php/ajax/payment/remove_card.php",
             data: {remove_card: 1},
             dataType: 'json'
         });

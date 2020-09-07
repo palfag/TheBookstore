@@ -1,7 +1,6 @@
 <?php
 
-require_once "top.php";
-require_once "db.inc.php";
+require_once "../resources.php";
 
 if (isset($_POST['search'])) {
     $query = filter_input(INPUT_POST, "query",

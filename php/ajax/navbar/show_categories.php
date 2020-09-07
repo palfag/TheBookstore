@@ -2,14 +2,13 @@
 
 <?php
 
-    require_once "top.php";
-    require_once "db.inc.php";
+    require_once "../resources.php";
 
     // richiesta che arriva da nav.js se si passa sopra alla categories appaiono le categorie prese tramite ajax dal db
     if (isset($_POST['categories'])) {
      // devo recuperare le categorie dal database e rimandarle indietro
 
-        $data = retreive_categories();
+        $data = retrieve_categories();
 
         if(count($data) > 0){
 
@@ -27,7 +26,7 @@
  * Retreives genre from the database.
  * returns genres contained into the database.
  */
-function retreive_categories(){
+function retrieve_categories(){
     $db = database_connection();
     $rows = $db->query("SELECT genre FROM BookGenres ORDER BY genre");
     $data = array();

@@ -2,8 +2,8 @@
 /*
  *   LOGIN PAGE - REGISTRATION PAGE
  */
-    require_once "php/top.php";
-    require_once "php/db.inc.php";
+    require_once "php/include/header.php";
+    require_once "php/include/db.inc.php";
 
     // if user already logged will redirect to home.php
     if(isset($_SESSION['email'])){

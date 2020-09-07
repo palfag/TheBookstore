@@ -1,6 +1,5 @@
 <?php
-    require_once "top.php";
-    require_once "db.inc.php";
+    require_once "../resources.php";
 
     if(!isset($_SESSION['email'])){
         header("Location: home.php");
@@ -11,15 +10,17 @@
 
     if(isset($_FILES['file'])){
         $profile_img = time() . '_' . $_FILES['file']['name']; // <----- questo va inserito nel database
-        $path = "../images/users/";
+        $path = "../../../images/users/";
         $target = $path . $profile_img;
+        $final_path = "../images/users/" . $profile_img;
 
         try{
             $uploaded =  move_uploaded_file($_FILES['file']['tmp_name'], $target);
 
             if($uploaded){
-                if(update_profile_picture($email, $target)){
-                    $response = array("success" => 1, "flash_message" => "image updated correctly", "path" => $target);
+                if(update_profile_picture($email, $final_path)){
+
+                    $response = array("success" => 1, "flash_message" => "image updated correctly", "path" => $final_path);
                     echo json_encode($response);
 
                 } else throw new Exception("error database");

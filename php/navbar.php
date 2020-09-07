@@ -1,7 +1,7 @@
 <?php
-    require_once "top.php";
-    require_once "db.inc.php";
-    require_once "badge.php";
+    require_once "include/header.php";
+    require_once "include/db.inc.php";
+    require_once "functions/common_cart.php";
 
     if(!isset($_SESSION['email'])){
         header("Location: index.php");
@@ -9,7 +9,7 @@
     }
 
     if(!isset($_SESSION['badge'])){
-        $_SESSION['badge'] = retreive_number_cart_items($_SESSION['email']);
+        $_SESSION['badge'] = retrieve_number_cart_items($_SESSION['email']);
     }
     $badge_num = $_SESSION['badge'];
 

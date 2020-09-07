@@ -1,7 +1,7 @@
 <?php
 
-    require_once "top.php";
-    require_once "db.inc.php";
+    require_once "../resources.php";
+    require_once "../../functions/common_authentication.php";
 
     if (!isset($_SESSION['email'])) {
         header("Location: home.php");
@@ -19,7 +19,7 @@
             FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     try{
-        $hash = retreive_hash($email);
+        $hash = retrieve_hash($email);
         if (password_verify($old, $hash)) {
             // possiamo procedere ad aggiornare la password
             $new_hash = password_hash($new, PASSWORD_DEFAULT); //  BCRYPT algorithm
@@ -35,31 +35,6 @@
         echo json_encode($response);
     }
 }
-
-    /**
-     * Retreives the password hashed from the database.
-     * @param string $email The email of the password that we want to recover
-     * @return bool Returns password hashed contained into the database.
-     */
-    function retreive_hash($email){
-        $db = database_connection();
-        $rows = $db->query("SELECT pwd FROM users WHERE email = '$email'");
-
-        try {
-            if ($rows) {
-                foreach ($rows as $row) {
-                    return $row["pwd"];
-                }
-                throw new Exception("user is not registered");
-            } else throw new Exception("query error");
-        } catch (Exception $e) {
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-        }
-    }
-
-
 
     /**
      * Updates the user's password, adds new hashed password into the database

@@ -6,8 +6,8 @@ $(document).on('click','.remove-button',function () {
 
     var request = $.ajax({
         type: "POST",
-        url: "../php/remove_to_cart.php",
-        data: {remove_to_cart: parent.id},
+        url: "../php/ajax/cart/remove_from_cart.php",
+        data: {remove_from_cart: parent.id},
         dataType: 'json'
     });
 
@@ -47,7 +47,7 @@ $(document).on('click','.remove-all-button',function () {
 
     var request = $.ajax({
         type: "POST",
-        url: "../php/remove_all_from_cart.php",
+        url: "../php/ajax/cart/remove_all_from_cart.php",
         data: {remove_all_from_cart: removeAllFromCart},
         dataType: 'json'
     });
@@ -96,8 +96,8 @@ $(document).on('click','.minus-button',function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/remove_to_cart.php",
-            data: {remove_to_cart: row.id},
+            url: "../php/ajax/cart/remove_from_cart.php",
+            data: {remove_from_cart: row.id},
             dataType: 'json'
         });
 
@@ -131,7 +131,7 @@ $(document).on('click','.minus-button',function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/reduce_cart_quantity.php",
+            url: "../php/ajax/cart/reduce_cart_quantity.php",
             data: {reduce_cart_quantity: row.id},
             dataType: 'json'
         });
@@ -177,7 +177,7 @@ $(document).on('click','.plus-button',function () {
 
     var request = $.ajax({
         type: "POST",
-        url: "../php/add_cart_quantity.php",
+        url: "../php/ajax/cart/add_cart_quantity.php",
         data: {add_cart_quantity: row.id},
         dataType: 'json'
     });
@@ -209,7 +209,7 @@ $(document).on('click','#checkout-button',function () {
 
     var request = $.ajax({
         type: "POST",
-        url: "../php/check_card.php",
+        url: "../php/ajax/payment/check_card.php",
         data: {check_card: 1},
         dataType: 'json'
     });
@@ -277,7 +277,7 @@ function pay(){
 
     var request = $.ajax({
         type: "POST",
-        url: "../php/add_purchase.php",
+        url: "../php/ajax/purchase/add_purchase.php",
         data: {add_purchase: hashmap},
         dataType: 'json'
     });

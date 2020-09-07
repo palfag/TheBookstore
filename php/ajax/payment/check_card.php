@@ -1,6 +1,5 @@
 <?php
-require_once "top.php";
-require_once "db.inc.php";
+require_once "../resources.php";
 
 if (!isset($_SESSION['email'])) {
     header("Location: index.php");

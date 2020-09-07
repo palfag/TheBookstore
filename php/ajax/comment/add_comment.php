@@ -1,6 +1,5 @@
 <?php
-    require_once "top.php";
-    require_once "db.inc.php";
+    require_once "../resources.php";
 
     $email = $_SESSION['email'];
 

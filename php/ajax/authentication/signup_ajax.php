@@ -1,6 +1,7 @@
 <?php
-    require_once "top.php";
-    require_once "db.inc.php";
+
+require_once "../resources.php";
+require_once "../../functions/common_authentication.php";
 
     if(isset($_POST['submit'])){
         $email = filter_input(INPUT_POST,"email",
@@ -41,32 +42,6 @@
         }
     }
 
-
-    /**
-     * Checks if the given email is contained into the database.
-     * @param string $email The email which the user would like to register with.
-     * @return bool Returns TRUE if the email is contained into the database, or FALSE otherwise.
-     */
-    function is_contained($email){
-        $db = database_connection();
-        $rows = $db->query("SELECT email FROM users WHERE email = '$email'");
-
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    if($row["email"] == $email){
-                        return true;
-                    }
-                } return false;
-            }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-        }
-    }
 
     /**
      * Registers the new user, adds user's information into the database

@@ -20,7 +20,7 @@ $(document).on('click','.add-to-cart',function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/add_to_cart.php",
+            url: "../php/ajax/cart/add_to_cart.php",
             data: {add_to_cart: book_id},
             dataType: 'json'
         });

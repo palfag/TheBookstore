@@ -7,7 +7,7 @@ $(document).on('click','.like-button',function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/insert_remove_wishlist.php",
+            url: "../php/ajax/wishlist/insert_wishlist.php",
             data: {insert_wishlist: id_book},
             dataType: 'json'
         });
@@ -37,7 +37,7 @@ $(document).on('click','.like-button',function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/insert_remove_wishlist.php",
+            url: "../php/ajax/wishlist/remove_wishlist.php",
             data: {remove_wishlist: id_book},
             dataType: 'json'
         });

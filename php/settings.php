@@ -1,7 +1,8 @@
 <?php
-require_once "top.php";
-require_once "db.inc.php";
+require_once "include/header.php";
+require_once "include/db.inc.php";
 require_once "navbar.php";
+require_once "functions/common_settings.php";
 
 if(!isset($_SESSION['email'])){
     header("Location: index.php");
@@ -9,7 +10,7 @@ if(!isset($_SESSION['email'])){
 }
 
 $email = $_SESSION['email'];
-$usr_data = retreive_usr_info($email);
+$usr_data = retrieve_usr_info($email);
 
 ?>
 
@@ -111,29 +112,7 @@ $usr_data = retreive_usr_info($email);
         </div>
     </div>
 
-    <?php require_once "footer.php"; ?>
-
-
-    <?php
-
-    function retreive_usr_info($email){
-        $db = database_connection();
-        $rows = $db->query("SELECT name, surname, image FROM users WHERE email = '$email'");
-
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    return $row;
-                } throw new Exception("user not found");
-            }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-        }
-    }
-    ?>
+    <?php require_once "include/footer.php"; ?>
 
 </body>
 </html>

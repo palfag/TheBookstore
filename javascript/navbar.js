@@ -14,7 +14,7 @@ function showMenu() {
         if (isEmpty($('.dropdown-content'))){
             var request = $.ajax({
                 type: "POST",
-                url: "../php/show_categories.php",
+                url: "../php/ajax/navbar/show_categories.php",
                 data: {categories: getCategories},
                 dataType: 'json'
             });

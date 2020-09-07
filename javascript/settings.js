@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/profile_picture.php",
+            url: "../php/ajax/settings/profile_picture.php",
             data: fd,
             dataType: "json",
             contentType: false,
@@ -43,7 +43,7 @@ $(document).on('click','#remove-photo',function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/profile_picture.php",
+            url: "../php/ajax/settings/profile_picture.php",
             data: {remove_photo: 1},
             dataType: 'json'
         });
@@ -83,7 +83,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/update_password.php",
+            url: "../php/ajax/settings/update_password.php",
             data: {old_password: old_password, new_password: new_password},
             dataType: 'json'
         });
@@ -121,7 +121,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/unsubscribe.php",
+            url: "../php/ajax/settings/unsubscribe.php",
             data: {unsubscribe: unsubscribe},
             dataType: 'json'
         });
@@ -129,7 +129,7 @@ $(document).ready(function () {
 
         request.done(function (response) {
             if(response.success === 1)
-                window.location.replace("../php/index.php");
+                window.location.replace("../index.php");
             else{
                 $("#ajax-unsubscribe-response").addClass("failure");
                 $("#ajax-unsubscribe-response").html(response.flash_message);

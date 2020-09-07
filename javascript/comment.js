@@ -11,7 +11,7 @@ $(document).ready(function () {
         if(comment.trim().length > 0){ // richiesta ajax solo se il commento non è vuoto
             var request = $.ajax({
                 type: "POST",
-                url: "../php/comment.php",
+                url: "../php/ajax/comment/add_comment.php",
                 data: {add_comment: item, comment: comment},
                 dataType: 'json'
             });
@@ -72,7 +72,7 @@ $(document).on('click','.delete-comment-btn',function () {
 
     var request = $.ajax({
         type: "POST",
-        url: "../php/delete_comment.php",
+        url: "../php/ajax/comment/delete_comment.php",
         data: {delete_comment: parent.id},
         dataType: 'json'
     });

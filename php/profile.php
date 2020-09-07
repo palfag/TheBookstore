@@ -1,7 +1,8 @@
 <?php
-require_once "top.php";
-require_once "db.inc.php";
+require_once "include/header.php";
+require_once "include/db.inc.php";
 require_once "navbar.php";
+require_once "functions/common_settings.php";
 
 if(!isset($_SESSION['email'])){
     header("Location: index.php");
@@ -219,30 +220,12 @@ if(!isset($_SESSION['email'])){
             </div>
         </div>
     </div>
-    <?php require_once "footer.php";
+    <?php require_once "include/footer.php";
 
     }?>
 
 
     <?php
-
-    function retrieve_usr_info($email){
-        $db = database_connection();
-        $rows = $db->query("SELECT name, surname, image FROM users WHERE email = '$email'");
-
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    return $row;
-                } throw new Exception("user not found");
-            }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-        }
-    }
 
 
     function retrieve_wishlist($user){

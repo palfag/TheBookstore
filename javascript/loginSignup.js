@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "php/login_ajax.php",
+            url: "php/ajax/authentication/login_ajax.php",
             data: {email: email, password: password, submit: submit},
             dataType: 'json'
         });
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "php/signup_ajax.php",
+            url: "php/ajax/authentication/signup_ajax.php",
             data: {name: name, surname: surname, email: email, password: password, submit: submit},
             dataType: 'json'
         });

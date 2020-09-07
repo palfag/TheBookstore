@@ -1,6 +1,6 @@
 <?php
-    require_once "top.php";
-    require_once "db.inc.php";
+    require_once "include/header.php";
+    require_once "include/db.inc.php";
     require_once "navbar.php";
 
     if(!isset($_SESSION['email'])){
@@ -152,7 +152,7 @@
 
     <?php
     }
-    require_once "footer.php";
+    require_once "include/footer.php";
     ?>
 
 </body>

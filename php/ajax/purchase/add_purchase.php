@@ -1,6 +1,6 @@
 <?php
-require_once "top.php";
-require_once "db.inc.php";
+require_once "../resources.php";
+require_once "../../functions/common_cart.php";
 
 if (!isset($_SESSION['email'])) {
     header("Location: index.php");
@@ -58,24 +58,6 @@ function add_purchase($user, $items){
         }
         return true;
     } catch (Exception $e) {
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        return false;
-    } finally {
-        $db->close();
-    }
-}
-
-
-function remove_all_from_cart($user){
-    $db = database_connection();
-    $sql = "DELETE FROM Cart where user='$user'";
-    try{
-
-        if(!$db->query($sql)){
-            throw new Exception("query error");
-        }
-        return true;
-    } catch (Exception $e){
         $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
         return false;
     } finally {

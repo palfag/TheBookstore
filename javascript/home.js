@@ -14,7 +14,7 @@ $(document).ready(function () {
 
             var request = $.ajax({
                 type: "POST",
-                url: "../php/search_book.php",
+                url: "../php/ajax/book/search_book.php",
                 data: {search: 1, query: query, sort: sortCriteria, genre: genre},
                 dataType: 'json'
             });

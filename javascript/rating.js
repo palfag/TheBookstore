@@ -27,7 +27,7 @@ $(document).ready(function () {
 
         var request = $.ajax({
             type: "POST",
-            url: "../php/add_rate.php",
+            url: "../php/ajax/rating/add_rate.php",
             data: {rate: rating, item: item},
             dataType: 'json'
         });
@@ -59,7 +59,7 @@ function resetStars(){
 
     var request = $.ajax({
         type: "POST",
-        url: "../php/rating.php",
+        url: "../php/ajax/rating/rating.php",
         data: {reset_stars: 1, item: item},
         dataType: 'json'
     });

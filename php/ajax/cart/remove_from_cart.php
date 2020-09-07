@@ -1,22 +1,20 @@
 <?php
-require_once "top.php";
-require_once "db.inc.php";
-require_once "badge.php";
-require_once "update_cart.php";
+require_once "../resources.php";
+require_once "../../functions/common_cart.php";
 
-if(!isset($_SESSION['email']) || !isset($_POST['remove_to_cart'])){
+if(!isset($_SESSION['email']) || !isset($_POST['remove_from_cart'])){
     header("Location: index.php");
     die;
 }
 
 $email = $_SESSION['email'];
 
-if(isset($_POST['remove_to_cart'])){
-    $book_id = filter_input(INPUT_POST, "remove_to_cart",
+if(isset($_POST['remove_from_cart'])){
+    $book_id = filter_input(INPUT_POST, "remove_from_cart",
         FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    if(remove_to_cart($email, $book_id)){
-        $data = retreive_number_cart_items($email);
+    if(remove_from_cart($email, $book_id)){
+        $data = retrieve_number_cart_items($email);
         $total = get_total($email);
 
         $_SESSION['badge'] = $data;
@@ -29,7 +27,7 @@ if(isset($_POST['remove_to_cart'])){
 
 
 
-function remove_to_cart($user, $item){
+function remove_from_cart($user, $item){
     $db = database_connection();
     $sql = "DELETE FROM Cart where user='$user' AND item='$item'";
     try{
@@ -44,16 +42,4 @@ function remove_to_cart($user, $item){
     } finally {
         $db->close();
     }
-}
-
-function get_total($email){
-    $items = update_cart($email);
-    $total = 0;
-    for ($i = 0; $i < count($items); $i++) {
-        $item = $items[$i];
-        $total += (double)$item['subtotal'];
-    }
-    /* non penso sia necessario... ma perché no ahah*/
-    $total = sprintf('%0.2f', round($total, 2));
-    return $total;
 }
