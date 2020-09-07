@@ -13,7 +13,7 @@
     }
     $badge_num = $_SESSION['badge'];
 
-    $name = retreive_name($_SESSION['email']);
+    $name = retrieve_name($_SESSION['email']);
 ?>
 
 <!doctype html>
@@ -56,7 +56,7 @@
 
     <?php
 
-    function retreive_name($email){
+    function retrieve_name($email){
         $db = database_connection();
         $rows = $db->query("SELECT name FROM users WHERE email = '$email'");
 

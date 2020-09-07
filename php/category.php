@@ -16,7 +16,7 @@ if(isset($_GET['category'])){
     $category = filter_input(INPUT_GET, "category",
         FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $books = retreive_books_by_category($category);
+    $books = retrieve_books_by_category($category);
 }
 ?>
 
@@ -71,7 +71,7 @@ if(isset($_GET['category'])){
 
 <?php
 
-    function retreive_books_by_category($category){
+    function retrieve_books_by_category($category){
         $db = database_connection();
         $rows = $db->query("SELECT * FROM books WHERE genre='$category'");
 

@@ -18,7 +18,7 @@ if(isset($_GET['id_book'])){
     $id_book = filter_input(INPUT_GET, "id_book",
         FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $book = retreive_book_by_id($id_book);
+    $book = retrieve_book_by_id($id_book);
     $in_wishlist = is_in_wishlist($id_book, $email);
     $comments = retrieve_comments($id_book);
 
@@ -44,7 +44,7 @@ if(isset($_GET['id_book'])){
     <script src="../javascript/addToCart.js"></script>
     <script src="../javascript/comment.js"></script>
     <script src="../javascript/rating.js"></script>
-    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/images/icons/favicon.png"/>
     <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
@@ -165,7 +165,7 @@ if(isset($_GET['id_book'])){
 
     <?php
 
-        function retreive_book_by_id($id_book){
+        function retrieve_book_by_id($id_book){
             $db = database_connection();
             $rows = $db->query("SELECT * FROM books WHERE  book_id = '$id_book'");
             try{
