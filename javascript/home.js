@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("form").submit(function (event) {
         event.preventDefault();
 
-        var query = $.trim($("#search-bar").val());
+        var query = escapeInput($.trim($("#search-bar").val()));
         var sortCriteria = $("#sort-by").val();
         var genre = $("#category").val();
 
@@ -29,7 +29,7 @@ $(document).ready(function () {
             });
 
             request.fail(function (response, textStatus, error) {
-                alert(response + textStatus + error);
+                $("#products").html("There was an error with our servers! Try again later.");
             });
 
         }
@@ -61,4 +61,13 @@ function showBooks(books){
         $("#products").append(products);
     }
 
+}
+
+function escapeInput(input) {
+    return String(input)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 }

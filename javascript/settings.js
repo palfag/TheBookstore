@@ -20,6 +20,7 @@ $(document).ready(function () {
 
         request.done(function (response) {
             if (response.success === 1) {
+                $("#ajax-photo-response").removeClass();
                 $("#profile-img").attr('src', response.path);
                 $("#ajax-photo-response").addClass("success");
             }
@@ -30,7 +31,9 @@ $(document).ready(function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-photo-response").removeClass();
+            $("#ajax-photo-response").addClass("failure");
+            $("#ajax-photo-response").html("There was an error with our servers! Try again later.");
         });
     });
 
@@ -47,6 +50,7 @@ $(document).on('click','#remove-photo',function () {
 
 
         request.done(function (response) {
+            $("#ajax-photo-response").removeClass();
             if(response.success === 1){
                 $("#profile-img").attr('src', response.path);
                 $("#ajax-photo-response").addClass("success");
@@ -58,7 +62,9 @@ $(document).on('click','#remove-photo',function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-photo-response").removeClass();
+            $("#ajax-photo-response").addClass("failure");
+            $("#ajax-photo-response").html("There was an error with our servers! Try again later.");
         });
 
 });
@@ -71,8 +77,8 @@ $(document).ready(function () {
         event.preventDefault();
 
 
-        var old_password = $("#old-password").val();
-        var new_password = $("#new-password").val();
+        var old_password = escapeInput($("#old-password").val());
+        var new_password = escapeInput($("#new-password").val());
 
 
         var request = $.ajax({
@@ -84,6 +90,7 @@ $(document).ready(function () {
 
 
         request.done(function (response) {
+            $("#ajax-password-response").removeClass(); // Calling removeClass with no parameters will remove all of the item's classes.
             if(response.success === 1){
                 $("#ajax-password-response").addClass("success");
             }
@@ -94,7 +101,9 @@ $(document).ready(function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-password-response").removeClass();
+            $("#ajax-password-response").addClass("failure");
+            $("#ajax-password-response").html("There was an error with our servers! Try again later.");
         });
 
     });
@@ -121,12 +130,16 @@ $(document).ready(function () {
         request.done(function (response) {
             if(response.success === 1)
                 window.location.replace("../php/index.php");
-            else
+            else{
+                $("#ajax-unsubscribe-response").addClass("failure");
                 $("#ajax-unsubscribe-response").html(response.flash_message);
+            }
+
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-unsubscribe-response").addClass("failure");
+            $("#ajax-unsubscribe-response").html("There was an error with our servers! Try again later.");
         });
 
     });
@@ -155,3 +168,13 @@ $(document).on('click','#unsubscribe',function (){
     if(!$("#password-form").hasClass("hidden"))
         $("#password-form").addClass("hidden");
 });
+
+
+function escapeInput(input) {
+    return String(input)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}

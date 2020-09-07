@@ -19,7 +19,7 @@
             $_SESSION['badge'] = $data;
             $response = array("success" => 1, "badge_num"=> $data);
         }
-        else $response = array("success" => 0, "error"=> "No data found");
+        else $response = array("success" => 0, "error"=> "Problem adding item");
 
         echo json_encode($response);
     }

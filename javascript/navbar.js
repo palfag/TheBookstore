@@ -6,6 +6,11 @@ function showMenu() {
 
         var getCategories = "getCategories";
 
+        var content = $('.dropdown-content').html();
+
+        if (content === "There was an error <br> with our servers! <br> Try again later.")
+            $('.dropdown-content').html('');
+
         if (isEmpty($('.dropdown-content'))){
             var request = $.ajax({
                 type: "POST",
@@ -24,12 +29,9 @@ function showMenu() {
             });
 
             request.fail(function (response, textStatus, error) {
-                alert(response + textStatus + error);
+                $(".dropdown-content").html("There was an error <br> with our servers! <br> Try again later.");
             });
         }
-
-
-
     });
 
 

@@ -10,15 +10,15 @@ $(document).ready(function () {
     $("form").submit(function (event) {
         event.preventDefault();
 
-        var cardHolder = $("#card-holder").val();
+        var cardHolder = escapeInput($("#card-holder").val());
         var res = cardHolder.split(" ");
         var name = capitalize(res[0]);
         var surname = capitalize(res[1]);
         cardHolder = name + " " + surname;
 
-        var cardNumber = $("#card-number").val();
-        var expiryDate = $("#expiry-date").val();
-        var cvc = $("#cvc").val();
+        var cardNumber = escapeInput($("#card-number").val());
+        var expiryDate = escapeInput($("#expiry-date").val());
+        var cvc = escapeInput($("#cvc").val());
         var type = $("#type").val();
 
 
@@ -31,20 +31,23 @@ $(document).ready(function () {
 
 
         request.done(function (response) {
+            $("#ajax-response").removeClass();
             if(response.success === 1){
-                $("#ajax-response").html(response.message);
                 $("#ajax-response").addClass("success");
+                $("#ajax-response").html(response.message);
             }
 
             else{
-                $("#ajax-response").html(response.error);
                 $("#ajax-response").addClass("failure");
+                $("#ajax-response").html(response.error);
             }
 
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-response").removeClass();
+            $("#ajax-response").addClass("failure");
+            $("#ajax-response").html("There was an error with our servers! Try again later.");
         });
 
     });
@@ -62,9 +65,10 @@ $(document).ready(function () {
 
 
         request.done(function (response) {
+            $("#ajax-response").removeClass();
             if(response.success === 1){
-                $("#ajax-response").html(response.message);
                 $("#ajax-response").addClass("success");
+                $("#ajax-response").html(response.message);
                 $("#card-holder").val('');
                 $("#card-number").val('');
                 $("#expiry-date").val('');
@@ -73,14 +77,16 @@ $(document).ready(function () {
             }
 
             else{
-                $("#ajax-response").html(response.error);
                 $("#ajax-response").addClass("failure");
+                $("#ajax-response").html(response.error);
             }
 
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-response").removeClass();
+            $("#ajax-response").addClass("failure");
+            $("#ajax-response").html("There was an error with our servers! Try again later.");
         });
     });
 });
@@ -93,4 +99,14 @@ $(document).ready(function () {
  */
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+function escapeInput(input) {
+    return String(input)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 }

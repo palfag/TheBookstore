@@ -18,8 +18,17 @@ $(document).ready(function () {
 
             request.done(function (response) {
                 if (response.success === 1) {
+
+                    // spariranno eventiali errori apparsi nella lista dei commenti
+                    if($(".error")){
+                        $(".error").remove();
+                    }
                     // IN CASO DI SUCCESSO
                     var comment = response.comment;
+
+                    if(comment.image === null){
+                           comment.image = "../images/users/default_profile.png";
+                    }
 
                     var html =  "<div class=comment "+comment.user+" id="+comment.id+">" +
                         "<button class='delete-comment-btn'><img src='../images/icons/bin.png'></button>"+
@@ -39,13 +48,14 @@ $(document).ready(function () {
                     $("#comment-text").val(''); // clear text area
                 } else{
                     // IN CASO DI FALLIMENTO
-                    var error =  "<h1>"+ response.error +"</h1>";
+                    var error =  "<h1 class='failure error'>"+ response.error +"</h1>";
                     $(".my-comment").prepend(error);
                 }
             });
 
             request.fail(function (response, textStatus, error) {
-                alert(response + textStatus + error);
+                var error =  "<h1 class='failure error'>"+ "There was an error with our servers! Try again later."+"</h1>";
+                $(".my-comment").prepend(error);
             });
         }
     });
@@ -69,16 +79,23 @@ $(document).on('click','.delete-comment-btn',function () {
 
     request.done(function (response) {
         if(response.success === 1){
-                row.parentNode.removeChild(row); // elimina il commento dall'html
+            // spariranno eventiali errori apparsi nella lista dei commenti
+            if($(".error")){
+                $(".error").remove();
             }
+                row.parentNode.removeChild(row); // elimina il commento dall'html
+        }
 
         else{
-            $("#ajax-password-response").html(response.error);
+            var error =  "<h1 class='failure error'>"+ response.error +"</h1>";
+            $(".my-comment").prepend(error);
         }
 
     });
 
     request.fail(function (response, textStatus, error) {
+        var error =  "<h1 class='failure error'>"+ "There was an error with our servers! Try again later."+"</h1>";
+        $(".my-comment").prepend(error);
     });
 
 });

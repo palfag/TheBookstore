@@ -17,7 +17,7 @@ if(isset($_POST['reset_stars']) && isset($_POST['item'])){
 
     $rate = retrieve_rate($item);
 
-    if($rate){
+    if($rate || $rate == 0){
         $response = array("success" => 1, "rate"=> $rate);
     }
     else $response = array("success" => 0, "error"=> "Problem retrieving rating");

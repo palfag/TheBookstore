@@ -111,7 +111,17 @@ if(isset($_GET['id_book'])){
                                 }
                                 ?>
                                 <a href="profile.php?user=<?= $comment['user'] ?>">
+                                    <?php
+                                        if($comment['image'] == null){
+                                    ?>
+                                            <img src="../images/users/default_profile.png">
+                                    <?php
+                                        }else{
+                                    ?>
                                     <img src="<?= $comment['image'] ?>">
+                                    <?php
+                                        }
+                                    ?>
                                 </a>
                                 <p class="user">
                                     <a href="profile.php?user=<?= $comment['user'] ?>">
@@ -126,9 +136,9 @@ if(isset($_GET['id_book'])){
 
                     ?>
                 </div>
+                <h2>Similars</h2>
+                <hr>
                 <div id="similar">
-                    <h2>Similars</h2>
-                    <hr>
                     <?php
                         if($similars){
                             for($i = 0; $i < count($similars); $i++){

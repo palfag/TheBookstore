@@ -20,13 +20,10 @@ $(document).ready(function () {
     $('.star').on('click',function () {
         var index = parseInt($(this).data('index'));
         var rating = ++index; // star value
-        //alert(rating);
 
         var urlParams = new URLSearchParams(window.location.search);
         var item = urlParams.get('id_book');
 
-        // bisogna fare 2 cose qui
-        // se non si è mai inserito nulla dobbiamo fare una insert, in altrimenti si dovrà fare un UPDATE DELLA ROW già esistente
 
         var request = $.ajax({
             type: "POST",
@@ -44,7 +41,7 @@ $(document).ready(function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#add-rate-ajax-response").html("There was an error with our servers! Try again later.");
         });
     });
 
@@ -69,17 +66,18 @@ function resetStars(){
 
     request.done(function (response) {
         if (response.success === 1) {
+            $("#add-rate-ajax-response").html('');
             // deve colorare le richieste
             var index = response.rate;
             for(var i = 0; i < index; i++){
                 $('.star:eq('+i+')').addClass('highlight');
             }
         } else{
-            // deve apparire un errore proveniente dal backend
+            $("#add-rate-ajax-response").html(response.error);
         }
     });
 
     request.fail(function (response, textStatus, error) {
-        alert(response + textStatus + error);
+        $("#add-rate-ajax-response").html("There was an error with our servers! Try again later.");
     });
 }

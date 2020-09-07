@@ -3,7 +3,6 @@ $(document).on('click','.remove-button',function () {
 
     var parent = this.parentNode.parentNode.parentNode;
     var row = document.getElementById(parent.id);
-    row.parentNode.removeChild(row);
 
     var request = $.ajax({
         type: "POST",
@@ -14,6 +13,9 @@ $(document).on('click','.remove-button',function () {
 
     request.done(function (response) {
         if(response.success === 1){
+            row.parentNode.removeChild(row);
+            if($("#ajax-error").html())
+                $("#ajax-error").html('');
             var badgeNum = response.badge_num;
             var total = response.total;
             updateBadge(badgeNum);
@@ -25,11 +27,11 @@ $(document).on('click','.remove-button',function () {
         }
 
         else
-            alert(response.error);
+            $("#ajax-error").html(response.error);
     });
 
     request.fail(function (response, textStatus, error) {
-        alert(response + textStatus + error);
+       $("#ajax-error").html("There was an error with our servers! Try again later.");
     });
 
 
@@ -42,10 +44,6 @@ $(document).on('click','.remove-all-button',function () {
 
     var removeAllFromCart = 0;
     var body = document.querySelector('tbody');
-    while (body.firstChild && body.children.length > 1) {
-        // This will remove all children within tbody which in your case are <tr> elements
-        body.removeChild(body.firstChild);
-    }
 
     var request = $.ajax({
         type: "POST",
@@ -56,6 +54,12 @@ $(document).on('click','.remove-all-button',function () {
 
     request.done(function (response) {
         if(response.success === 1){
+            while (body.firstChild && body.children.length > 1) {
+                // This will remove all children within tbody which in your case are <tr> elements
+                body.removeChild(body.firstChild);
+            }
+            if($("#ajax-error").html())
+                $("#ajax-error").html('');
             var badgeNum = response.badge_num;
             var total = response.total;
             updateBadge(badgeNum);
@@ -67,11 +71,11 @@ $(document).on('click','.remove-all-button',function () {
         }
 
         else
-            alert(response.error);
+            $("#ajax-error").html(response.error);
     });
 
     request.fail(function (response, textStatus, error) {
-        alert(response + textStatus + error);
+        $("#ajax-error").html("There was an error with our servers! Try again later.");
     });
 
 });
@@ -89,7 +93,6 @@ $(document).on('click','.minus-button',function () {
 
     if(parseInt(quantity) === 1){
 
-        row.parentNode.removeChild(row);
 
         var request = $.ajax({
             type: "POST",
@@ -100,6 +103,9 @@ $(document).on('click','.minus-button',function () {
 
         request.done(function (response) {
             if(response.success === 1){
+                row.parentNode.removeChild(row);
+                if($("#ajax-error").html())
+                    $("#ajax-error").html('');
                 var badgeNum = response.badge_num;
                 var total = response.total;
                 updateBadge(badgeNum);
@@ -111,11 +117,11 @@ $(document).on('click','.minus-button',function () {
             }
 
             else
-                alert(response.error);
+                $("#ajax-error").html(response.error);
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-error").html("There was an error with our servers! Try again later.");
         });
     }
     else{
@@ -132,6 +138,8 @@ $(document).on('click','.minus-button',function () {
 
         request.done(function (response) {
             if(response.success === 1){
+                if($("#ajax-error").html())
+                    $("#ajax-error").html('');
                 var badgeNum = response.badge_num;
                 var total = response.total;
                 subtotalDOMElem.innerText = response.subtotal;
@@ -141,11 +149,11 @@ $(document).on('click','.minus-button',function () {
             }
 
             else
-                alert(response.error);
+                $("#ajax-error").html(response.error);
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-error").html("There was an error with our servers! Try again later.");
         });
     }
 });
@@ -177,6 +185,8 @@ $(document).on('click','.plus-button',function () {
 
     request.done(function (response) {
         if(response.success === 1){
+            if($("#ajax-error").html())
+                $("#ajax-error").html('');
             var badgeNum = response.badge_num;
             var total = response.total;
             subtotalDOMElem.innerText = response.subtotal;
@@ -186,11 +196,11 @@ $(document).on('click','.plus-button',function () {
         }
 
         else
-            alert(response.error);
+            $("#ajax-error").html(response.error);
     });
 
     request.fail(function (response, textStatus, error) {
-        alert(response + textStatus + error);
+        $("#ajax-error").html("There was an error with our servers! Try again later.");
     });
 
 });
@@ -207,7 +217,9 @@ $(document).on('click','#checkout-button',function () {
 
     request.done(function (response) {
         if(response.success === 1){
-           pay();
+            if($("#ajax-error").html())
+                $("#ajax-error").html('');
+            pay();
         }
         else{
             var html = "<button id='add-card-btn'><a href='../php/payment.php'>first add a card</a></button>"
@@ -217,7 +229,7 @@ $(document).on('click','#checkout-button',function () {
     });
 
     request.fail(function (response, textStatus, error) {
-        alert(response + textStatus + error);
+        $("#ajax-error").html("There was an error with our servers! Try again later.");
     });
 });
 
@@ -273,6 +285,8 @@ function pay(){
 
     request.done(function (response) {
         if(response.success === 1){
+            if($("#ajax-error").html())
+                $("#ajax-error").html('');
             var badgeNum = response.badge_num;
             updateBadge(badgeNum);
             $("#cart").addClass("hidden");
@@ -280,10 +294,10 @@ function pay(){
         }
 
         else
-            alert(response.error);
+            $("#ajax-error").html(response.error);
     });
 
     request.fail(function (response, textStatus, error) {
-        alert(response + textStatus + error);
+        $("#ajax-error").html("There was an error with our servers! Try again later.");
     });
 }

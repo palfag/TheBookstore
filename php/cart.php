@@ -44,6 +44,7 @@
         <div id="warning"></div>
         <div id="cart">
             <h1 class="cart-name">Cart</h1>
+            <p id="ajax-error" class="failure"></p>
             <table class="table">
                 <thead>
                     <tr>

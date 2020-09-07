@@ -4,8 +4,8 @@ $(document).ready(function () {
     $("#login-form").submit(function (event) {
         event.preventDefault();
 
-        var email = $.trim($("#email-login").val().toLowerCase());
-        var password = $("#password-login").val();
+        var email = escapeInput($.trim($("#email-login").val().toLowerCase()));
+        var password = escapeInput($("#password-login").val());
         var submit = $("#submit-login").val();
 
 
@@ -25,8 +25,7 @@ $(document).ready(function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            // TODO all'interno valutare di mettere "we've got a problem with our server, try later"
-            alert(response + textStatus + error);
+            $("#ajax-response").html("There was an error with our servers! Try again later.");
         });
 
     });
@@ -35,10 +34,10 @@ $(document).ready(function () {
     $("#registration-form").submit(function (event) {
         event.preventDefault();
 
-        var name = $.trim(capitalize($("#name").val()));
-        var surname = $.trim(capitalize($("#surname").val()));
-        var email = $.trim($("#email").val().toLowerCase());
-        var password = $("#password").val();
+        var name = escapeInput($.trim(capitalize($("#name").val())));
+        var surname = escapeInput($.trim(capitalize($("#surname").val())));
+        var email = escapeInput($.trim($("#email").val().toLowerCase()));
+        var password = escapeInput($("#password").val());
         var submit = $("#submit").val();
 
 
@@ -58,7 +57,7 @@ $(document).ready(function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            $("#ajax-response").html("There was an error with our servers! Try again later.");
         });
 
     });
@@ -92,4 +91,13 @@ function showForm() {
  */
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function escapeInput(input) {
+    return String(input)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 }

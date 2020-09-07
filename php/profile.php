@@ -28,7 +28,6 @@ if(!isset($_SESSION['email'])){
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="../css/profile.css">
         <link rel="stylesheet" href="../css/footer.css">
-        <script src="../javascript/profile.js"></script>
         <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
         <title>Profile</title>
     </head>
@@ -128,7 +127,6 @@ if(!isset($_SESSION['email'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <script src="../javascript/profile.js"></script>
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <title>Profile</title>
 </head>

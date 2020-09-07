@@ -179,6 +179,14 @@ textarea{
     font-size: 20px;
 }
 
+#similar{
+    text-align: center;
+}
+
+.failure{
+    color: #d61111;
+}
+
 @media screen and (max-width: 850px) {
 
     body{

@@ -16,7 +16,7 @@
         if(insert_wishlist($email, $book_id)){
             $response = array("success" => 1);
         }
-        else $response = array("success" => 0, "error"=> "No data found");
+        else $response = array("success" => 0, "error"=> "Problem inserting item in wishlist");
 
         echo json_encode($response);
     }
@@ -30,7 +30,7 @@
         if(remove_wishlist($email, $book_id)){
             $response = array("success" => 1,);
         }
-        else $response = array("success" => 0, "error"=> "No data found");
+        else $response = array("success" => 0, "error"=> "Problem deleting item from wishlist");
 
         echo json_encode($response);
     }

@@ -25,7 +25,7 @@ $(document).on('click','.like-button',function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            alert("There was an error with our servers! Try again later.");
         });
     }
 
@@ -55,7 +55,7 @@ $(document).on('click','.like-button',function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert(response + textStatus + error);
+            alert("There was an error with our servers! Try again later.");
         });
     }
 });
