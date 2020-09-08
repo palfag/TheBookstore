@@ -110,7 +110,7 @@ if(!isset($_SESSION['email'])){
                 </div>
             </div>
         </div>
-        <?php require_once "footer.php";
+        <?php require_once "include/footer.php";
 
     } else{
         // in questo caso non è settato  GET['user'] oppure coincide con $_SESSION['email'] (in questo caso la persona sta accedendo al proprio profilo)
