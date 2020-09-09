@@ -10,6 +10,11 @@ if(!isset($_SESSION['email'])){
     die;
 }
 
+if(!isset($_GET['id_book'])){
+    header("Location: ../index.php");
+    die;
+}
+
 $email = $_SESSION['email'];
 
 // prende le informazioni del libro

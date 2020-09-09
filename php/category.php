@@ -6,7 +6,7 @@ require_once "include/header.php";
 require_once "include/db.inc.php";
 
 if(!isset($_GET['category'])){
-    header("Location: index.php");
+    header("Location: ../index.php");
     die;
 }
 
