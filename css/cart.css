@@ -126,6 +126,7 @@ p{
     color: #006699;
     text-decoration: underline;
     cursor: pointer;
+    font-size: 0.8em;
 }
 
 #checkout-button{
