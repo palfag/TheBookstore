@@ -54,7 +54,7 @@ if(isset($_GET['id_book'])){
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="../javascript/navbar.js"></script>
     <link rel="stylesheet" href="../css/navbar.css">
-    <title>TheBookstore</title>
+    <title><?=$title?></title>
 </head>
 <body>
 

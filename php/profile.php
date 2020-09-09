@@ -30,7 +30,7 @@ if(!isset($_SESSION['email'])){
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <script src="../javascript/navbar.js"></script>
         <link rel="stylesheet" href="../css/navbar.css">
-        <title>Profile</title>
+        <title><?=$usr_data['name']?>'s Profile</title>
     </head>
     <body>
     <?php require_once "navbar.php"; ?>

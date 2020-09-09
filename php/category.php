@@ -32,7 +32,7 @@ if(isset($_GET['category'])){
     <script src="../javascript/navbar.js"></script>
     <link rel="stylesheet" href="../css/navbar.css">
     <script src="../javascript/addToCart.js"></script>
-    <title>category</title>
+    <title><?=$category?></title>
 </head>
 <body>
 

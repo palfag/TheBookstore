@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="../javascript/navbar.js"></script>
     <link rel="stylesheet" href="../css/navbar.css">
-    <title>Document</title>
+    <title>Payments</title>
 </head>
 <body>
 

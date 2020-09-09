@@ -25,7 +25,7 @@
     <script src="javascript/loginSignup.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-    <title>Bookstore</title>
+    <title>TheBookstore: login or signup</title>
 </head>
 <body>
 
