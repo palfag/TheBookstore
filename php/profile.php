@@ -1,7 +1,6 @@
 <?php
 require_once "include/header.php";
 require_once "include/db.inc.php";
-require_once "navbar.php";
 require_once "functions/common_settings.php";
 
 if(!isset($_SESSION['email'])){
@@ -24,26 +23,28 @@ if(!isset($_SESSION['email'])){
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="../css/profile.css">
         <link rel="stylesheet" href="../css/footer.css">
         <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <script src="../javascript/navbar.js"></script>
+        <link rel="stylesheet" href="../css/navbar.css">
         <title>Profile</title>
     </head>
     <body>
+    <?php require_once "navbar.php"; ?>
         <div class="row">
             <div class="column left">
                     <div>
                         <?php
                         if($usr_data['image'] == null){
                             ?>
-                            <img id="profile-img" src="../images/users/default_profile.png">
+                            <img id="profile-img" src="../images/users/default_profile.png" alt="default profile photo">
                             <?php
                         }
                         else {?>
-                            <img id="profile-img" src="<?= $usr_data['image'] ?>">
+                            <img id="profile-img" src="<?= $usr_data['image'] ?>" alt="user's profile photo">
                         <?php }?>
                         <h1 id="title"><?= $usr_data['name'] ?> <?= $usr_data['surname'] ?></h1>
                     </div>
@@ -70,7 +71,7 @@ if(!isset($_SESSION['email'])){
 
                             <div class="book">
                                 <div class="cover">
-                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>" alt="cover"></a></div>
                                 <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
 
                                 <p class="author"><?= $book["author"]?></p>
@@ -97,7 +98,7 @@ if(!isset($_SESSION['email'])){
 
                             <div class="book">
                                 <div class="cover">
-                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                                    <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>" alt="cover"></a></div>
                                 <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
 
                                 <p class="author"><?= $book["author"]?></p>
@@ -123,34 +124,39 @@ if(!isset($_SESSION['email'])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="../javascript/navbar.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
     <title>Profile</title>
 </head>
 <body>
+
+<?php require_once "navbar.php"; ?>
+
     <div class="row">
         <div class="column left">
                 <div>
                     <?php
                     if($usr_data['image'] == null){
                         ?>
-                        <img id="profile-img" src="../images/users/default_profile.png">
+                        <img id="profile-img" src="../images/users/default_profile.png" alt="default profile photo">
                         <?php
                     }
                     else {?>
-                        <img id="profile-img" src="<?= $usr_data['image'] ?>">
+                        <img id="profile-img" src="<?= $usr_data['image'] ?>" alt="user's profile photo">
                     <?php }?>
                     <h1 id="title"><?= $usr_data['name'] ?> <?= $usr_data['surname'] ?></h1>
 
                     <div id="payment">
-                        <button class="payment-button"><a href="payment.php">Payments</a></button>
+                        <a class="payment-button" href="payment.php">Payments</a>
                     </div>
                     <div id="settings">
-                            <button class="settings-button"><a href="settings.php">Settings</a></button>
+                        <a class="payment-button" href="settings.php">Settings</a>
                     </div>
 
 
@@ -179,7 +185,7 @@ if(!isset($_SESSION['email'])){
 
                         <div class="book">
                             <div class="cover">
-                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>" alt="cover"></a></div>
                             <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
 
                             <p class="author"><?= $book["author"]?></p>
@@ -207,7 +213,7 @@ if(!isset($_SESSION['email'])){
 
                         <div class="book">
                             <div class="cover">
-                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>"></a></div>
+                                <a href='book.php?id_book=<?= $book["book_id"] ?>'><img src="<?= $book["cover"] ?>" alt="cover"></a></div>
                             <a href='book.php?id_book=<?= $book["book_id"] ?>'><h1 class="title"> <?= $book["title"] ?></h1></a>
 
                             <p class="author"><?= $book["author"]?></p>

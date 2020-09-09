@@ -3,7 +3,7 @@
         <div class="logo-footer">
             <p id="text-logo">
                 <a href="home.php">
-                    <img id="book-logo" src="../images/icons/favicon.png">
+                    <img id="book-logo" src="../images/icons/favicon.png" alt="logo">
                     <span>The</span>Bookstore
                 </a>
             </p>
@@ -12,7 +12,7 @@
 
 
         <div>
-            &copy 2020 The Bookstore. All Rights Reserved
+            &amp;copy 2020 The Bookstore. All Rights Reserved
         </div>
 
         <div>

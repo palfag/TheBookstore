@@ -4,7 +4,6 @@
  */
 require_once "include/header.php";
 require_once "include/db.inc.php";
-require_once "navbar.php";
 
 if(!isset($_SESSION['email'])){
     header("Location: index.php");
@@ -44,14 +43,21 @@ if(isset($_GET['id_book'])){
     <script src="../javascript/addToCart.js"></script>
     <script src="../javascript/comment.js"></script>
     <script src="../javascript/rating.js"></script>
-    <link rel="shortcut icon" type="image/png" href="/images/icons/favicon.png"/>
+    <script src="../javascript/navbar.js"></script>
+    <link rel="shortcut icon" type="image/png" href="../images/icons/favicon.png"/>
     <link rel="stylesheet" href="../css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="../javascript/navbar.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <title>TheBookstore</title>
 </head>
 <body>
 
+<?php require_once "navbar.php"; ?>
+
     <div class="row">
         <div class="column left">
-            <img id="cover" src="<?= $cover ?>">
+            <img id="cover" src="<?= $cover ?>" alt="cover">
         </div>
         <div class="column right">
                 <h1 id="title"><?= $title ?></h1>
@@ -63,20 +69,20 @@ if(isset($_GET['id_book'])){
                         <li class="star" data-index="2">★</li>
                         <li class="star" data-index="3">★</li>
                         <li class="star" data-index="4">★</li>
-                        <div id="add-rate-ajax-response"></div>
                     </ul>
+                    <div id="add-rate-ajax-response"></div>
                 </div>
                 <h2 id="price">Price: <?= $price ?> € </h2>
                     <button class ="add-to-cart" id="<?=$id_book?>">add to cart</button>
             <?php
                 if($in_wishlist){
                     ?>
-                    <button class="like-button liked"><img class="like-img" src="../images/icons/like.png"></button>
+                    <button class="like-button liked"><img class="like-img" src="../images/icons/like.png" alt="red heart"></button>
             <?php
                 }
                 else{
                     ?>
-                    <button class="like-button not-liked"><img class="like-img" src="../images/icons/no_like.png"></button>
+                    <button class="like-button not-liked"><img class="like-img" src="../images/icons/no_like.png" alt="grey heart"></button>
             <?php
                 }
             ?>
@@ -114,11 +120,11 @@ if(isset($_GET['id_book'])){
                                     <?php
                                         if($comment['image'] == null){
                                     ?>
-                                            <img src="../images/users/default_profile.png">
+                                            <img src="../images/users/default_profile.png" alt="default profile photo">
                                     <?php
                                         }else{
                                     ?>
-                                    <img src="<?= $comment['image'] ?>">
+                                    <img src="<?= $comment['image'] ?>" alt="user's profile photo">
                                     <?php
                                         }
                                     ?>
@@ -147,7 +153,7 @@ if(isset($_GET['id_book'])){
 
                                 <div class="book">
                                     <div class="cover">
-                                        <a href='book.php?id_book=<?= $sim["book_id"] ?>'><img src="<?= $sim["cover"] ?>"></a></div>
+                                        <a href='book.php?id_book=<?= $sim["book_id"] ?>'><img src="<?= $sim["cover"] ?>" alt="cover"></a></div>
                                     <a href='book.php?id_book=<?= $sim["book_id"] ?>'><h3 class="title"> <?= $sim["title"] ?></h3></a>
 
                                     <p class="author"><?= $sim["author"]?></p>

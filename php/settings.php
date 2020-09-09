@@ -1,7 +1,6 @@
 <?php
 require_once "include/header.php";
 require_once "include/db.inc.php";
-require_once "navbar.php";
 require_once "functions/common_settings.php";
 
 if(!isset($_SESSION['email'])){
@@ -18,16 +17,20 @@ $usr_data = retrieve_usr_info($email);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/settings.css">
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
     <link rel="stylesheet" href="../css/footer.css">
     <script src="../javascript/settings.js"></script>
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="../javascript/navbar.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
 </head>
 <body>
+
+<?php require_once "navbar.php"; ?>
 
 
     <div class="container">
@@ -47,11 +50,11 @@ $usr_data = retrieve_usr_info($email);
                 <?php
                 if($usr_data['image'] == null){
                     ?>
-                    <img id="profile-img" src="../images/users/default_profile.png">
+                    <img id="profile-img" src="../images/users/default_profile.png" alt="default profile photo">
                     <?php
                 }
                 else {?>
-                    <img id="profile-img" src="<?= $usr_data['image'] ?>">
+                    <img id="profile-img" src="<?= $usr_data['image'] ?>" alt="user's profile photo">
                 <?php }?>
                 <h2><?=$usr_data['name'] ?> <?= $usr_data['surname']?></h2>
             </div>

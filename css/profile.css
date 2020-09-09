@@ -46,10 +46,8 @@ h2{
     border: none;
     text-decoration: underline;
     cursor: pointer;
-}
-
-.settings-button a, .payment-button a{
     color: #006699;
+    font-size: 4px;
 }
 
 .cover img{

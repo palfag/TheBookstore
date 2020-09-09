@@ -16,21 +16,10 @@
     $name = retrieve_name($_SESSION['email']);
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../javascript/navbar.js"></script>
-    <link rel="stylesheet" href="../css/navbar.css">
-</head>
-<body>
     <nav>
 
         <div class="logo">
-            <h4><a href="home.php"><img id="logo-img" src="../images/icons/favicon.png"><span>The</span>Bookstore</a></h4>
+            <h4><a href="home.php"><img id="logo-img" src="../images/icons/favicon.png" alt="logo"><span>The</span>Bookstore</a></h4>
         </div>
         <ul class="nav-options">
             <li>
@@ -74,5 +63,3 @@
         }
     }
     ?>
-</body>
-</html>

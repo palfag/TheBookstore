@@ -1,7 +1,6 @@
 <?php
     require_once "include/header.php";
     require_once "include/db.inc.php";
-    require_once "navbar.php";
 ?>
 
 <!doctype html>
@@ -17,8 +16,13 @@
     <script src="../javascript/addToCart.js"></script>
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="../javascript/navbar.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
 </head>
 <body>
+
+<?php require_once "navbar.php"; ?>
 
     <div id="search-box">
         <h1>Search a book</h1>

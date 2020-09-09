@@ -1,7 +1,6 @@
 <?php
     require_once "include/header.php";
     require_once "include/db.inc.php";
-    require_once "navbar.php";
 
     if(!isset($_SESSION['email'])){
         header("Location: index.php");
@@ -15,15 +14,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="../javascript/payments.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../javascript/payments.js"></script>
     <link rel="stylesheet" href="../css/payment.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="../javascript/navbar.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
     <title>Document</title>
 </head>
 <body>
+
+<?php require_once "navbar.php"; ?>
+
     <h1 id="payment-title">Payments</h1>
 
     <?php
@@ -31,7 +36,7 @@
     ?>
         <div class="row">
             <div class="column left">
-                <img id="card-img" src="../images/cards/default.png">
+                <img id="card-img" src="../images/cards/default.png" alt="card">
 
             </div>
             <div class="column right">
@@ -79,7 +84,7 @@
         ?>
         <div class="row">
             <div class="column left">
-                <img id="card-img" src="../images/cards/<?= $card['card_type']?>.png">
+                <img id="card-img" src="../images/cards/<?= $card['card_type']?>.png" alt="card">
 
             </div>
             <div class="column right">
