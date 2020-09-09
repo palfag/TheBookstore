@@ -26,6 +26,7 @@ if(!isset($_SESSION['email'])){
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="../css/profile.css">
         <link rel="stylesheet" href="../css/footer.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <script src="../javascript/navbar.js"></script>
