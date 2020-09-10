@@ -13,17 +13,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <?php require_once "include/top.html"; ?>
+    <link rel="stylesheet" href="../css/cart.css">
     <script src="../javascript/cart.js"></script>
     <script src="../javascript/navbar.js"></script>
-    <link rel="stylesheet" href="../css/cart.css">
-    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
-    <link rel="stylesheet" href="../css/footer.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <script src="../javascript/navbar.js"></script>
-    <link rel="stylesheet" href="../css/navbar.css">
     <title>Cart</title>
 </head>
 <body>
@@ -124,6 +117,6 @@
         </div>
     </div>
         <?php } ?>
-         <?php require_once "include/footer.php"; ?>
+         <?php require_once "include/footer.html"; ?>
 </body>
 </html>

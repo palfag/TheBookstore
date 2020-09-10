@@ -22,15 +22,8 @@ if(!isset($_SESSION['email'])){
     <!doctype html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <?php require_once "include/top.html"; ?>
         <link rel="stylesheet" href="../css/profile.css">
-        <link rel="stylesheet" href="../css/footer.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-        <script src="../javascript/navbar.js"></script>
-        <link rel="stylesheet" href="../css/navbar.css">
         <title><?=$usr_data['name']?>'s Profile</title>
     </head>
     <body>
@@ -112,7 +105,7 @@ if(!isset($_SESSION['email'])){
                 </div>
             </div>
         </div>
-        <?php require_once "include/footer.php";
+        <?php require_once "include/footer.html";
 
     } else{
         // in questo caso non è settato  GET['user'] oppure coincide con $_SESSION['email'] (in questo caso la persona sta accedendo al proprio profilo)
@@ -124,15 +117,8 @@ if(!isset($_SESSION['email'])){
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <?php require_once "include/top.html"; ?>
     <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <script src="../javascript/navbar.js"></script>
-    <link rel="stylesheet" href="../css/navbar.css">
     <title>Profile</title>
 </head>
 <body>
@@ -227,7 +213,7 @@ if(!isset($_SESSION['email'])){
             </div>
         </div>
     </div>
-    <?php require_once "include/footer.php";
+    <?php require_once "include/footer.html";
 
     }?>
 

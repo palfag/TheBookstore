@@ -16,17 +16,10 @@ $usr_data = retrieve_usr_info($email);
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <?php require_once "include/top.html"; ?>
     <link rel="stylesheet" href="../css/settings.css">
-    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
-    <link rel="stylesheet" href="../css/footer.css">
     <script src="../javascript/settings.js"></script>
     <title>Settings</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <script src="../javascript/navbar.js"></script>
-    <link rel="stylesheet" href="../css/navbar.css">
 </head>
 <body>
 
@@ -115,7 +108,7 @@ $usr_data = retrieve_usr_info($email);
         </div>
     </div>
 
-    <?php require_once "include/footer.php"; ?>
+    <?php require_once "include/footer.html"; ?>
 
 </body>
 </html>

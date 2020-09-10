@@ -40,20 +40,12 @@ if(isset($_GET['id_book'])){
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <?php require_once "include/top.html"; ?>
     <link rel="stylesheet" href="../css/book.css">
     <script src="../javascript/wishlist.js"></script>
     <script src="../javascript/addToCart.js"></script>
     <script src="../javascript/comment.js"></script>
     <script src="../javascript/rating.js"></script>
-    <script src="../javascript/navbar.js"></script>
-    <link rel="shortcut icon" type="image/png" href="../images/icons/favicon.png"/>
-    <link rel="stylesheet" href="../css/footer.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <script src="../javascript/navbar.js"></script>
-    <link rel="stylesheet" href="../css/navbar.css">
     <title><?=$title?></title>
 </head>
 <body>
@@ -171,7 +163,7 @@ if(isset($_GET['id_book'])){
                 </div>
         </div>
     </div>
-    <?php require_once "include/footer.php"; ?>
+    <?php require_once "include/footer.html"; ?>
 
 
     <?php
