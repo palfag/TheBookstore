@@ -1,7 +1,11 @@
 <?php
+    /**
+     *  @author Paolo Fagioli
+     *
+     *  Funzione per la connessione al database
+     */
 
-
-    function database_connection(){
+function database_connection(){
         $server = "127.0.0.1";
         $username = "root";
         $password = "root";
@@ -20,9 +24,4 @@
            // TODO che torniamo in caso di eccezione ??
             return $e->getMessage();
         }
-
-
-
     }
-
-?>

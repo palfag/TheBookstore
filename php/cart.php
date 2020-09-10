@@ -1,4 +1,12 @@
 <?php
+    /**
+     *  @author Paolo Fagioli
+     *
+     *  Pagina del carrello:
+     *          vengono mostrati tutti gli articoli presenti nel carrello,
+     *          le relative quantità e il totale.
+     */
+
     require_once "include/header.php";
     require_once "include/db.inc.php";
     require_once "functions/common_cart.php";

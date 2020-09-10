@@ -1,4 +1,17 @@
 <?php
+    /**
+     *  @author Paolo Fagioli
+     *
+     *  Pagina di pagamento
+     *  se è gia stata inserita una carta:
+     *      mostra le informazioni della carta con possibilità di aggiornare
+     *      o rimuovere il metodo di pagamento
+     *  Altrimenti:
+     *      mostra un form da completare per l'aggiunta del metodo di pagamento
+     *
+     *  @NB: Se non viene specificato un metodo di pagamento, non si potrà procedere all'acquisto
+     *       e si verrà reindirizzati in questa questa pagina (previo click del link) per l'inserimento della carta
+     */
     require_once "include/header.php";
     require_once "include/db.inc.php";
 

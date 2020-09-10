@@ -1,7 +1,22 @@
 <?php
-require_once "include/header.php";
-require_once "include/db.inc.php";
-require_once "functions/common_settings.php";
+    /**
+     *  @author Paolo Fagioli
+     *
+     *  Pagina personale dell'utente
+     *  Vi sono due possibilità,
+     *  se l'utente visualizza il proprio profilo appariranno:
+     *          - Wishlist (elenco di tutti i libri che ne fanno parte)
+     *          - Purchased (elenco di tutti i libri comprati)
+     *          - link per la pagina del metodo di pagamento
+     *          - link per le impostazioni dell'utente
+     *
+     * Altrimenti (utente che visualizza la pagina di un altro utente):
+     *          - Wishlist dell'utente cercato
+     *          - Libri in comune (che entrambi gli utenti hanno aggiunto in wishlist)
+     */
+    require_once "include/header.php";
+    require_once "include/db.inc.php";
+    require_once "functions/common_settings.php";
 
     $email = $_SESSION['email'];
 

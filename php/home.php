@@ -1,4 +1,15 @@
 <?php
+    /**
+     *  @author Paolo Fagioli
+     *
+     *  Pagina principale
+     *  permette di:
+     *          - ricercare i libri attraverso la searchbar
+     *          - scegliere l'ordine in cui vengono visualizzati
+     *            per: {titolo, autore, dal prezzo più basso, dal prezzo più alto}
+     *          - filtrare la categoria di ricerca (per avere nei risultati solo libri
+     *            appartenenti a quella categoria)
+     */
     require_once "include/header.php";
     require_once "include/db.inc.php";
     require_once "functions/common_categories.php"

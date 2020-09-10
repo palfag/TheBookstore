@@ -1,36 +1,45 @@
 <?php
-/*
- *   Book page
- */
-require_once "include/header.php";
-require_once "include/db.inc.php";
+    /**
+     *  @author Paolo Fagioli
+     *
+     *  Pagina personale di un libro,
+     *  Per ogni libro viene visualizzata:
+     *      - la valutazione da 1 a 5 (attraverso le stelline)
+     *      - informazioni del libro
+     *      - textarea per poter commentare + eventuali commenti già presenti
+     *      - libri simili
+     *
+     * vi è la possibilità di aggiungere un libro al carrello o alla wishlist
+     */
+    require_once "include/header.php";
+    require_once "include/db.inc.php";
 
 
-if(!isset($_GET['id_book'])){
-    header("Location: ../index.php");
-    die;
-}
+    if(!isset($_GET['id_book'])){
+        header("Location: ../index.php");
+        die;
+    }
 
-$email = $_SESSION['email'];
+    $email = $_SESSION['email'];
 
-// prende le informazioni del libro
-if(isset($_GET['id_book'])){
-    $id_book = filter_input(INPUT_GET, "id_book",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    // prende le informazioni del libro
+    if(isset($_GET['id_book'])){
+        $id_book = filter_input(INPUT_GET, "id_book",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $book = retrieve_book_by_id($id_book);
-    $in_wishlist = is_in_wishlist($id_book, $email);
-    $comments = retrieve_comments($id_book);
+        $book = retrieve_book_by_id($id_book);
+        $in_wishlist = is_in_wishlist($id_book, $email);
+        $comments = retrieve_comments($id_book);
 
-    $cover = $book['cover'];
-    $title = $book['title'];
-    $genre = $book['genre'];
-    $author = $book['author'];
-    $year = $book['published_year'];
-    $price = $book['price'];
-    $trama = $book['trama'];
-    $similars = retrieve_similar_books($id_book, $genre);
-}
+        $cover = $book['cover'];
+        $title = $book['title'];
+        $genre = $book['genre'];
+        $author = $book['author'];
+        $year = $book['published_year'];
+        $price = $book['price'];
+        $trama = $book['trama'];
+        $similars = retrieve_similar_books($id_book, $genre);
+    }
 ?>
 
 <!doctype html>
@@ -160,122 +169,121 @@ if(isset($_GET['id_book'])){
         </div>
     </div>
     <?php require_once "include/footer.html"; ?>
+</body>
+</html>
 
 
-    <?php
 
-        function retrieve_book_by_id($id_book){
-            $db = database_connection();
-            $rows = $db->query("SELECT * FROM books WHERE  book_id = '$id_book'");
-            try{
-                if($rows){
-                    foreach ($rows as $row){
-                        return $row;
-                    }
-                }
-                else throw new Exception("query error");
-            } catch(Exception $e){
-                $e->getMessage();
-                ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-            } finally {
-                $db->close();
+<?php
+function retrieve_book_by_id($id_book){
+    $db = database_connection();
+    $rows = $db->query("SELECT * FROM books WHERE  book_id = '$id_book'");
+    try{
+        if($rows){
+            foreach ($rows as $row){
+                return $row;
             }
         }
-
-    function is_in_wishlist($id_book, $email){
-        $db = database_connection();
-        $rows = $db->query("SELECT * FROM Wishlist WHERE  user = '$email' AND item = '$id_book'");
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    return true;
-                }
-                return false;
-            }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            return false;
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-        }
+        else throw new Exception("query error");
+    } catch(Exception $e){
+        $e->getMessage();
+        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+    } finally {
+        $db->close();
     }
+}
+
+function is_in_wishlist($id_book, $email){
+    $db = database_connection();
+    $rows = $db->query("SELECT * FROM Wishlist WHERE  user = '$email' AND item = '$id_book'");
+    try{
+        if($rows){
+            foreach ($rows as $row){
+                return true;
+            }
+            return false;
+        }
+        else throw new Exception("query error");
+    } catch(Exception $e){
+        $e->getMessage();
+        return false;
+        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+    } finally {
+        $db->close();
+    }
+}
 
 
-    // funzione per prendere tutti i commenti riguardo quel libro
-    function retrieve_comments($id_book){
-        $db = database_connection();
-        $rows = $db->query("SELECT id,user, comment, name, surname, image, date 
+// funzione per prendere tutti i commenti riguardo quel libro
+function retrieve_comments($id_book){
+    $db = database_connection();
+    $rows = $db->query("SELECT id,user, comment, name, surname, image, date 
                                   FROM Comments JOIN Users on email = user 
                                   WHERE item = '$id_book'
                                   ORDER BY date DESC");
-        $data = array();
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    $data[] = $row;
-                }
+    $data = array();
+    try{
+        if($rows){
+            foreach ($rows as $row){
+                $data[] = $row;
             }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-            return $data;
         }
+        else throw new Exception("query error");
+    } catch(Exception $e){
+        $e->getMessage();
+        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+    } finally {
+        $db->close();
+        return $data;
     }
+}
 
-    function is_owner($id_book, $email){
-        $db = database_connection();
+function is_owner($id_book, $email){
+    $db = database_connection();
 
-        $sql = "SELECT * FROM Purchases where user='$email' AND item='$id_book'";
-        try {
-            $rows = $db->query($sql);
-            if ($rows) {
-                if($rows->num_rows == 0)
-                    return false;
-                return true;
-            }
-            else throw new Exception("query error");
-        } catch (Exception $e) {
-            $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-            return false;
-        } finally {
-            $db->close();
+    $sql = "SELECT * FROM Purchases where user='$email' AND item='$id_book'";
+    try {
+        $rows = $db->query($sql);
+        if ($rows) {
+            if($rows->num_rows == 0)
+                return false;
+            return true;
         }
+        else throw new Exception("query error");
+    } catch (Exception $e) {
+        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        return false;
+    } finally {
+        $db->close();
     }
+}
 
-    function convert_date($timestamp){
-            $date = date('d-m-y  H:i', strtotime($timestamp)); // H: 24h format - h: 12h format !
-            return $date;
+function convert_date($timestamp){
+    $date = date('d-m-y  H:i', strtotime($timestamp)); // H: 24h format - h: 12h format !
+    return $date;
 
-    }
+}
 
-    function retrieve_similar_books($id, $genre){
-        $db = database_connection();
-        $rows = $db->query("SELECT DISTINCT author, cover, title, book_id
+function retrieve_similar_books($id, $genre){
+    $db = database_connection();
+    $rows = $db->query("SELECT DISTINCT author, cover, title, book_id
                                     FROM Books
                                     WHERE book_id <> '$id' AND genre = '$genre' ORDER BY RAND() LIMIT 3");
-        $data = array();
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    $data[] = $row;
-                }
+    $data = array();
+    try{
+        if($rows){
+            foreach ($rows as $row){
+                $data[] = $row;
             }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            $data = null;
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-            return $data;
         }
+        else throw new Exception("query error");
+    } catch(Exception $e){
+        $e->getMessage();
+        $data = null;
+        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+    } finally {
+        $db->close();
+        return $data;
     }
-
-    ?>
-</body>
-</html>
+}
+?>
