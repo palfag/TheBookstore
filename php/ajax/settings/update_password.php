@@ -3,13 +3,7 @@
     require_once "../resources.php";
     require_once "../../functions/common_authentication.php";
 
-    if (!isset($_SESSION['email'])) {
-        header("Location: home.php");
-        die;
-    }
-
     $email = $_SESSION['email'];
-
 
     if(isset($_POST['old_password']) && isset($_POST['new_password'])){
 
@@ -36,27 +30,27 @@
     }
 }
 
-    /**
-     * Updates the user's password, adds new hashed password into the database
-     * @return bool Returns TRUE if the password is updated correctly, or FALSE otherwise.
-     */
-    function update_password($email, $new_hash){
-        $db = database_connection();
-        $sql = "UPDATE Users
-                SET pwd = '$new_hash'
-                WHERE email='$email'";
-        try{
-            if(!$db->query($sql)){
-                throw new Exception("query error");
-            }
-            return true;
-        } catch (Exception $e){
-            $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-            return false;
-        } finally {
-            $db->close();
+/**
+ * Updates the user's password, adds new hashed password into the database
+ * @return bool Returns TRUE if the password is updated correctly, or FALSE otherwise.
+ */
+function update_password($email, $new_hash){
+    $db = database_connection();
+    $sql = "UPDATE Users
+            SET pwd = '$new_hash'
+            WHERE email='$email'";
+    try{
+        if(!$db->query($sql)){
+            throw new Exception("query error");
         }
+        return true;
+    } catch (Exception $e){
+        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        return false;
+    } finally {
+        $db->close();
     }
+}
 
 
 

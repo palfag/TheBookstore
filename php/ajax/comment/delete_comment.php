@@ -1,26 +1,19 @@
 <?php
-require_once "../resources.php";
+    require_once "../resources.php";
 
+    $email = $_SESSION['email'];
 
-if(!isset($_SESSION['email']) || !isset($_POST['delete_comment'])){
-    header("Location: index.php");
-    die;
-}
+    if(isset($_POST['delete_comment'])){
+        $comment_id = filter_input(INPUT_POST, "delete_comment",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-$email = $_SESSION['email'];
+        if(delete_comment($comment_id)){
+            $response = array("success" => 1);
+        }
+        else $response = array("success" => 0, "error"=> "Error deleting comment");
 
-
-if(isset($_POST['delete_comment'])){
-    $comment_id = filter_input(INPUT_POST, "delete_comment",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-    if(delete_comment($comment_id)){
-        $response = array("success" => 1);
+        echo json_encode($response);
     }
-    else $response = array("success" => 0, "error"=> "Error deleting comment");
-
-    echo json_encode($response);
-}
 
 function delete_comment($comment_id){
     $db = database_connection();

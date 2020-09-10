@@ -1,29 +1,23 @@
 <?php
-require_once "../resources.php";
-require_once "../../functions/common_cart.php";
+    require_once "../resources.php";
+    require_once "../../functions/common_cart.php";
 
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
-    die;
-}
+    $email = $_SESSION['email'];
 
-$email = $_SESSION['email'];
+    if(isset($_POST['add_purchase'])){
+        $hashmap = $_POST['add_purchase'];
 
-
-if(isset($_POST['add_purchase'])){
-    $hashmap = $_POST['add_purchase'];
-
-       if(add_purchase($email, $hashmap)){
-           if(remove_all_from_cart($email)){
-               $data = 0;
-               $_SESSION['badge'] = $data;
-               $response = array("success" => 1, "badge_num"=> $data);
+           if(add_purchase($email, $hashmap)){
+               if(remove_all_from_cart($email)){
+                   $data = 0;
+                   $_SESSION['badge'] = $data;
+                   $response = array("success" => 1, "badge_num"=> $data);
+               }
            }
-       }
-       else $response = array("success" => 0, "error"=> "problem during the purchase");
+           else $response = array("success" => 0, "error"=> "problem during the purchase");
 
-        echo json_encode($response);
-}
+            echo json_encode($response);
+    }
 
 function add_purchase($user, $items){
     $db = database_connection();

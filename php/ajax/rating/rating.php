@@ -1,28 +1,23 @@
 <?php
 
-require_once "../resources.php";
+    require_once "../resources.php";
 
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
-    die;
-}
+    $email = $_SESSION['email'];
 
-$email = $_SESSION['email'];
+    if(isset($_POST['reset_stars']) && isset($_POST['item'])){
+        $item = filter_input(INPUT_POST, "item",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // vogliamo prendere il numero di stelle salvate nel db (se l'utente ha già votato è presente nel database / altrimenti verrà restituito zero e non ci saranno stelle)
 
-if(isset($_POST['reset_stars']) && isset($_POST['item'])){
-    $item = filter_input(INPUT_POST, "item",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    // vogliamo prendere il numero di stelle salvate nel db (se l'utente ha già votato è presente nel database / altrimenti verrà restituito zero e non ci saranno stelle)
+        $rate = retrieve_rate($item);
 
-    $rate = retrieve_rate($item);
+        if($rate || $rate == 0){
+            $response = array("success" => 1, "rate"=> $rate);
+        }
+        else $response = array("success" => 0, "error"=> "Problem retrieving rating");
 
-    if($rate || $rate == 0){
-        $response = array("success" => 1, "rate"=> $rate);
+        echo json_encode($response);
     }
-    else $response = array("success" => 0, "error"=> "Problem retrieving rating");
-
-    echo json_encode($response);
-}
 
 
 

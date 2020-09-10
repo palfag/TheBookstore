@@ -2,8 +2,9 @@
 /*
  *   LOGIN PAGE - REGISTRATION PAGE
  */
-    require_once "php/include/header.php";
     require_once "php/include/db.inc.php";
+
+    session_start();
 
     // if user already logged will redirect to home.php
     if(isset($_SESSION['email'])){
@@ -31,7 +32,19 @@
 
     <div id="container-div">
 
-        <h2><img src="images/icons/favicon.png" alt="logo"><span>The</span>Bookstore</h2>
+        <h1><img src="images/icons/favicon.png" alt="logo"><span>The</span>Bookstore</h1>
+
+
+        <!-- possibile messaggio di errore se si è reindirizzati -->
+        <?php
+            if(isset($_SESSION['flash'])){
+        ?>
+            <h2 class="failure"><?= $_SESSION['flash'] ?></h2>
+        <?php
+                unset($_SESSION["flash"]);
+            }
+        ?>
+
         <!--
             Registration form
         -->

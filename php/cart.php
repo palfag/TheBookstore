@@ -3,10 +3,6 @@
     require_once "include/db.inc.php";
     require_once "functions/common_cart.php";
 
-    if(!isset($_SESSION['email'])){
-        header("Location: index.php");
-        die;
-    }
     $items = update_cart($_SESSION['email']);
 ?>
 

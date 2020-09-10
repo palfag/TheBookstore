@@ -25,42 +25,42 @@
     }
 
 
-    function add_comment($user, $item, $comment){
-        $db = database_connection();
-        $sql = "INSERT INTO Comments(user, item, comment, date) VALUES ('$user', '$item', '$comment', NOW())";
-        try{
+function add_comment($user, $item, $comment){
+    $db = database_connection();
+    $sql = "INSERT INTO Comments(user, item, comment, date) VALUES ('$user', '$item', '$comment', NOW())";
+    try{
 
-            if(!$db->query($sql)){
-                throw new Exception("query error");
-            }
-            return true;
-        } catch (Exception $e){
-            $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-            return false;
-        } finally {
-            $db->close();
+        if(!$db->query($sql)){
+            throw new Exception("query error");
         }
+        return true;
+    } catch (Exception $e){
+        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        return false;
+    } finally {
+        $db->close();
     }
+}
 
-    function retrieve_comment_just_published($user, $item, $comment){
-        $db = database_connection();
-        $rows = $db->query("SELECT id, user, comment, name, surname, image
-                                  FROM Comments JOIN Users on email = user 
-                                  WHERE item = '$item' AND user='$user' AND comment='$comment'
-                                  ORDER BY date DESC LIMIT 1");
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    return $row;
-                }
+function retrieve_comment_just_published($user, $item, $comment){
+    $db = database_connection();
+    $rows = $db->query("SELECT id, user, comment, name, surname, image
+                              FROM Comments JOIN Users on email = user 
+                              WHERE item = '$item' AND user='$user' AND comment='$comment'
+                              ORDER BY date DESC LIMIT 1");
+    try{
+        if($rows){
+            foreach ($rows as $row){
+                return $row;
             }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            return null;
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
-
         }
+        else throw new Exception("query error");
+    } catch(Exception $e){
+        $e->getMessage();
+        return null;
+        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+    } finally {
+        $db->close();
+
     }
+}

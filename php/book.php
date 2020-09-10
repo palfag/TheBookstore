@@ -5,10 +5,6 @@
 require_once "include/header.php";
 require_once "include/db.inc.php";
 
-if(!isset($_SESSION['email'])){
-    header("Location: index.php");
-    die;
-}
 
 if(!isset($_GET['id_book'])){
     header("Location: ../index.php");

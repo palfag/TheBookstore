@@ -3,11 +3,6 @@ require_once "include/header.php";
 require_once "include/db.inc.php";
 require_once "functions/common_settings.php";
 
-if(!isset($_SESSION['email'])){
-    header("Location: index.php");
-    die;
-}
-
     $email = $_SESSION['email'];
 
     if(isset($_GET['user']) && strcmp($_GET['user'], $email) != 0){

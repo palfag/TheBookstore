@@ -1,28 +1,27 @@
 <?php
+    require_once "../resources.php";
 
-require_once "../resources.php";
+    if (isset($_POST['search'])) {
+        $query = filter_input(INPUT_POST, "query",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-if (isset($_POST['search'])) {
-    $query = filter_input(INPUT_POST, "query",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $sort_criteria = filter_input(INPUT_POST, "sort",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $sort_criteria = filter_input(INPUT_POST, "sort",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $genre = filter_input(INPUT_POST, "genre",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $genre = filter_input(INPUT_POST, "genre",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $data = search_book($query, $sort_criteria, $genre);
+        if(count($data) > 0){
 
-    $data = search_book($query, $sort_criteria, $genre);
-    if(count($data) > 0){
+            // AJAX RESPONSE
+            $response = array("success" => 1, "data"=> $data);
 
-        // AJAX RESPONSE
-        $response = array("success" => 1, "data"=> $data);
+        }
+        else $response = array("success" => 0, "error"=> "No data found");
 
+        echo json_encode($response);
     }
-    else $response = array("success" => 0, "error"=> "No data found");
-
-    echo json_encode($response);
-}
 
 
 /**

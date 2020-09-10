@@ -1,31 +1,26 @@
 <?php
-require_once "../resources.php";
+    require_once "../resources.php";
 
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
-    die;
-}
-
-$email = $_SESSION['email'];
+    $email = $_SESSION['email'];
 
 
-if(isset($_POST['rate']) && isset($_POST['item'])){
-    $item = filter_input(INPUT_POST, "item",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    if(isset($_POST['rate']) && isset($_POST['item'])){
+        $item = filter_input(INPUT_POST, "item",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $rate = filter_input(INPUT_POST, "rate",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    // vogliamo prendere il numero di stelle salvate nel db (se l'utente ha già votato è presente nel database / altrimenti verrà restituito zero e non ci saranno stelle)
+        $rate = filter_input(INPUT_POST, "rate",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // vogliamo prendere il numero di stelle salvate nel db (se l'utente ha già votato è presente nel database / altrimenti verrà restituito zero e non ci saranno stelle)
 
-    $done = add_rate($email,$item, $rate);
+        $done = add_rate($email,$item, $rate);
 
-    if($done){
-        $response = array("success" => 1, "rate"=> $rate);
+        if($done){
+            $response = array("success" => 1, "rate"=> $rate);
+        }
+        else $response = array("success" => 0, "error"=> "Problem adding rate");
+
+        echo json_encode($response);
     }
-    else $response = array("success" => 0, "error"=> "Problem adding rate");
-
-    echo json_encode($response);
-}
 
 
 function add_rate($email, $item, $rate){

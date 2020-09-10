@@ -1,7 +1,7 @@
 <?php
+    require_once "../../functions/common_authentication.php";
 
-require_once "../resources.php";
-require_once "../../functions/common_authentication.php";
+    session_start();
 
     if(isset($_POST['submit'])){
         $email = filter_input(INPUT_POST,"email",
@@ -43,25 +43,24 @@ require_once "../../functions/common_authentication.php";
     }
 
 
-    /**
-     * Registers the new user, adds user's information into the database
-     * @return bool Returns TRUE if the given information is added correctly, or FALSE otherwise.
-     */
-    function register_user($email, $name, $surname, $hash){
+/**
+ * Registers the new user, adds user's information into the database
+ * @return bool Returns TRUE if the given information is added correctly, or FALSE otherwise.
+ */
+function register_user($email, $name, $surname, $hash){
 
-        $db = database_connection();
-        $sql = "INSERT INTO users(email, name, surname, pwd, image) VALUES ('$email', '$name', '$surname', '$hash', null)";
-        try{
+    $db = database_connection();
+    $sql = "INSERT INTO users(email, name, surname, pwd, image) VALUES ('$email', '$name', '$surname', '$hash', null)";
+    try{
 
-            if(!$db->query($sql)){
-                throw new Exception("query error");
-            }
-            return true;
-        } catch (Exception $e){
-            $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-            return false;
-        } finally {
-            $db->close();
+        if(!$db->query($sql)){
+            throw new Exception("query error");
         }
+        return true;
+    } catch (Exception $e){
+        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        return false;
+    } finally {
+        $db->close();
     }
-?>
+}

@@ -4,11 +4,18 @@
     color: black;
 }
 
-h2{
+h1{
     font-size: 45px;
     font-weight: 500;
     letter-spacing: 2px;
 }
+
+h2{
+    color: #d61111;
+    font-weight: 500;
+    font-size: 1em;
+}
+
 span{
     color: #BFBBBB;
 }
@@ -60,8 +67,6 @@ input{
 }
 
 
-
-
 input:valid {
     border-color: #17be17;
 }
@@ -77,4 +82,12 @@ input:invalid {
 
 #ajax-response{
     color: #d61111;;
+}
+
+.success{
+    color: #17be17;
+}
+
+.failure{
+    color: #d61111;
 }

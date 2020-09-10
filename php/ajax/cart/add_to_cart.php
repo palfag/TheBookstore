@@ -2,10 +2,6 @@
     require_once "../resources.php";
     require_once "../../functions/common_cart.php";
 
-    if(!isset($_SESSION['email']) || !isset($_POST['add_to_cart'])){
-        header("Location: index.php");
-        die;
-    }
 
     $email = $_SESSION['email'];
 

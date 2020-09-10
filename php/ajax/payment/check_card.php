@@ -1,26 +1,21 @@
 <?php
-require_once "../resources.php";
+    require_once "../resources.php";
 
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
-    die;
-}
+    $email = $_SESSION['email'];
 
-$email = $_SESSION['email'];
+    if (isset($_POST['check_card'])) {
 
-if (isset($_POST['check_card'])) {
-
-    try{
-        if(has_card($email)){
-            $response = array("success" => 1);
+        try{
+            if(has_card($email)){
+                $response = array("success" => 1);
+            }
+            else throw new Exception("add a card in the payment area.");
+        } catch(Exception $e){
+            $response = array("success" => 0, "error"=> $e->getMessage());
+        } finally {
+            echo json_encode($response);
         }
-        else throw new Exception("add a card in the payment area.");
-    } catch(Exception $e){
-        $response = array("success" => 0, "error"=> $e->getMessage());
-    } finally {
-        echo json_encode($response);
     }
-}
 
 function has_card($user){
     $db = database_connection();

@@ -1,7 +1,8 @@
 <?php
-
-    require_once "../resources.php";
+    require_once "../../include/db.inc.php";
     require_once "../../functions/common_authentication.php";
+
+    session_start();
 
     if (isset($_POST['submit'])) {
         $email = filter_input(INPUT_POST, "email",

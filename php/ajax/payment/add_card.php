@@ -1,43 +1,38 @@
 <?php
     require_once "../resources.php";
 
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
-    die;
-}
+    $email = $_SESSION['email'];
 
-$email = $_SESSION['email'];
+    if (isset($_POST['add_card'])) {
+        $card_holder = filter_input(INPUT_POST, "card_holder",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-if (isset($_POST['add_card'])) {
-    $card_holder = filter_input(INPUT_POST, "card_holder",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $card_number = filter_input(INPUT_POST, "card_number",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $card_number = filter_input(INPUT_POST, "card_number",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $expiry_date = filter_input(INPUT_POST, "expiry_date",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $expiry_date = filter_input(INPUT_POST, "expiry_date",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $cvc = filter_input(INPUT_POST, "cvc",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $cvc = filter_input(INPUT_POST, "cvc",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $type = filter_input(INPUT_POST, "type",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $type = filter_input(INPUT_POST, "type",
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $card_encoded = base64_encode($card_number);
+        $cvc_encoded = base64_encode($cvc);
 
-    $card_encoded = base64_encode($card_number);
-    $cvc_encoded = base64_encode($cvc);
-
-    try{
-        if(add_card($email, $card_holder, $card_encoded, $expiry_date, $cvc_encoded, $type)){
-                $response = array("success" => 1, "message"=>"payment method update correctly");
+        try{
+            if(add_card($email, $card_holder, $card_encoded, $expiry_date, $cvc_encoded, $type)){
+                    $response = array("success" => 1, "message"=>"payment method update correctly");
+            }
+            else throw new Exception("error updating card payments");
+        } catch(Exception $e){
+            $response = array("success" => 0, "error"=> $e->getMessage());
+        } finally {
+            echo json_encode($response);
         }
-        else throw new Exception("error updating card payments");
-    } catch(Exception $e){
-        $response = array("success" => 0, "error"=> $e->getMessage());
-    } finally {
-        echo json_encode($response);
     }
-}
 
 function add_card($user, $card_holder, $card_number, $expiry_date, $cvc, $type){
     $db = database_connection();

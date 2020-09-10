@@ -1,12 +1,5 @@
 <?php
-
-
     require_once "../resources.php";
-
-    if (!isset($_SESSION['email'])) {
-        header("Location: home.php");
-        die;
-    }
 
     $email = $_SESSION['email'];
 

@@ -3,10 +3,6 @@
     require_once "include/db.inc.php";
     require_once "functions/common_cart.php";
 
-    if(!isset($_SESSION['email'])){
-        header("Location: index.php");
-        die;
-    }
 
     if(!isset($_SESSION['badge'])){
         $_SESSION['badge'] = retrieve_number_cart_items($_SESSION['email']);
