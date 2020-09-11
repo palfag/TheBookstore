@@ -1,3 +1,9 @@
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file sono definiti i listener per l'aggiunta e la rimozione di un articolo dalla Wishlist
+ */
+
 $(document).on('click','.like-button',function () {
 
     var id_book = $(".add-to-cart").attr('id');

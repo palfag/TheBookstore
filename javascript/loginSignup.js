@@ -1,3 +1,9 @@
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file sono definiti i listener per la registrazione e il login
+ */
+
 $(document).ready(function () {
 
     // Listener for login form
@@ -93,6 +99,11 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Funzione di escaping per sanificare l'input
+ * @param input stringa potenzialmente dannosa
+ * @returns {string} ritorna la stringa sanificata
+ */
 function escapeInput(input) {
     return String(input)
         .replace(/&/g, '&amp;')

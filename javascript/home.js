@@ -1,3 +1,10 @@
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file è definito il listener della searchbar
+ * l'evento si genera quando l'utente cerca un libro nella searchbar e clicca il bottone "search"
+ */
+
 $(document).ready(function () {
 
     // Listener for search form
@@ -63,6 +70,11 @@ function showBooks(books){
 
 }
 
+/**
+ * Funzione di escaping per sanificare l'input
+ * @param input stringa potenzialmente dannosa
+ * @returns {string} ritorna la stringa sanificata
+ */
 function escapeInput(input) {
     return String(input)
         .replace(/&/g, '&amp;')

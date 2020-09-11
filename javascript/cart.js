@@ -1,4 +1,16 @@
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file sono definiti gli event listener per la pagina cart.php
+ * che si attivano al click dei vari bottoni.
+ * Ogni event listener definisce cosa fare al verificarsi di un certo evento
+ *
+ */
 
+
+/**
+ * Event listener per rimuovere un articolo dal carrello
+ */
 $(document).on('click','.remove-button',function () {
 
     var parent = this.parentNode.parentNode.parentNode;
@@ -39,7 +51,9 @@ $(document).on('click','.remove-button',function () {
 
 
 
-
+/**
+ * Event listener per svuotare il carrello
+ */
 $(document).on('click','.remove-all-button',function () {
 
     var removeAllFromCart = 0;
@@ -81,7 +95,10 @@ $(document).on('click','.remove-all-button',function () {
 });
 
 
-
+/**
+ * Event listener per diminuire di 1 la quantità di un articolo nel carrello
+ * Se la quantità corrente è 1 l'articolo verrà eliminato dal carrello (la nuova quantità risulterebbe 0)
+ */
 $(document).on('click','.minus-button',function () {
 
     var parent = this.parentNode;
@@ -158,7 +175,9 @@ $(document).on('click','.minus-button',function () {
     }
 });
 
-
+/**
+ * Event listener per incrementare di 1 la quantità di un articolo nel carrello
+ */
 $(document).on('click','.plus-button',function () {
 
     var parent = this.parentNode;
@@ -234,11 +253,16 @@ $(document).on('click','#checkout-button',function () {
 });
 
 
-
+/**
+ * Aggiorna il badge della navbar
+ */
 function updateBadge(num) {
     $(".badge").html(num);
 }
 
+/**
+ * Aggiorna il valore totale del carrello
+ */
 function updateTotal(val){
     $("#total").html(val);
 }
@@ -257,6 +281,9 @@ function thanksForYourPurchase(){
     $("#warning").append(html);
 }
 
+/**
+ * Funzione che invia una richiesta AJAX per processare il pagamento
+ */
 function pay(){
     // tutto questo lo facciamo se l'account possiede una carta collegata
     var tbody = document.getElementById("books");

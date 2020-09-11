@@ -1,13 +1,18 @@
-//Make sure that the dom is ready
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file sono definiti i listener del sistema di valutazione ★★★★★
+ */
 
 $(document).ready(function () {
     resetStars();
 
     $('.star').mouseover(function () {
-        removeHighlight();
+        removeHighlight(); // cancella tutto
+
         var index = parseInt($(this).data('index'));
         for(var i = 0; i <= index; i++){
-            $('.star:eq('+i+')').addClass('highlight');
+            $('.star:eq('+i+')').addClass('highlight'); // illumina le stelle in base a dove passa il mouse
         }
     });
 
@@ -16,7 +21,9 @@ $(document).ready(function () {
         resetStars(); // rimette come da database
     });
 
-
+    /**
+     * Listener per l'aggiunta della valutazione da parte di un utente
+     */
     $('.star').on('click',function () {
         var index = parseInt($(this).data('index'));
         var rating = ++index; // star value
@@ -47,12 +54,19 @@ $(document).ready(function () {
 
 });
 
+/**
+ * Rende tutte le stelle vuote
+ */
 function removeHighlight() {
     $('.star').each(function() {
         $('.star').removeClass('highlight');
     });
 }
 
+
+/**
+ * Effettua il reset delle stelle, reimpostando la valutazione media
+ */
 function resetStars(){
     var urlParams = new URLSearchParams(window.location.search);
     var item = urlParams.get('id_book');

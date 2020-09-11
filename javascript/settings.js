@@ -1,6 +1,12 @@
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file sono definiti i listener delle impostazioni
+ */
+
 $(document).ready(function () {
 
-    // Listener for search form
+    // Listener per l'aggiunta della foto profilo
     $("#photo-form").submit(function (event) {
         event.preventDefault();
 
@@ -39,6 +45,7 @@ $(document).ready(function () {
 
 });
 
+// Listener per la rimozione della foto profilo
 $(document).on('click','#remove-photo',function () {
 
         var request = $.ajax({
@@ -72,7 +79,7 @@ $(document).on('click','#remove-photo',function () {
 
 $(document).ready(function () {
 
-    // Listener for search form
+    // Listener per l'aggiornamento della password
     $("#password-form").submit(function (event) {
         event.preventDefault();
 
@@ -112,7 +119,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-    // Listener for search form
+    // Listener per effettuare la disiscrizione dal sito
     $("#unsubscribe-form").submit(function (event) {
         event.preventDefault();
 
@@ -145,6 +152,8 @@ $(document).ready(function () {
     });
 });
 
+// vari listener per far comparire e sparire le sezioni: change picture, update password, unsubscribe
+
 $(document).on('click','#picture',function (){
     $("#photo-form").removeClass("hidden");
     if(!$("#password-form").hasClass("hidden"))
@@ -169,7 +178,11 @@ $(document).on('click','#unsubscribe',function (){
         $("#password-form").addClass("hidden");
 });
 
-
+/**
+ * Funzione di escaping per sanificare l'input
+ * @param input stringa potenzialmente dannosa
+ * @returns {string} ritorna la stringa sanificata
+ */
 function escapeInput(input) {
     return String(input)
         .replace(/&/g, '&amp;')

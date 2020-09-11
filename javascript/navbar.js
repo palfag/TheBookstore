@@ -1,3 +1,9 @@
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file sono definiti i listener della navigation bar
+ */
+
 window.onload = showMenu;
 
 function showMenu() {
@@ -35,6 +41,9 @@ function showMenu() {
     });
 
 
+    /**
+     * Listener che si attiva al click del menu hamburger
+     */
     $(".burger-menu").click(function () {
         var navOptions= $(".nav-options");
         if(navOptions.hasClass("nav-active")){
@@ -63,6 +72,11 @@ function showCategories(categories){
     }
 }
 
+/**
+ *
+ * @param el elemento da controllare
+ * @returns {boolean} Ritorna TRUE se l'elemento è vuoto, FALSE altrimenti
+ */
 function isEmpty(el){
     return !$.trim(el.html())
 }

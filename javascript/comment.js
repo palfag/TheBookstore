@@ -1,6 +1,16 @@
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file sono definiti gli event listener per i commenti
+ * che si attivano al click dei vari bottoni.
+ * Ogni event listener definisce cosa fare al verificarsi di un certo evento
+ *
+ */
+
+
 $(document).ready(function () {
 
-    // Listener for comment form
+    // Listener per l'aggiunta di un commento
     $("#comment-form").submit(function (event) {
         event.preventDefault();
 
@@ -19,7 +29,7 @@ $(document).ready(function () {
             request.done(function (response) {
                 if (response.success === 1) {
 
-                    // spariranno eventiali errori apparsi nella lista dei commenti
+                    // spariranno eventuali errori apparsi nella lista dei commenti
                     if($(".error")){
                         $(".error").remove();
                     }
@@ -63,7 +73,9 @@ $(document).ready(function () {
 });
 
 
-
+/**
+ * Event listener per eliminare un commento
+ */
 $(document).on('click','.delete-comment-btn',function () {
 
     var parent = this.parentNode; // div class = "comment" && id = id del commento che si vuole eliminare
@@ -100,6 +112,12 @@ $(document).on('click','.delete-comment-btn',function () {
 
 });
 
+
+/**
+ * Funzione di escaping per sanificare l'input
+ * @param input stringa potenzialmente dannosa
+ * @returns {string} ritorna la stringa sanificata
+ */
 function escapeInput(input) {
     return String(input)
         .replace(/&/g, '&amp;')

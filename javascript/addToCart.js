@@ -1,17 +1,13 @@
 /**
- In jQuery, Click() event binds the element only if the particular element exists in the Html code(after page loads).
- It won't consider the future elements which are created dynamically(Future element). Dynamic elements are created with
- the help of javascript or jquery(not in Html).
- So the normal click event won't fire on the dynamic element.
- Solution :
- To overcome this we should use on() function.
- delegate(),live() and on() functions have the advantages over the DOM elements.
- delegate() and live() are deprecated (Don't use these).
- on can only trigger both the existing and future elements.
- on can consider all the elements which are present on the whole page.
- You should use on function to trigger the event on dynamically(future) created elements.
- Remove the code from $(document).ready:
+ * @author Paolo Fagioli
  *
+ * In questo file è definito l'event listener che si attiva
+ * al click del bottone per aggiungere un articolo nel carrello
+ *
+ * la richiesta viene fatta alla pagina add_to_cart.php
+ *
+ * Funzione di
+ * @callback: updateBadge
  */
 
 $(document).on('click','.add-to-cart',function () {
@@ -44,3 +40,19 @@ $(document).on('click','.add-to-cart',function () {
 function updateBadge(num) {
     $(".badge").html(num);
 }
+
+
+/**
+ In jQuery, Click() event binds the element only if the particular element exists in the Html code(after page loads).
+ It won't consider the future elements which are created dynamically(Future element). Dynamic elements are created with
+ the help of javascript or jquery(not in Html).
+ So the normal click event won't fire on the dynamic element.
+ Solution :
+ To overcome this we should use on() function.
+ delegate(),live() and on() functions have the advantages over the DOM elements.
+ delegate() and live() are deprecated (Don't use these).
+ on can only trigger both the existing and future elements.
+ on can consider all the elements which are present on the whole page.
+ You should use on function to trigger the event on dynamically(future) created elements.
+ Remove the code from $(document).ready:
+ */

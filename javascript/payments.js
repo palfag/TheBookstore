@@ -1,3 +1,9 @@
+/**
+ * @author Paolo Fagioli
+ *
+ * In questo file sono definiti i vari listener per la pagina dei pagamenti
+ */
+
 $(document).ready(function () {
 
     $("#type").change(function () {
@@ -53,7 +59,9 @@ $(document).ready(function () {
     });
 
 
-
+    /**
+     * Listener per rimuovere la carta
+     */
     $("#remove-card-btn").click(function () {
 
         var request = $.ajax({
@@ -101,7 +109,11 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-
+/**
+ * Funzione di escaping per sanificare l'input
+ * @param input stringa potenzialmente dannosa
+ * @returns {string} ritorna la stringa sanificata
+ */
 function escapeInput(input) {
     return String(input)
         .replace(/&/g, '&amp;')
