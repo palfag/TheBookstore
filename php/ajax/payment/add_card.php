@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette di aggiungere un metodo di pagamento collegato all'accont
+ */
     require_once "../resources.php";
 
     $email = $_SESSION['email'];
@@ -34,6 +40,10 @@
         }
     }
 
+/**
+ * Aggiunge la carta nel database, se già presente aggiorna la precedente
+ * @return bool Ritorna TRUE se la carta è stata correttamente aggiunta, FALSE altrimenti
+ */
 function add_card($user, $card_holder, $card_number, $expiry_date, $cvc, $type){
     $db = database_connection();
 

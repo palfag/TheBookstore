@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette la valutazione di un libro ★★★★★
+ */
     require_once "../resources.php";
 
     $email = $_SESSION['email'];
@@ -10,9 +16,8 @@
 
         $rate = filter_input(INPUT_POST, "rate",
             FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        // vogliamo prendere il numero di stelle salvate nel db (se l'utente ha già votato è presente nel database / altrimenti verrà restituito zero e non ci saranno stelle)
 
-        $done = add_rate($email,$item, $rate);
+        $done = add_rate($email, $item, $rate);
 
         if($done){
             $response = array("success" => 1, "rate"=> $rate);
@@ -22,7 +27,10 @@
         echo json_encode($response);
     }
 
-
+/**
+ * Salva la valutazione dell'utente per un certo libro nel database
+ * @return bool Ritorna TRUE se la valutazione è stata salvata correttamente, FALSE altrimenti
+ */
 function add_rate($email, $item, $rate){
     $db = database_connection();
     $sql = "INSERT INTO Rating(item, user, rate)

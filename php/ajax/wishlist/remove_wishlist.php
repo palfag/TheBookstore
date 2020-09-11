@@ -1,4 +1,11 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette la rimozione di un articolo dalla wishlist
+ */
+
     require_once "../resources.php";
 
     $email = $_SESSION['email'];
@@ -15,6 +22,13 @@
         echo json_encode($response);
     }
 
+
+/**
+ * Rimuove un articolo dalla wishlist dell'utente loggato
+ * @param $user utente loggato
+ * @param $item articolo da rimuovere
+ * @return bool Ritorna TRUE se l'articolo è stato rimosso, FALSE altrimenti
+ */
 function remove_wishlist($user, $item){
     $db = database_connection();
     $sql = "DELETE FROM Wishlist where user='$user' AND item='$item'";

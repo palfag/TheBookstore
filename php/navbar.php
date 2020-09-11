@@ -5,10 +5,11 @@
      *  Barra dei menù
      *  La barra dei menù permette di navigare agevolmente all'interno del sito
      *  Contiene le sezioni:
-     *          - Categorie
+     *          - TheBookstore (link alla homepage)
+     *          - Categories
      *              (facendo un hoover appare una lista con tutte le categorie presenti nel sito)
-     *          - Carrello (dotato di @badge che indica quanti articoli sono presenti all'interno)
-     *          - Profilo (si accede alla pagina personale dell'utente)
+     *          - Cart (dotato di @badge che indica quanti articoli sono presenti all'interno del carrello)
+     *          - Profile (si accede alla pagina personale dell'utente)
      *          - Logout (permette di distruggere la sessione)
      */
     require_once "include/header.php";

@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette di aggiungere un commento
+ */
     require_once "../resources.php";
 
     $email = $_SESSION['email'];
@@ -24,7 +30,13 @@
         }
     }
 
-
+/**
+ * Aggiunge un commento nel database
+ * @param $user. utente che ha scritto il commento
+ * @param $item. articolo per cui si è scritto il commento
+ * @param $comment. contenuto del commento
+ * @return bool Ritorna TRUE se il commento è stato correttamente aggiunto, FALSE altrimenti
+ */
 function add_comment($user, $item, $comment){
     $db = database_connection();
     $sql = "INSERT INTO Comments(user, item, comment, date) VALUES ('$user', '$item', '$comment', NOW())";
@@ -42,6 +54,10 @@ function add_comment($user, $item, $comment){
     }
 }
 
+/**
+ * Recupera il commento appena pubblicato
+ * @return. Ritorna il commento appena pubblicato
+ */
 function retrieve_comment_just_published($user, $item, $comment){
     $db = database_connection();
     $rows = $db->query("SELECT id, user, comment, name, surname, image

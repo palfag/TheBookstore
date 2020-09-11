@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX:
+ * Effettua la regitrazione (signup)
+ */
     require_once "../../functions/common_authentication.php";
 
     session_start();
@@ -26,7 +32,6 @@
 
                     if($done){
                         $_SESSION['email'] = $email;
-                        //$_SESSION['flash'] = "Hello, ".$name."!";
 
                         // AJAX RESPONSE
                         $response = array("success" => 1);
@@ -44,13 +49,13 @@
 
 
 /**
- * Registers the new user, adds user's information into the database
- * @return bool Returns TRUE if the given information is added correctly, or FALSE otherwise.
+ * Registra il nuovo utente, aggiunge le informazioni passate all'interno del database
+ * @return bool Ritorna TRUE se l'utente è stato registrato correttamente, FALSE altrimenti
  */
 function register_user($email, $name, $surname, $hash){
-
     $db = database_connection();
     $sql = "INSERT INTO users(email, name, surname, pwd, image) VALUES ('$email', '$name', '$surname', '$hash', null)";
+
     try{
 
         if(!$db->query($sql)){

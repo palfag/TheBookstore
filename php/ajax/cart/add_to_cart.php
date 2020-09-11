@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette di aggiungere un articolo al carrello
+ */
     require_once "../resources.php";
     require_once "../../functions/common_cart.php";
 

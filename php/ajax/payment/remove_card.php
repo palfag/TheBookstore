@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette di rimuovere il metodo di pagamento precedentemente definito
+ */
     require_once "../resources.php";
 
     if (!isset($_SESSION['email'])) {
@@ -22,6 +28,11 @@
         }
     }
 
+/**
+ * Rimuove la carta dal database
+ * @param $user . utente loggato
+ * @return bool Ritorna TRUE se la carta è rimossa correttamente, FALSE altrimenti
+ */
 function remove_card($user){
     $db = database_connection();
 

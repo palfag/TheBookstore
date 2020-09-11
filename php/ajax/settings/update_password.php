@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette l'aggiornamento della password
+ */
 
     require_once "../resources.php";
     require_once "../../functions/common_authentication.php";
@@ -31,8 +37,8 @@
 }
 
 /**
- * Updates the user's password, adds new hashed password into the database
- * @return bool Returns TRUE if the password is updated correctly, or FALSE otherwise.
+ * Aggiorna la password dell'utente, aggiunge l'hash della password nel database
+ * @return bool Ritorna TRUE se la password è aggiornata correttamente, FALSE altrimenti.
  */
 function update_password($email, $new_hash){
     $db = database_connection();

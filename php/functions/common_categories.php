@@ -1,8 +1,13 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * Funzioni comuni relative alle categorie
+ */
 
 /**
- * Retreives genre from the database.
- * returns genres contained into the database.
+ * Recupera tutte le categorie di libri presenti nel database
+ * @return array Ritorna un array di categorie
  */
 function retrieve_categories(){
     $db = database_connection();

@@ -1,9 +1,15 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * Funzioni comuni relative all'autenticazione
+ */
+
 
 /**
- * Retreives the password hashed from the database.
- * @param string $email The email of the password that we want to recover
- * @return bool Returns password hashed contained into the database.
+ * Recupera l'hash della password dal database
+ * @param string $email l'email della password che vogliamo recuperare
+ * @return bool Ritorna l'hash della password contenuta nel database
  */
 function retrieve_hash($email){
     $db = database_connection();
@@ -24,9 +30,9 @@ function retrieve_hash($email){
 }
 
 /**
- * Checks if the given email is contained into the database.
- * @param string $email The email which the user would like to register with.
- * @return bool Returns TRUE if the email is contained into the database, or FALSE otherwise.
+ * Controlla se l'email passata come parametro è contenuta all'interno del database
+ * @param string $email l'email da verificare
+ * @return bool Ritorna TRUE se l'email è contenuta nel databse, FALSE altrimenti.
  */
 function is_contained($email){
     $db = database_connection();

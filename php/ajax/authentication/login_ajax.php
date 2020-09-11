@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX:
+ * Effettua l'autenticazione (login)
+ */
     require_once "../../include/db.inc.php";
     require_once "../../functions/common_authentication.php";
 

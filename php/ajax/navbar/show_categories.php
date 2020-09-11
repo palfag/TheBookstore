@@ -1,10 +1,15 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Ritorna tutte le categorie presenti nel database
+ */
     require_once "../resources.php";
     require_once "../../functions/common_categories.php";
 
-    // richiesta che arriva da nav.js se si passa sopra alla categories appaiono le categorie prese tramite ajax dal db
+    // richiesta che arriva da nav.js se si passa sopra alle Categories appaiono le categorie prese tramite ajax dal db
     if (isset($_POST['categories'])) {
-     // devo recuperare le categorie dal database e rimandarle indietro
 
         $data = retrieve_categories();
 

@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Recupera tutti i libri che sono conformi alla @query della richiesta AJAX
+ */
     require_once "../resources.php";
 
     if (isset($_POST['search'])) {
@@ -25,11 +31,11 @@
 
 
 /**
- * Retreives books that conform to the standard defined by the query (from the database).
+ * Recupera tutti i libri che sono conformi allo standard definito dalla @query
  * @param string $query
- * @param $sort
- * @param $genre
- * @return array Returns conform books contained into the database.
+ * @param $sort . eventuale criterio di ordinamento DEFAULT = title
+ * @param $genre. eventuale filtro in base al genere DEFAULT = all
+ * @return array Ritorna i libri conformi contenuti nel database
  */
 function search_book($query, $sort, $genre){
     $db = database_connection();

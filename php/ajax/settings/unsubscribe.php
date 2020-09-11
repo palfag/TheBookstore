@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette all'utente di disiscriversi dal sito
+ */
     require_once "../resources.php";
 
     $email = $_SESSION['email'];
@@ -22,9 +28,9 @@
 
 
 /**
- * Deletes user, remove user row from the database
- * @param $email
- * @return bool Returns TRUE if user is deleted correctly, or FALSE otherwise.
+ * Elimina l'utente, rimuove la sua row dal database
+ * @param $email utente loggato
+ * @return bool Ritorna TRUE se l'utente è correttamente eliminato, FALSE altrimenti
  */
 function delete_user($email){
     $db = database_connection();

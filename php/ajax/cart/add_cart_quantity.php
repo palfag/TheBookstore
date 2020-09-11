@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette di modificare (+1) la quantità di un articolo nel carrello
+ */
     require_once "../resources.php";
     require_once "../../functions/common_cart.php";
 

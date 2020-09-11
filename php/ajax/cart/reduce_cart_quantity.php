@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette di modificare (-1) la quantità di un articolo nel carrello
+ */
     require_once "../resources.php";
     require_once "../../functions/common_cart.php";
 
@@ -23,7 +29,12 @@
     }
 
 
-
+/**
+ * Riduce la quantità di un articolo presente nel carrello dell'utente
+ * @param $user. utente loggato
+ * @param $item. articolo da ridurre in quantità
+ * @return bool Ritorna TRUE se l'articolo viene ridotto in termini di quantità, FALSE altrimenti
+ */
 function reduce_cart_quantity($user, $item){
     $db = database_connection();
     $sql = "DELETE FROM Cart where user='$user' AND item='$item' LIMIT 1";

@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Recupera la valutazione media di un libro ★★★★★
+ *
+ * @NB. Se il libro non è stato valutato da nessun utente, sarà restituito 0 (ZERO) e nessuna stella verrà illuminata
+ */
     require_once "../resources.php";
 
     $email = $_SESSION['email'];
@@ -7,7 +14,6 @@
     if(isset($_POST['reset_stars']) && isset($_POST['item'])){
         $item = filter_input(INPUT_POST, "item",
             FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        // vogliamo prendere il numero di stelle salvate nel db (se l'utente ha già votato è presente nel database / altrimenti verrà restituito zero e non ci saranno stelle)
 
         $rate = retrieve_rate($item);
 
@@ -20,10 +26,13 @@
     }
 
 
-
+/**
+ * Recupera la valutazione di un libro media presente nel database
+ * @param $item .. libro per cui si vuole recuperare la valutazione media
+ * @return false|float|int|null Ritorna la valutazione media, 0 se non trova nessuna valutazione, null in caso di errore
+ */
 function retrieve_rate($item){
     $db = database_connection();
-    //$rows = $db->query("SELECT rate FROM Rating WHERE user = '$email' AND item ='$item'");
     $rows = $db->query("SELECT avg(rate) as average FROM Rating WHERE item = $item");
 
     try {

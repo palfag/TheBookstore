@@ -1,10 +1,22 @@
 <?php
+/**
+ * @author Paolo Fagioli
+ *
+ * File che si occupa della risposta AJAX
+ * Permette l'aggiornamento/rimozione della foto del profilo
+ *
+ * @NB. Si parla di aggiornamento e non inserimento perché all'inizio viene data una foto di default ad ogni utente
+ */
+
     require_once "../resources.php";
 
     $email = $_SESSION['email'];
 
+
+    // se è settato $_FILES['file'], l'utente ha caricato una foto e si deve aggiornare la foto profilo
+
     if(isset($_FILES['file'])){
-        $profile_img = time() . '_' . $_FILES['file']['name']; // <----- questo va inserito nel database
+        $profile_img = time() . '_' . $_FILES['file']['name']; // <----- questo va inserito nel database ... uso la funzione time() per avere id unici
         $path = "../../../images/users/";
         $target = $path . $profile_img;
         $final_path = "../images/users/" . $profile_img;
@@ -26,6 +38,8 @@
         }
     }
 
+    // se è settato $_POST['remove_photo'], l'utente ha chiesto la rimozione della foto
+
     if(isset($_POST['remove_photo'])){
         $path_default_photo = "../images/users/default_profile.png";
         try{
@@ -40,6 +54,13 @@
         }
     }
 
+
+/**
+ * Aggiorna la foto profilo dell'utente loggato
+ * @param $email utente loggato
+ * @param $profile_img foto profilo da aggiornare
+ * @return bool Ritorna TRUE se la foto è correttamente aggiornata, FALSE altrimenti
+ */
 function update_profile_picture($email, $profile_img){
     $db = database_connection();
     $sql = "UPDATE Users
@@ -58,6 +79,10 @@ function update_profile_picture($email, $profile_img){
     }
 }
 
+/** Rimuove la foto del profilo dell'utente loggato (ritorna quella di default)
+ * @param $email utente loggato
+ * @return bool Ritorna TRUE se la foto è correttamente rimossa, FALSE altrimenti
+ */
 function remove_profile_picture($email){
     $db = database_connection();
     $sql = "UPDATE Users
