@@ -54,16 +54,16 @@ function add_purchase($user, $items){
     // ADDS ITEM ON PURCHASE
     try {
         foreach ($items as $item => $quantity){
-            $sql2 = "INSERT INTO Purchases(id, user, item, quantity)
+            $sql = "INSERT INTO Purchases(id, user, item, quantity)
                      VALUES($next_id, '$user', $item, $quantity)";
 
-            if (!$db->query($sql2)) {
+            if (!$db->query($sql)) {
                 throw new Exception("query error");
             }
         }
         return true;
     } catch (Exception $e) {
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        $e->getMessage();
         return false;
     } finally {
         $db->close();

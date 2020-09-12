@@ -12,16 +12,11 @@ function database_connection(){
         $database = "bookstore";
         $port = '8889';
 
-        try{
-            $conn = new mysqli($server, $username, $password, $database, $port);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-                exit();
-            }
-            return $conn;
-        } catch(Exception $e){
-           // TODO che torniamo in caso di eccezione ??
-            return $e->getMessage();
+        $conn = new mysqli($server, $username, $password, $database, $port);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
-    }
+        return $conn;
+}

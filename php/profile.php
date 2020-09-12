@@ -238,20 +238,14 @@
                                   WHERE  user = '$user'
                                   ORDER BY title");
         $data = array();
-        try{
+
             if($rows){
                 foreach ($rows as $row){
                     $data[] = $row;
                 }
-                return $data;
             }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
             $db->close();
-        }
+            return $data;
     }
 
     function retrieve_common_books($usr1, $usr2){
@@ -262,20 +256,15 @@
                                         item IN (SELECT item FROM Wishlist WHERE user ='$usr2')
                                   ORDER BY title");
         $data = array();
-        try{
+
             if($rows){
                 foreach ($rows as $row){
                     $data[] = $row;
                 }
-                return $data;
             }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
+
             $db->close();
-        }
+            return $data;
     }
 
 
@@ -285,21 +274,17 @@
                                     FROM Purchases JOIN books ON book_id = item
                                     WHERE user = '$user' ORDER BY title");
         $data = array();
-        try{
+
             if($rows){
                 foreach ($rows as $row){
                     $data[] = $row;
                 }
-                return $data;
             }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            $e->getMessage();
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
+
             $db->close();
-        }
+            return $data;
     }
+
     ?>
 </body>
 </html>

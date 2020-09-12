@@ -171,23 +171,16 @@
 function retrieve_card_details($user){
     $db = database_connection();
     $rows = $db->query("SELECT * from Payments where user='$user'");
+    $res = null;
 
-    try{
-        if($rows){
-            if($rows->num_rows == 0){
-                return null;
-            }
-            else foreach ($rows as $row){
-                return $row;
+        if($rows) {
+            foreach ($rows as $row) {
+                $res = $row;
             }
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
+
         $db->close();
-    }
+        return $res;
 }
 ?>
 

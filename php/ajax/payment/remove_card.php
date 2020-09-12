@@ -35,15 +35,15 @@
  */
 function remove_card($user){
     $db = database_connection();
+    $sql = "DELETE FROM Payments WHERE user='$user'";
 
-    $sql = "DELETE FROM Payments WHERE user='$user';";
     try {
         if (!$db->query($sql)) {
             throw new Exception("query error");
         }
         return true;
     } catch (Exception $e) {
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        $e->getMessage();
         return false;
     } finally {
         $db->close();

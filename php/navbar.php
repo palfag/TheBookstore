@@ -52,23 +52,19 @@
 
     </nav>
 
-    <?php
+<?php
 
-    function retrieve_name($email){
-        $db = database_connection();
-        $rows = $db->query("SELECT name FROM users WHERE email = '$email'");
+function retrieve_name($email){
+    $db = database_connection();
+    $rows = $db->query("SELECT name FROM users WHERE email = '$email'");
+    $res = null;
 
-        try{
-            if($rows){
-                foreach ($rows as $row){
-                    return $row['name'];
-                } throw new Exception("user not found");
+        if($rows) {
+            foreach ($rows as $row) {
+                $res = $row['name'];
             }
-            else throw new Exception("query error");
-        } catch(Exception $e){
-            ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        } finally {
-            $db->close();
         }
-    }
-    ?>
+        $db->close();
+        return $res;
+}
+?>

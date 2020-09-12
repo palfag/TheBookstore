@@ -28,14 +28,14 @@
  */
 function delete_comment($comment_id){
     $db = database_connection();
-    $sql = "DELETE FROM Comments where id ='$comment_id'"; // in teoria se metto un id fasullo comunque ritorna true, quindi non saprei se gestire questo problema
+    $sql = "DELETE FROM Comments where id ='$comment_id'";
     try{
         if(!$db->query($sql)){
             throw new Exception("query error");
         }
         return true;
     } catch (Exception $e){
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        $e->getMessage();
         return false;
     } finally {
         $db->close();

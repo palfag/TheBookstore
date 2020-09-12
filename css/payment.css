@@ -91,6 +91,10 @@ input:invalid {
     border-color: #BFBBBB;
 }
 
+.hidden{
+    display: none;
+}
+
 #remove-card-btn{
     background: none;
     border: none;

@@ -39,8 +39,17 @@ $(document).ready(function () {
         request.done(function (response) {
             $("#ajax-response").removeClass();
             if(response.success === 1){
+                if($("#submit").val() === "add card"){
+                    $("#submit").val("Update card");
+                }
                 $("#ajax-response").addClass("success");
-                $("#ajax-response").html(response.message);
+
+                if($("#remove-card-btn").length <= 0) // se vi è già il bottone (caso update card) non ne inseriamo un altro
+                    var html = "<button id=\"remove-card-btn\">Remove card</button><br>" + response.message;
+
+                else var html = response.message;
+
+                $("#ajax-response").html(html);
             }
 
             else{
@@ -62,7 +71,8 @@ $(document).ready(function () {
     /**
      * Listener per rimuovere la carta
      */
-    $("#remove-card-btn").click(function () {
+    $(document).on('click','#remove-card-btn',function () {
+    //$("#remove-card-btn").click(function () {
 
         var request = $.ajax({
             type: "POST",
@@ -75,6 +85,12 @@ $(document).ready(function () {
         request.done(function (response) {
             $("#ajax-response").removeClass();
             if(response.success === 1){
+
+                if($("#submit").val() === "Update card"){
+                    $("#submit").val("add card");
+                    $("#remove-card-btn").remove();
+                }
+
                 $("#ajax-response").addClass("success");
                 $("#ajax-response").html(response.message);
                 $("#card-holder").val('');
@@ -82,6 +98,7 @@ $(document).ready(function () {
                 $("#expiry-date").val('');
                 $("#cvc").val('');
                 $('#card-img').attr('src','../images/cards/default.png');
+                $("#type").val("default"); // risetta il campo select option con "Other"
             }
 
             else{

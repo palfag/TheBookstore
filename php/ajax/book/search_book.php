@@ -40,23 +40,18 @@
 function search_book($query, $sort, $genre){
     $db = database_connection();
     if(strcmp($genre, "all") == 0){
-        $rows = $db->query("SELECT * FROM books WHERE title LIKE '$query%' OR author LIKE '$query%' ORDER BY $sort");
+        $rows = $db->query("SELECT * FROM books WHERE title LIKE '%$query%' OR author LIKE '%$query%' ORDER BY $sort");
     }
-    else  $rows = $db->query("SELECT * FROM books WHERE (title LIKE '$query%' OR author LIKE '$query%') and genre='$genre' ORDER BY $sort");
+    else  $rows = $db->query("SELECT * FROM books WHERE (title LIKE '%$query%' OR author LIKE '%$query%') and genre='$genre' ORDER BY $sort");
 
     $data = array();
-    try{
+
         if($rows){
             foreach ($rows as $row){
                 $data[] = $row;
             }
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
-        $db->close();
-        return $data;
-    }
+
+    $db->close();
+    return $data;
 }

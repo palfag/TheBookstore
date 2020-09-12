@@ -51,7 +51,7 @@ function update_password($email, $new_hash){
         }
         return true;
     } catch (Exception $e){
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        $e->getMessage();
         return false;
     } finally {
         $db->close();

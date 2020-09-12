@@ -15,8 +15,7 @@ $(document).ready(function () {
         var sortCriteria = $("#sort-by").val();
         var genre = $("#category").val();
 
-        // TODO METTERE >= 1 ALLA FINE DEI GIOCHI
-        if(query.length >= 0){
+        if(query.length >= 1){
             $("#products").html("");
 
             var request = $.ajax({
@@ -81,5 +80,6 @@ function escapeInput(input) {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;')
         .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+        .replace(/>/g, '&gt;')
+        .replace(/%/g, ''); // To prevent errors with SQL LIKE
 }

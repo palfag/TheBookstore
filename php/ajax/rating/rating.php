@@ -34,19 +34,16 @@
 function retrieve_rate($item){
     $db = database_connection();
     $rows = $db->query("SELECT avg(rate) as average FROM Rating WHERE item = $item");
+    $res = null;
 
-    try {
         if ($rows) {
             foreach ($rows as $row) {
                 if($row["average"] == null)
-                    return 0;
-                return round($row["average"]);
+                    $res = 0;
+                else $res = round($row["average"]);
             }
-        } else throw new Exception("query error");
-    } catch (Exception $e) {
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        return null;
-    } finally {
+        }
+
         $db->close();
-    }
+        return $res;
 }

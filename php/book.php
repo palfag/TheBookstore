@@ -109,7 +109,7 @@
                     <?php
                         for($i = 0; $i < count($comments); $i++){
                             $comment = $comments[$i];
-                            ?>
+                    ?>
                             <div class="comment <?= $comment['user'] ?>" id="<?= $comment['id'] ?>">
                                 <?php
                                 if(strcmp($comment['user'], $email) == 0){
@@ -141,28 +141,24 @@
                             </div>
                     <?php
                         }
-
                     ?>
+
                 </div>
                 <h2>Similars</h2>
                 <hr>
                 <div id="similar">
                     <?php
-                        if($similars){
-                            for($i = 0; $i < count($similars); $i++){
-                                $sim = $similars[$i];
-                                ?>
+                        for($i = 0; $i < count($similars); $i++){
+                            $sim = $similars[$i];
+                    ?>
+                        <div class="book">
+                            <div class="cover">
+                                <a href='book.php?id_book=<?= $sim["book_id"] ?>'><img src="<?= $sim["cover"] ?>" alt="cover"></a></div>
+                            <a href='book.php?id_book=<?= $sim["book_id"] ?>'><h3 class="title"> <?= $sim["title"] ?></h3></a>
 
-                                <div class="book">
-                                    <div class="cover">
-                                        <a href='book.php?id_book=<?= $sim["book_id"] ?>'><img src="<?= $sim["cover"] ?>" alt="cover"></a></div>
-                                    <a href='book.php?id_book=<?= $sim["book_id"] ?>'><h3 class="title"> <?= $sim["title"] ?></h3></a>
-
-                                    <p class="author"><?= $sim["author"]?></p>
-                                </div>
-
-                                <?php
-                            }
+                            <p class="author"><?= $sim["author"]?></p>
+                        </div>
+                    <?php
                         }
                     ?>
                 </div>
@@ -178,39 +174,28 @@
 function retrieve_book_by_id($id_book){
     $db = database_connection();
     $rows = $db->query("SELECT * FROM books WHERE  book_id = '$id_book'");
-    try{
+    $res = null;
         if($rows){
             foreach ($rows as $row){
-                return $row;
+                $res = $row;
             }
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
         $db->close();
-    }
+        return $res;
 }
 
 function is_in_wishlist($id_book, $email){
     $db = database_connection();
     $rows = $db->query("SELECT * FROM Wishlist WHERE  user = '$email' AND item = '$id_book'");
-    try{
+    $res = false;
+
         if($rows){
-            foreach ($rows as $row){
-                return true;
-            }
-            return false;
+            if($rows->num_rows == 1)
+                $res = true;
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        return false;
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
+
         $db->close();
-    }
+        return $res;
 }
 
 
@@ -222,46 +207,33 @@ function retrieve_comments($id_book){
                                   WHERE item = '$id_book'
                                   ORDER BY date DESC");
     $data = array();
-    try{
+
         if($rows){
             foreach ($rows as $row){
                 $data[] = $row;
             }
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
+
         $db->close();
         return $data;
-    }
 }
 
 function is_owner($id_book, $email){
     $db = database_connection();
 
     $sql = "SELECT * FROM Purchases where user='$email' AND item='$id_book'";
-    try {
+    $res = true;
         $rows = $db->query($sql);
         if ($rows) {
             if($rows->num_rows == 0)
-                return false;
-            return true;
+                $res = false;
         }
-        else throw new Exception("query error");
-    } catch (Exception $e) {
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        return false;
-    } finally {
         $db->close();
-    }
+        return $res;
 }
 
 function convert_date($timestamp){
-    $date = date('d-m-y  H:i', strtotime($timestamp)); // H: 24h format - h: 12h format !
-    return $date;
-
+    return date('d-m-y  H:i', strtotime($timestamp)); // H: 24h format - h: 12h format !
 }
 
 function retrieve_similar_books($id, $genre){
@@ -270,20 +242,14 @@ function retrieve_similar_books($id, $genre){
                                     FROM Books
                                     WHERE book_id <> '$id' AND genre = '$genre' ORDER BY RAND() LIMIT 3");
     $data = array();
-    try{
+
         if($rows){
             foreach ($rows as $row){
                 $data[] = $row;
             }
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        $data = null;
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
-        $db->close();
-        return $data;
-    }
+
+    $db->close();
+    return $data;
 }
 ?>

@@ -42,7 +42,7 @@ function add_rate($email, $item, $rate){
         }
         return true;
     } catch (Exception $e) {
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        $e->getMessage();
         return false;
     } finally {
         $db->close();

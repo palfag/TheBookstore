@@ -22,7 +22,7 @@ function add_to_cart($user, $item){
         }
         return true;
     } catch (Exception $e){
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        $e->getMessage();
         return false;
     } finally {
         $db->close();
@@ -34,7 +34,6 @@ function add_to_cart($user, $item){
  * @param $user utente per il quale si deve svuotare il carrello
  * @return bool Ritorna TRUE il carrello è stato svuotato, FALSE altrimenti
  */
-
 function remove_all_from_cart($user){
     $db = database_connection();
     $sql = "DELETE FROM Cart where user='$user'";
@@ -45,7 +44,7 @@ function remove_all_from_cart($user){
         }
         return true;
     } catch (Exception $e){
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        $e->getMessage();
         return false;
     } finally {
         $db->close();
@@ -57,7 +56,7 @@ function remove_all_from_cart($user){
  * Ritorna il subtotale per una linea di articolo [prezzo(articolo) * quantità]
  * @param $email utente loggato
  * @param $item articolo per cui si deve calcolare il subtotale
- * @return |null Ritorna il subtotale
+ * @return  Ritorna il subtotale
  */
 function get_subtotal($email, $item){
     $db = database_connection();
@@ -66,22 +65,18 @@ function get_subtotal($email, $item){
             WHERE user = '$email' and item = '$item'
             Group by user, item";
 
+    $res = null;
+
     $rows = $db->query($sql);
 
-    try{
-        if($rows){
-            foreach ($rows as $row){
-                return $row['subtotal'];
-            }
+    if($rows){
+        foreach ($rows as $row){
+            $res = $row['subtotal'];
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        return null;
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
-        $db->close();
     }
+
+    $db->close();
+    return $res;
 }
 
 /**
@@ -116,43 +111,34 @@ function update_cart($email){
     $rows = $db->query($sql);
     $data = array();
 
-    try{
-        if($rows){
-            foreach ($rows as $row){
-                $data[] = $row;
-            }
+    if($rows) {
+        foreach ($rows as $row) {
+            $data[] = $row;
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
-        $db->close();
-        return $data;
     }
+    $db->close();
+    return $data;
+
 }
 
 /**
  * Recupera il numero di elementi presenti nel carrello
  * IMPORTANTE per poter aggiornare il @badge della navbar
  * @param $email utente loggato
- * @return mixed Ritorna il numero di elementi presenti nel carrello
+ * @return Ritorna il numero di elementi presenti nel carrello
  */
 function retrieve_number_cart_items($email){
     $db = database_connection();
     $rows = $db->query("SELECT COUNT(item) from cart where user = '$email'");
-    try{
+    $res = null;
+
+
         if($rows){
             foreach ($rows as $row){
-                return $row['COUNT(item)'];
+                $res = $row['COUNT(item)'];
             }
         }
-        else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        return null;
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
+
         $db->close();
-    }
+        return $res;
 }

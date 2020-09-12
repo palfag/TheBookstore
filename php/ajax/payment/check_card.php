@@ -31,20 +31,15 @@
  */
 function has_card($user){
     $db = database_connection();
+    $rows = $db->query("SELECT * FROM Payments where user='$user'");
+    $res = false;
 
-    $sql = "SELECT * FROM Payments where user='$user'";
-    try {
-        $rows = $db->query($sql);
-        if ($rows) {
-            if($rows->num_rows == 0)
-                throw new Exception("no card connected to this account");
-            return true;
-        }
-        else throw new Exception("query error");
-    } catch (Exception $e) {
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-        return false;
-    } finally {
-        $db->close();
+    if($rows){
+        if($rows->num_rows == 1)
+            $res = true;
     }
+
+    $db->close();
+    return $res;
 }
+

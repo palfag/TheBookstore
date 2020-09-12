@@ -22,7 +22,7 @@
                     $response = array("success" => 1, "comment" => $row);
                 else throw new Exception("error retrieving comment just published");
             }
-            else throw new Exception("error retrieving comment just published");
+            else throw new Exception("error adding comment");
         } catch(Exception $e){
             $response = array("success" => 0, "error"=> $e->getMessage());
         } finally {
@@ -47,7 +47,7 @@ function add_comment($user, $item, $comment){
         }
         return true;
     } catch (Exception $e){
-        $e->getMessage(); # TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
+        $e->getMessage();
         return false;
     } finally {
         $db->close();
@@ -64,19 +64,15 @@ function retrieve_comment_just_published($user, $item, $comment){
                               FROM Comments JOIN Users on email = user 
                               WHERE item = '$item' AND user='$user' AND comment='$comment'
                               ORDER BY date DESC LIMIT 1");
-    try{
+    $res = null;
+
         if($rows){
             foreach ($rows as $row){
-                return $row;
+                $res = $row;
             }
         }
         else throw new Exception("query error");
-    } catch(Exception $e){
-        $e->getMessage();
-        return null;
-        ######### TODO: DA DEFINIRE COSA FARE IN CASO DI ECCEZIONI
-    } finally {
-        $db->close();
 
-    }
+        $db->close();
+        return $res;
 }
