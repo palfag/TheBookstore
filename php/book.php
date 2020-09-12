@@ -171,6 +171,12 @@
 
 
 <?php
+
+/**
+ * Recupera tutte le informazioni del libro dato l'id
+ * @param $id_book id del libro che si vuole recuperare
+ * @return |null Ritorna la row contenente tutte le informazioni su quel libro
+ */
 function retrieve_book_by_id($id_book){
     $db = database_connection();
     $rows = $db->query("SELECT * FROM books WHERE  book_id = '$id_book'");
@@ -184,6 +190,12 @@ function retrieve_book_by_id($id_book){
         return $res;
 }
 
+/**
+ * Verifica se un dato libro è presente nella wishlist dell'utente loggato
+ * @param $id_book libro che si vuole verificare
+ * @param $email email dell'utente loggato
+ * @return bool Ritorna TRUE se il libro è in wishlist, FALSE altrimenti
+ */
 function is_in_wishlist($id_book, $email){
     $db = database_connection();
     $rows = $db->query("SELECT * FROM Wishlist WHERE  user = '$email' AND item = '$id_book'");
@@ -199,7 +211,11 @@ function is_in_wishlist($id_book, $email){
 }
 
 
-// funzione per prendere tutti i commenti riguardo quel libro
+/**
+ * Recupera tutti i commenti riferiti a quel libro
+ * @param $id_book libro per cui i vogliono recuperare i commenti
+ * @return array Ritorna un array di commenti
+ */
 function retrieve_comments($id_book){
     $db = database_connection();
     $rows = $db->query("SELECT id,user, comment, name, surname, image, date 
@@ -232,10 +248,21 @@ function is_owner($id_book, $email){
         return $res;
 }
 
+/**
+ * Formatta la data in stringa
+ * @param $timestamp datetime
+ * @return false|string Ritorna la data formattata
+ */
 function convert_date($timestamp){
     return date('d-m-y  H:i', strtotime($timestamp)); // H: 24h format - h: 12h format !
 }
 
+/**
+ * Recupera tre libri simili (stesso genere) al libro specificato come parametro
+ * @param $id id del libro passato come parametro
+ * @param $genre categoria del libro passato come parametro
+ * @return array di libri simili che hanno la stessa categoria
+ */
 function retrieve_similar_books($id, $genre){
     $db = database_connection();
     $rows = $db->query("SELECT DISTINCT author, cover, title, book_id

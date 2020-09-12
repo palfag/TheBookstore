@@ -70,19 +70,24 @@ if(isset($_GET['category'])){
 
 <?php
 
-    function retrieve_books_by_category($category){
-        $db = database_connection();
-        $rows = $db->query("SELECT * FROM books WHERE genre='$category'");
+/**
+ * Recupera tutti i libri che fanno parte della categoria specificata come parametro
+ * @param $category. categoria per cui si vuole selezionare i libri
+ * @return array Ritorna un array di libri che appartengono alla categoria scelta
+ */
+function retrieve_books_by_category($category){
+    $db = database_connection();
+    $rows = $db->query("SELECT * FROM books WHERE genre='$category'");
 
-        $data = array();
+    $data = array();
 
-            if($rows){
-                foreach ($rows as $row){
-                    $data[] = $row;
-                }
+        if($rows){
+            foreach ($rows as $row){
+                $data[] = $row;
             }
+        }
 
-            $db->close();
-            return $data;
-    }
+        $db->close();
+        return $data;
+}
 ?>

@@ -54,6 +54,11 @@
 
 <?php
 
+/**
+ * Recupera il nome dell'utente loggato ($_SESSION['email'])
+ * @param $email email dell'utente loggato
+ * @return |null Ritorna il nome dell'utente loggato
+ */
 function retrieve_name($email){
     $db = database_connection();
     $rows = $db->query("SELECT name FROM users WHERE email = '$email'");
