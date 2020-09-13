@@ -12,7 +12,7 @@ function showMenu() {
 
         var getCategories = "getCategories";
         var content = $('.dropdown-content').html();
-        if (content === "We've got an error <br> with our servers! <br> Try again later.")
+        if (content === "We've got a problem <br> with our servers! <br> Try again later.")
             $('.dropdown-content').html('');
 
         if (isEmpty($('.dropdown-content'))){
@@ -31,8 +31,8 @@ function showMenu() {
                 }
             });
 
-            request.fail(function (response, textStatus, error) {
-                $(".dropdown-content").html("We've got an error <br> with our servers! <br> Try again later.");
+            request.fail(function () {
+                $(".dropdown-content").html("We've got a problem <br> with our servers! <br> Try again later.");
             });
         }
     });

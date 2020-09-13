@@ -43,8 +43,8 @@ $(document).on('click','.remove-button',function () {
             $("#ajax-error").html(response.error);
     });
 
-    request.fail(function (response, textStatus, error) {
-       $("#ajax-error").html("We've got an error with our servers! Try again later.");
+    request.fail(function () {
+       $("#ajax-error").html("We've got a problem with our servers! Try again later.");
     });
 
 
@@ -91,8 +91,8 @@ $(document).on('click','.remove-all-button',function () {
             $("#ajax-error").html(response.error);
     });
 
-    request.fail(function (response, textStatus, error) {
-        $("#ajax-error").html("We've got an error with our servers! Try again later.");
+    request.fail(function () {
+        $("#ajax-error").html("We've got a problem with our servers! Try again later.");
     });
 
 });
@@ -138,8 +138,8 @@ $(document).on('click','.minus-button',function () {
                 $("#ajax-error").html(response.error);
         });
 
-        request.fail(function (response, textStatus, error) {
-            $("#ajax-error").html("We've got an error with our servers! Try again later.");
+        request.fail(function () {
+            $("#ajax-error").html("We've got a problem with our servers! Try again later.");
         });
     }
 
@@ -172,8 +172,8 @@ $(document).on('click','.minus-button',function () {
                 $("#ajax-error").html(response.error);
         });
 
-        request.fail(function (response, textStatus, error) {
-            $("#ajax-error").html("We've got an error with our servers! Try again later.");
+        request.fail(function () {
+            $("#ajax-error").html("We've got a problem with our servers! Try again later.");
         });
     }
 });
@@ -220,8 +220,8 @@ $(document).on('click','.plus-button',function () {
             $("#ajax-error").html(response.error);
     });
 
-    request.fail(function (response, textStatus, error) {
-        $("#ajax-error").html("We've got an error with our servers! Try again later.");
+    request.fail(function () {
+        $("#ajax-error").html("We've got a problem with our servers! Try again later.");
     });
 
 });
@@ -251,8 +251,8 @@ $(document).on('click','#checkout-button',function () { // bottone pay now
         }
     });
 
-    request.fail(function (response, textStatus, error) {
-        $("#ajax-error").html("We've got an error with our servers! Try again later.");
+    request.fail(function () {
+        $("#ajax-error").html("We've got a problem with our servers! Try again later.");
     });
 });
 
@@ -330,7 +330,7 @@ function pay(){
             $("#ajax-error").html(response.error);
     });
 
-    request.fail(function (response, textStatus, error) {
-        $("#ajax-error").html("We've got an error with our servers! Try again later.");
+    request.fail(function () {
+        $("#ajax-error").html("We've got a problem with our servers! Try again later.");
     });
 }

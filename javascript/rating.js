@@ -48,7 +48,7 @@ $(document).ready(function () {
         });
 
         request.fail(function () {
-            $("#add-rate-ajax-response").html("We've got an error with our servers! Try again later.");
+            $("#add-rate-ajax-response").html("We've got a problem with our servers! Try again later.");
         });
     });
 
@@ -91,7 +91,7 @@ function resetStars(){
         }
     });
 
-    request.fail(function (response, textStatus, error) {
-        $("#add-rate-ajax-response").html("We've got an error with our servers! Try again later.");
+    request.fail(function () {
+        $("#add-rate-ajax-response").html("We've got a problem with our servers! Try again later.");
     });
 }

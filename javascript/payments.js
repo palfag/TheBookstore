@@ -62,7 +62,7 @@ $(document).ready(function () {
         request.fail(function (response, textStatus, error) {
             $("#ajax-response").removeClass();
             $("#ajax-response").addClass("failure");
-            $("#ajax-response").html("We've got an error with our servers! Try again later.");
+            $("#ajax-response").html("We've got a problem with our servers! Try again later.");
         });
 
     });
@@ -108,10 +108,10 @@ $(document).ready(function () {
 
         });
 
-        request.fail(function (response, textStatus, error) {
+        request.fail(function () {
             $("#ajax-response").removeClass();
             $("#ajax-response").addClass("failure");
-            $("#ajax-response").html("We've got an error with our servers! Try again later.");
+            $("#ajax-response").html("We've got a problem with our servers! Try again later.");
         });
     });
 });

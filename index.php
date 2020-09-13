@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 
     <!-- Index behaviour -->
     <script src="javascript/loginSignup.js"></script>

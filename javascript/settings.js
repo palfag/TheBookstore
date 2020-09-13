@@ -36,10 +36,10 @@ $(document).ready(function () {
             $("#ajax-photo-response").html(response.flash_message);
         });
 
-        request.fail(function (response, textStatus, error) {
+        request.fail(function () {
             $("#ajax-photo-response").removeClass();
             $("#ajax-photo-response").addClass("failure");
-            $("#ajax-photo-response").html("We've got an error with our servers! Try again later.");
+            $("#ajax-photo-response").html("We've got a problem with our servers! Try again later.");
         });
     });
 
@@ -68,10 +68,10 @@ $(document).on('click','#remove-photo',function () {
             $("#ajax-photo-response").html(response.flash_message);
         });
 
-        request.fail(function (response, textStatus, error) {
+        request.fail(function () {
             $("#ajax-photo-response").removeClass();
             $("#ajax-photo-response").addClass("failure");
-            $("#ajax-photo-response").html("We've got an error with our servers! Try again later.");
+            $("#ajax-photo-response").html("We've got a problem with our servers! Try again later.");
         });
 
 });
@@ -107,10 +107,10 @@ $(document).ready(function () {
                 $("#ajax-password-response").html(response.flash_message); // inserisce nel paragrafo html di signup la risposta del server
         });
 
-        request.fail(function (response, textStatus, error) {
+        request.fail(function () {
             $("#ajax-password-response").removeClass();
             $("#ajax-password-response").addClass("failure");
-            $("#ajax-password-response").html("We've got an error with our servers! Try again later.");
+            $("#ajax-password-response").html("We've got a problem with our servers! Try again later.");
         });
 
     });
@@ -144,9 +144,9 @@ $(document).ready(function () {
 
         });
 
-        request.fail(function (response, textStatus, error) {
+        request.fail(function () {
             $("#ajax-unsubscribe-response").addClass("failure");
-            $("#ajax-unsubscribe-response").html("We've got an error with our servers! Try again later.");
+            $("#ajax-unsubscribe-response").html("We've got a problem with our servers! Try again later.");
         });
 
     });

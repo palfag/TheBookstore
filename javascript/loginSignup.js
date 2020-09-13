@@ -30,8 +30,8 @@ $(document).ready(function () {
                 $("#ajax-response").html(response.flash_message); // inserisce nel paragrafo html di signup la risposta del server
         });
 
-        request.fail(function (response, textStatus, error) {
-            $("#ajax-response").html("We've got an error with our servers! Try again later.");
+        request.fail(function () {
+            $("#ajax-response").html("We've got a problem with our servers! Try again later.");
         });
 
     });
@@ -63,7 +63,7 @@ $(document).ready(function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            $("#ajax-response").html("We've got an error with our servers! Try again later.");
+            $("#ajax-response").html("We've got a problem with our servers! Try again later.");
         });
 
     });

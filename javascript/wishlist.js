@@ -30,8 +30,8 @@ $(document).on('click','.like-button',function () {
                 alert(response.error);
         });
 
-        request.fail(function (response, textStatus, error) {
-            alert("We've got an error with our servers! Try again later.");
+        request.fail(function () {
+            alert("We've got a problem with our servers! Try again later.");
         });
     }
 
@@ -61,7 +61,7 @@ $(document).on('click','.like-button',function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert("We've got an error with our servers! Try again later.");
+            alert("We've got a problem with our servers! Try again later.");
         });
     }
 });

@@ -8,6 +8,7 @@
  */
     session_start();
     ensure_logged_in();
+    //error_reporting(E_ALL);
 
 /**
  * Reindirizza l'utente alla pagina di accesso (index.php) se non è autenticato

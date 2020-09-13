@@ -31,8 +31,8 @@ $(document).on('click','.add-to-cart',function () {
                 alert(response.error);
         });
 
-        request.fail(function (response, textStatus, error) {
-            alert("We've got an error with our servers! Try again later.");
+        request.fail(function () {
+            alert("We've got a problem with our servers! Try again later.");
         });
 
 });

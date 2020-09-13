@@ -33,8 +33,8 @@ $(document).ready(function () {
                 }
             });
 
-            request.fail(function (response, textStatus, error) {
-                $("#products").html("We've got an error with our servers! Try again later.");
+            request.fail(function () {
+                $("#products").html("We've got a problem with our servers! Try again later.");
             });
 
         }
