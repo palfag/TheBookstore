@@ -1,6 +1,8 @@
 <?php
-/*
- *   LOGIN PAGE - REGISTRATION PAGE
+/**
+ * @author Paolo Fagioli
+ * LOGIN PAGE - REGISTRATION PAGE
+ * Pagina di accesso al sito/ di registrazione
  */
     require_once "php/include/db.inc.php";
 
@@ -38,7 +40,7 @@
 
     <!-- Index style -->
     <link rel="stylesheet" href="css/index.css">
-    
+
     <title>TheBookstore: login or signup</title>
 </head>
 <body>
