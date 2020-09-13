@@ -54,7 +54,7 @@
         <?php
             if(isset($_SESSION['flash'])){
         ?>
-            <h2 class="failure"><?= $_SESSION['flash'] ?></h2>
+            <h2><?= $_SESSION['flash'] ?></h2>
         <?php
                 unset($_SESSION["flash"]);
             }

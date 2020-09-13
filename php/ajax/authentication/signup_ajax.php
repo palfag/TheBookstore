@@ -5,6 +5,8 @@
  * File che si occupa della risposta AJAX:
  * Effettua la regitrazione (signup)
  */
+
+    require_once "../../include/db.inc.php";
     require_once "../../functions/common_authentication.php";
 
     session_start();

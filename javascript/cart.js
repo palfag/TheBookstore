@@ -30,7 +30,8 @@ $(document).on('click','.remove-button',function () {
             if($("#ajax-error").html())
                 $("#ajax-error").html('');
 
-            updateBadge(response.badge_num);
+            var badgeNum = response.badge_num;
+            updateBadge(badgeNum);
             updateTotal(response.total);
 
             if(parseInt(badgeNum) === 0){
@@ -125,7 +126,8 @@ $(document).on('click','.minus-button',function () {
                 if($("#ajax-error").html())
                     $("#ajax-error").html('');
 
-                updateBadge(response.badge_num);
+                var badgeNum = response.badge_num;
+                updateBadge(badgeNum);
                 updateTotal(response.total);
 
                 if(parseInt(badgeNum) === 0){

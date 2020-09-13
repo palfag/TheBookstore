@@ -7,11 +7,6 @@
  */
     require_once "../resources.php";
 
-    if (!isset($_SESSION['email'])) {
-        header("Location: index.php");
-        die;
-    }
-
     $email = $_SESSION['email'];
 
     if (isset($_POST['remove_card'])) {

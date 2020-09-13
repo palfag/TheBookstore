@@ -87,7 +87,3 @@ input:invalid {
 .success{
     color: #17be17;
 }
-
-.failure{
-    color: #d61111;
-}

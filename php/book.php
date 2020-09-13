@@ -234,19 +234,6 @@ function retrieve_comments($id_book){
         return $data;
 }
 
-function is_owner($id_book, $email){
-    $db = database_connection();
-
-    $sql = "SELECT * FROM Purchases where user='$email' AND item='$id_book'";
-    $res = true;
-        $rows = $db->query($sql);
-        if ($rows) {
-            if($rows->num_rows == 0)
-                $res = false;
-        }
-        $db->close();
-        return $res;
-}
 
 /**
  * Formatta la data in stringa

@@ -197,7 +197,7 @@
                 if(count($purchased_items) == 0){
                     ?>
                     <p>you haven't bought any books yet</p>
-                    <button id="shop-now"><a href="home.php">Shop now</a></button>
+                    <a id="shop-now" href="home.php">Shop now</a>
                     <?php
                 }
                 else{
@@ -230,7 +230,11 @@
 
     <?php
 
-
+    /**
+     * Recupera la wishlist dell'utente
+     * @param $user. utente per cui si vuole recuperare la wishlist
+     * @return array Ritorna tutti i libri presenti nella wishlist dell'utente
+     */
     function retrieve_wishlist($user){
         $db = database_connection();
         $rows = $db->query("SELECT * 
@@ -248,6 +252,13 @@
             return $data;
     }
 
+    /**
+     * Recupera i libri (in wishlist) comuni ai due utenti
+     * Utilizzata quando l'utente loggato visualizza il profilo di un altro utente
+     * @param $usr1. l'altro utente
+     * @param $usr2. è l'utente loggato
+     * @return array Ritorna l'array di libri comuni ai due utenti
+     */
     function retrieve_common_books($usr1, $usr2){
         $db = database_connection();
         $rows = $db->query("SELECT DISTINCT item, author, cover, title, book_id
@@ -268,6 +279,11 @@
     }
 
 
+    /**
+     * Recupera tutti i libri comprati dall'utente
+     * @param $user. utente per cui si vuole recuperare i libri acquistati
+     * @return array Ritorna un array di libri acquistati
+     */
     function retrieve_purchased_items($user){
         $db = database_connection();
         $rows = $db->query("SELECT DISTINCT item, author, cover, title, book_id

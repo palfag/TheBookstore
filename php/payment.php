@@ -168,6 +168,11 @@
 
 <?php
 
+/**
+ * Recupera tutti i dati della carta di un certo utente
+ * @param $user. utente per cui si vuole recuperare i dati della carta
+ * @return | Ritorna i dettagli della carta
+ */
 function retrieve_card_details($user){
     $db = database_connection();
     $rows = $db->query("SELECT * from Payments where user='$user'");
