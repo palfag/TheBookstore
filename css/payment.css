@@ -128,12 +128,20 @@ input:invalid {
         margin-left: 10%;
     }
 
+    #remove-card-btn{
+        margin-left: 30%;
+    }
+
 }
 
 @media screen and (max-width: 700px) {
 
     .right div{
         margin-left: 22%;
+    }
+
+    #remove-card-btn{
+        margin-left: 23%;
     }
 
 }
