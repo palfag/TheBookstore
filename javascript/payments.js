@@ -62,7 +62,7 @@ $(document).ready(function () {
         request.fail(function (response, textStatus, error) {
             $("#ajax-response").removeClass();
             $("#ajax-response").addClass("failure");
-            $("#ajax-response").html("There was an error with our servers! Try again later.");
+            $("#ajax-response").html("We've got an error with our servers! Try again later.");
         });
 
     });
@@ -111,16 +111,16 @@ $(document).ready(function () {
         request.fail(function (response, textStatus, error) {
             $("#ajax-response").removeClass();
             $("#ajax-response").addClass("failure");
-            $("#ajax-response").html("There was an error with our servers! Try again later.");
+            $("#ajax-response").html("We've got an error with our servers! Try again later.");
         });
     });
 });
 
 
 /**
- * Returns a string with the first character capitalized
- * @param {string}  string The input string.
- * @return {string} the resulting string.
+ * Ritorna una stringa con il primo carattere MAIUSC
+ * @param {string}  la stringa di input
+ * @return {string} Ritorna la stringa capitalizzata
  */
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

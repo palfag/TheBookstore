@@ -64,7 +64,7 @@ $(document).ready(function () {
             });
 
             request.fail(function (response, textStatus, error) {
-                var error =  "<h1 class='failure error'>"+ "There was an error with our servers! Try again later."+"</h1>";
+                var error =  "<h1 class='failure error'>"+ "We've got an error with our servers! Try again later."+"</h1>";
                 $(".my-comment").prepend(error);
             });
         }
@@ -106,7 +106,7 @@ $(document).on('click','.delete-comment-btn',function () {
     });
 
     request.fail(function (response, textStatus, error) {
-        var error =  "<h1 class='failure error'>"+ "There was an error with our servers! Try again later."+"</h1>";
+        var error =  "<h1 class='failure error'>"+ "We've got an error with our servers! Try again later."+"</h1>";
         $(".my-comment").prepend(error);
     });
 

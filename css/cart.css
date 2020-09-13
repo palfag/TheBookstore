@@ -21,14 +21,11 @@
     margin-bottom: 30px;
 }
 
-.warning-empty-cart button,
-#warning button{
+.warning-empty-cart a,
+#warning a{
     background: #44aeec;
-    color: white;
-    padding: 3px;
     border: none;
-    height: 40px;
-    width: 300px;
+    padding: 10px 80px 10px 80px;
     border-radius: 3px;
 }
 

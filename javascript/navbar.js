@@ -8,13 +8,11 @@ window.onload = showMenu;
 
 function showMenu() {
 
-    $(".dropbtn").hover(function () {
+    $(".dropbtn").one('mouseenter', function () {
 
         var getCategories = "getCategories";
-
         var content = $('.dropdown-content').html();
-
-        if (content === "There was an error <br> with our servers! <br> Try again later.")
+        if (content === "We've got an error <br> with our servers! <br> Try again later.")
             $('.dropdown-content').html('');
 
         if (isEmpty($('.dropdown-content'))){
@@ -27,15 +25,14 @@ function showMenu() {
 
             request.done(function (response) {
                 if (response.success === 1) {
-                    var categories = response.data;
-                    showCategories(categories);
+                    showCategories(response.data);
                 } else{
                     $(".dropdown-content").html(response.error);
                 }
             });
 
             request.fail(function (response, textStatus, error) {
-                $(".dropdown-content").html("There was an error <br> with our servers! <br> Try again later.");
+                $(".dropdown-content").html("We've got an error <br> with our servers! <br> Try again later.");
             });
         }
     });
@@ -58,8 +55,8 @@ function showMenu() {
 
 
 /**
- * Displays books to homepage
- * @param {Object}  "array" of books.
+ * Mostra tutte le categorie nel menù a tendina
+ * @param {Object}  "array" di categorie
  */
 function showCategories(categories){
     var html = "";

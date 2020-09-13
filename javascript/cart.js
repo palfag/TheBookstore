@@ -13,8 +13,9 @@
  */
 $(document).on('click','.remove-button',function () {
 
+    // <tr id="<?= $item['book_id'] ?>" class="book"> per arrivare a prendere le informazioni (book_id)
+    // l'elemento che contiene tutta la riga
     var parent = this.parentNode.parentNode.parentNode;
-    var row = document.getElementById(parent.id);
 
     var request = $.ajax({
         type: "POST",
@@ -25,13 +26,13 @@ $(document).on('click','.remove-button',function () {
 
     request.done(function (response) {
         if(response.success === 1){
-            row.parentNode.removeChild(row);
+            parent.remove();
             if($("#ajax-error").html())
                 $("#ajax-error").html('');
-            var badgeNum = response.badge_num;
-            var total = response.total;
-            updateBadge(badgeNum);
-            updateTotal(total);
+
+            updateBadge(response.badge_num);
+            updateTotal(response.total);
+
             if(parseInt(badgeNum) === 0){
                 $("#cart").addClass("hidden");
                 warningCartEmpty();
@@ -43,7 +44,7 @@ $(document).on('click','.remove-button',function () {
     });
 
     request.fail(function (response, textStatus, error) {
-       $("#ajax-error").html("There was an error with our servers! Try again later.");
+       $("#ajax-error").html("We've got an error with our servers! Try again later.");
     });
 
 
@@ -57,7 +58,7 @@ $(document).on('click','.remove-button',function () {
 $(document).on('click','.remove-all-button',function () {
 
     var removeAllFromCart = 0;
-    var body = document.querySelector('tbody');
+    var tbody = document.querySelector('tbody');
 
     var request = $.ajax({
         type: "POST",
@@ -68,20 +69,22 @@ $(document).on('click','.remove-all-button',function () {
 
     request.done(function (response) {
         if(response.success === 1){
-            while (body.firstChild && body.children.length > 1) {
-                // This will remove all children within tbody which in your case are <tr> elements
-                body.removeChild(body.firstChild);
+
+            while (tbody.firstChild) {
+                // This will remove all children within tbody which my your case are <tr> elements
+                tbody.removeChild(tbody.firstChild);
             }
+
             if($("#ajax-error").html())
                 $("#ajax-error").html('');
-            var badgeNum = response.badge_num;
-            var total = response.total;
-            updateBadge(badgeNum);
-            updateTotal(total);
-            if(parseInt(badgeNum) === 0){
-                $("#cart").addClass("hidden");
-                warningCartEmpty();
-            }
+
+
+            updateBadge(response.badge_num);
+            updateTotal(response.total);
+
+
+            $("#cart").addClass("hidden"); // meglio remove ??
+            warningCartEmpty();
         }
 
         else
@@ -89,7 +92,7 @@ $(document).on('click','.remove-all-button',function () {
     });
 
     request.fail(function (response, textStatus, error) {
-        $("#ajax-error").html("There was an error with our servers! Try again later.");
+        $("#ajax-error").html("We've got an error with our servers! Try again later.");
     });
 
 });
@@ -101,16 +104,13 @@ $(document).on('click','.remove-all-button',function () {
  */
 $(document).on('click','.minus-button',function () {
 
-    var parent = this.parentNode;
-    var children = parent.children;
-    var quantityDOMElem = children[1]//.innerText = "duck"; // puntatore al DOM elem della quantity
-    var quantity = quantityDOMElem.textContent;
-    var row = parent.parentNode.parentNode;
-    var book_id = document.getElementById(row.id);
+    var parent = this.parentNode; // <p>
+    var children = parent.children; // array di children
+    var quantityDOMElem = children[1]// puntatore al DOM elem della quantity  <span class="quantity"><?= $item['quantity']?></span>
+    var quantity = quantityDOMElem.textContent; //<?= $item['quantity']?>
+    var row = parent.parentNode.parentNode; // <p>.<td>.<tr> tr possiede le informazioni (id del libro)
 
     if(parseInt(quantity) === 1){
-
-
         var request = $.ajax({
             type: "POST",
             url: "../php/ajax/cart/remove_from_cart.php",
@@ -120,13 +120,14 @@ $(document).on('click','.minus-button',function () {
 
         request.done(function (response) {
             if(response.success === 1){
-                row.parentNode.removeChild(row);
+                row.remove();
+
                 if($("#ajax-error").html())
                     $("#ajax-error").html('');
-                var badgeNum = response.badge_num;
-                var total = response.total;
-                updateBadge(badgeNum);
-                updateTotal(total);
+
+                updateBadge(response.badge_num);
+                updateTotal(response.total);
+
                 if(parseInt(badgeNum) === 0){
                     $("#cart").addClass("hidden");
                     warningCartEmpty();
@@ -138,12 +139,13 @@ $(document).on('click','.minus-button',function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            $("#ajax-error").html("There was an error with our servers! Try again later.");
+            $("#ajax-error").html("We've got an error with our servers! Try again later.");
         });
     }
-    else{
-        var subtotalDOMElem = row.children[3].children[0]//.innerText = "ciao"; per inserire roba dentro
-        //var subtotal = subtotalDOMElem.textContent;
+
+    else{ // quantity > 1
+
+        var subtotalDOMElem = row.children[3].children[0] //<tr>. <td class="subtotal-column">.<p><?= $item['subtotal']?>
 
 
         var request = $.ajax({
@@ -155,14 +157,15 @@ $(document).on('click','.minus-button',function () {
 
         request.done(function (response) {
             if(response.success === 1){
+
                 if($("#ajax-error").html())
                     $("#ajax-error").html('');
-                var badgeNum = response.badge_num;
-                var total = response.total;
+
+
                 subtotalDOMElem.innerText = response.subtotal;
                 quantityDOMElem.innerText = parseInt(quantity) - 1;
-                updateBadge(badgeNum);
-                updateTotal(total);
+                updateBadge(response.badge_num);
+                updateTotal(response.total);
             }
 
             else
@@ -170,7 +173,7 @@ $(document).on('click','.minus-button',function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            $("#ajax-error").html("There was an error with our servers! Try again later.");
+            $("#ajax-error").html("We've got an error with our servers! Try again later.");
         });
     }
 });
@@ -180,18 +183,16 @@ $(document).on('click','.minus-button',function () {
  */
 $(document).on('click','.plus-button',function () {
 
-    var parent = this.parentNode;
-    var children = parent.children;
+    var parent = this.parentNode; //<p>
+    var children = parent.children; // array di children di p
 
 
     var quantityDOMElem = children[1] // puntatore al DOM elem della quantity
     var quantity = quantityDOMElem.textContent;
-    var row = parent.parentNode.parentNode;
-    var book_id = document.getElementById(row.id);
+    var row = parent.parentNode.parentNode; // <p>.<td>.<tr> tr possiede le informazioni (id del libro)
 
 
-
-    var subtotalDOMElem = row.children[3].children[0]//.innerText = "ciao"; per inserire roba dentro
+    var subtotalDOMElem = row.children[3].children[0] //<tr>. <td class="subtotal-column">.<p><?= $item['subtotal']?>
 
 
     var request = $.ajax({
@@ -204,14 +205,15 @@ $(document).on('click','.plus-button',function () {
 
     request.done(function (response) {
         if(response.success === 1){
+
             if($("#ajax-error").html())
                 $("#ajax-error").html('');
-            var badgeNum = response.badge_num;
-            var total = response.total;
+
+
             subtotalDOMElem.innerText = response.subtotal;
             quantityDOMElem.innerText = parseInt(quantity) + 1;
-            updateBadge(badgeNum);
-            updateTotal(total);
+            updateBadge(response.badge_num);
+            updateTotal(response.total);
         }
 
         else
@@ -219,12 +221,12 @@ $(document).on('click','.plus-button',function () {
     });
 
     request.fail(function (response, textStatus, error) {
-        $("#ajax-error").html("There was an error with our servers! Try again later.");
+        $("#ajax-error").html("We've got an error with our servers! Try again later.");
     });
 
 });
 
-$(document).on('click','#checkout-button',function () {
+$(document).on('click','#checkout-button',function () { // bottone pay now
 
     var request = $.ajax({
         type: "POST",
@@ -236,8 +238,10 @@ $(document).on('click','#checkout-button',function () {
 
     request.done(function (response) {
         if(response.success === 1){
+
             if($("#ajax-error").html())
                 $("#ajax-error").html('');
+
             pay();
         }
         else{
@@ -248,7 +252,7 @@ $(document).on('click','#checkout-button',function () {
     });
 
     request.fail(function (response, textStatus, error) {
-        $("#ajax-error").html("There was an error with our servers! Try again later.");
+        $("#ajax-error").html("We've got an error with our servers! Try again later.");
     });
 });
 
@@ -270,14 +274,14 @@ function updateTotal(val){
 function warningCartEmpty(){
     var html =  "<h1>Cart is empty</h1>" +
                 "<h2>Looks like you have no items in your shopping cart</h2>" +
-                "<button><a href=\"home.php\">Continue Shopping</a></button>";
+                "<a href=\"home.php\">Continue Shopping</a>";
     $("#warning").append(html);
 }
 
 function thanksForYourPurchase(){
     var html =  "<h1>Thanks for your shopping!</h1>" +
         "<h2>We are looking forward to hear from you soon</h2>" +
-        "<button><a href=\"home.php\">Continue Shopping</a></button>";
+        "<a href=\"home.php\">Continue Shopping</a>";
     $("#warning").append(html);
 }
 
@@ -285,7 +289,7 @@ function thanksForYourPurchase(){
  * Funzione che invia una richiesta AJAX per processare il pagamento
  */
 function pay(){
-    // tutto questo lo facciamo se l'account possiede una carta collegata
+    // tutto questo viene fatto se l'account possiede una carta collegata
     var tbody = document.getElementById("books");
     var books = $(tbody).find("tr");
     var hashmap = {};
@@ -294,12 +298,12 @@ function pay(){
         var id = books[i].id;
         // book[i]. quantity column - p - quantity - valore di quantity
         var quantity = books[i].children[2].children[0].children[1].textContent;
+
         hashmap[id] = quantity;
     }
 
-    // ora dobbiamo fare qualcosa ??
     // 1. aggiungere gli acquisti nel db
-    // far uscire la pagina thank you for your purchase!
+    // 2. far uscire la pagina thank you for your purchase!
 
 
     var request = $.ajax({
@@ -312,11 +316,13 @@ function pay(){
 
     request.done(function (response) {
         if(response.success === 1){
+
             if($("#ajax-error").html())
                 $("#ajax-error").html('');
-            var badgeNum = response.badge_num;
-            updateBadge(badgeNum);
+
+            updateBadge(response.badge_num);
             $("#cart").addClass("hidden");
+
             thanksForYourPurchase();
         }
 
@@ -325,6 +331,6 @@ function pay(){
     });
 
     request.fail(function (response, textStatus, error) {
-        $("#ajax-error").html("There was an error with our servers! Try again later.");
+        $("#ajax-error").html("We've got an error with our servers! Try again later.");
     });
 }

@@ -30,17 +30,16 @@
     <div class="row">
         <?php
             if(count($items) == 0){
-                ?>
+        ?>
             <div class="warning-empty-cart">
                 <h1>Cart is empty</h1>
                 <h2>Looks like you have no items in your shopping cart</h2>
-                <button><a href="home.php">Continue Shopping</a></button>
+                <a href="home.php">Continue Shopping</a>
             </div>
-
-            <?php
+        <?php
             }
             else{
-                ?>
+        ?>
         <div id="warning"></div>
         <div id="cart">
             <h1 class="cart-name">Cart</h1>
@@ -119,8 +118,8 @@
                 </tfoot>
             </table>
         </div>
-    </div>
         <?php } ?>
+    </div>
          <?php require_once "include/footer.html"; ?>
 </body>
 </html>

@@ -27,15 +27,14 @@ $(document).ready(function () {
 
             request.done(function (response) {
                 if (response.success === 1) {
-                    var books = response.data;
-                    showBooks(books);
+                    showBooks(response.data);
                 } else{
                     $("#products").html(response.error);
                 }
             });
 
             request.fail(function (response, textStatus, error) {
-                $("#products").html("There was an error with our servers! Try again later.");
+                $("#products").html("We've got an error with our servers! Try again later.");
             });
 
         }

@@ -39,7 +39,7 @@ $(document).ready(function () {
         request.fail(function (response, textStatus, error) {
             $("#ajax-photo-response").removeClass();
             $("#ajax-photo-response").addClass("failure");
-            $("#ajax-photo-response").html("There was an error with our servers! Try again later.");
+            $("#ajax-photo-response").html("We've got an error with our servers! Try again later.");
         });
     });
 
@@ -71,7 +71,7 @@ $(document).on('click','#remove-photo',function () {
         request.fail(function (response, textStatus, error) {
             $("#ajax-photo-response").removeClass();
             $("#ajax-photo-response").addClass("failure");
-            $("#ajax-photo-response").html("There was an error with our servers! Try again later.");
+            $("#ajax-photo-response").html("We've got an error with our servers! Try again later.");
         });
 
 });
@@ -110,7 +110,7 @@ $(document).ready(function () {
         request.fail(function (response, textStatus, error) {
             $("#ajax-password-response").removeClass();
             $("#ajax-password-response").addClass("failure");
-            $("#ajax-password-response").html("There was an error with our servers! Try again later.");
+            $("#ajax-password-response").html("We've got an error with our servers! Try again later.");
         });
 
     });
@@ -146,7 +146,7 @@ $(document).ready(function () {
 
         request.fail(function (response, textStatus, error) {
             $("#ajax-unsubscribe-response").addClass("failure");
-            $("#ajax-unsubscribe-response").html("There was an error with our servers! Try again later.");
+            $("#ajax-unsubscribe-response").html("We've got an error with our servers! Try again later.");
         });
 
     });

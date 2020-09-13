@@ -32,27 +32,15 @@ $(document).on('click','.add-to-cart',function () {
         });
 
         request.fail(function (response, textStatus, error) {
-            alert("There was an error with our servers! Try again later.");
+            alert("We've got an error with our servers! Try again later.");
         });
 
 });
 
+
+/**
+ * Aggiorna il badge della navbar
+ */
 function updateBadge(num) {
     $(".badge").html(num);
 }
-
-
-/**
- In jQuery, Click() event binds the element only if the particular element exists in the Html code(after page loads).
- It won't consider the future elements which are created dynamically(Future element). Dynamic elements are created with
- the help of javascript or jquery(not in Html).
- So the normal click event won't fire on the dynamic element.
- Solution :
- To overcome this we should use on() function.
- delegate(),live() and on() functions have the advantages over the DOM elements.
- delegate() and live() are deprecated (Don't use these).
- on can only trigger both the existing and future elements.
- on can consider all the elements which are present on the whole page.
- You should use on function to trigger the event on dynamically(future) created elements.
- Remove the code from $(document).ready:
- */
