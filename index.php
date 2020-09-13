@@ -20,12 +20,25 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- Meta -->
     <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- jQuery Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Google font: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+
+    <!-- Index behaviour -->
     <script src="javascript/loginSignup.js"></script>
+
+    <!-- Index style -->
     <link rel="stylesheet" href="css/index.css">
-    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+    
     <title>TheBookstore: login or signup</title>
 </head>
 <body>
