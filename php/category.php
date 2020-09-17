@@ -20,6 +20,11 @@ if(isset($_GET['category'])){
         FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     $books = retrieve_books_by_category($category);
+
+    if(!$books){
+        header("Location: home.php");
+        die;
+    }
 }
 ?>
 

@@ -24,7 +24,7 @@
 
             $response = array("success" => 1, "badge_num"=> $data, "subtotal"=>$subtotal, "total"=> $total);
         }
-        else $response = array("success" => 0, "error"=> "No data found");
+        else $response = array("success" => 0, "error"=> "error adding quantity");
 
         echo json_encode($response);
     }

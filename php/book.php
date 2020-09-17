@@ -28,6 +28,11 @@
             FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         $book = retrieve_book_by_id($id_book);
+
+        if(!$book){
+            header("Location: home.php");
+            die;
+        }
         $in_wishlist = is_in_wishlist($id_book, $email);
         $comments = retrieve_comments($id_book);
 
@@ -153,7 +158,8 @@
                     ?>
                         <div class="book">
                             <div class="cover">
-                                <a href='book.php?id_book=<?= $sim["book_id"] ?>'><img src="<?= $sim["cover"] ?>" alt="cover"></a></div>
+                                <a href='book.php?id_book=<?= $sim["book_id"] ?>'><img src="<?= $sim["cover"] ?>" alt="cover"></a>
+                            </div>
                             <a href='book.php?id_book=<?= $sim["book_id"] ?>'><h3 class="title"> <?= $sim["title"] ?></h3></a>
 
                             <p class="author"><?= $sim["author"]?></p>

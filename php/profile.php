@@ -23,8 +23,14 @@
     if(isset($_GET['user']) && strcmp($_GET['user'], $email) != 0){
         // entriamo nel profilo di un altro utente
         // dobbiamo nascondere gli ordini e il bottone impostazioni (poiché non possiamo cambiare le impostazioni di altri utenti)
-        $user = $_GET['user'];
+        $user = filter_input(INPUT_GET, "user",
+            FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $usr_data = retrieve_usr_info($user);
+
+        if(!$usr_data){
+            header("Location: home.php");
+            die;
+        }
         $wishlist = retrieve_wishlist($user);
         $common = retrieve_common_books($user, $email);
         ?>
@@ -62,7 +68,7 @@
                     <?php
                     if(count($wishlist) == 0){
                     ?>
-                        <div>There is no items in <?= $usr_data['name']?>'s wishlist</div>
+                        <div>There is no item in <?= $usr_data['name']?>'s wishlist</div>
                     <?php
                     }
                     else{
@@ -169,7 +175,7 @@
                 <?php
                 if(count($wishlist) == 0){
                 ?>
-                    <div>There is no items in your wishlist</div>
+                    <div>There is no item in your wishlist</div>
                 <?php
                 }
                 else{
@@ -196,7 +202,7 @@
                 <?php
                 if(count($purchased_items) == 0){
                     ?>
-                    <p>you haven't bought any books yet</p>
+                    <p>you haven't bought any book yet</p>
                     <a id="shop-now" href="home.php">Shop now</a>
                     <?php
                 }

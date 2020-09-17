@@ -62,7 +62,7 @@ $(document).ready(function () {
                 $("#ajax-response").html(response.flash_message); // inserisce nel paragrafo html di signup la risposta del server
         });
 
-        request.fail(function (response, textStatus, error) {
+        request.fail(function () {
             $("#ajax-response").html("We've got a problem with our servers! Try again later.");
         });
 

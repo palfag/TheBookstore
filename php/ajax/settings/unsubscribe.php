@@ -19,7 +19,6 @@
                 echo json_encode($response);
             }
             else throw new Exception("error deleting user from db");
-            // effettuo il logout
         }catch (Exception $e){
             $response = array("success" => 0, "flash_message" => $e->getMessage());
             echo json_encode($response);

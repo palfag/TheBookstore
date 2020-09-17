@@ -23,7 +23,7 @@
             $_SESSION['badge'] = $data;
             $response = array("success" => 1, "badge_num"=> $data, "total"=> $total);
         }
-        else $response = array("success" => 0, "error"=> "No data found");
+        else $response = array("success" => 0, "error"=> "error deleting item");
 
         echo json_encode($response);
     }

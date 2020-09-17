@@ -75,5 +75,5 @@ function showCategories(categories){
  * @returns {boolean} Ritorna TRUE se l'elemento è vuoto, FALSE altrimenti
  */
 function isEmpty(el){
-    return !$.trim(el.html())
+    return !$.trim(el.html());
 }
